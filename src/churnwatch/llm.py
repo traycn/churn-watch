@@ -54,6 +54,7 @@ def render_prompt(version: str, pack: Pack) -> str:
         reasons=list(pack.reasons.items()),
         notes_field=pack.col("csm_notes"),
         seasonal_segments=seasonal,
+        units_h=pack.words["units_h"],
     )
 
 

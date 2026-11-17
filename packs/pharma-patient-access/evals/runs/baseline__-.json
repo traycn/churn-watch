@@ -2,7 +2,7 @@
  "pack": "pharma-patient-access",
  "model": "baseline",
  "prompt": "-",
- "label_set": "draft",
+ "label_set": "reviewed",
  "accounts": [
   {
    "account_id": "TST-0001",

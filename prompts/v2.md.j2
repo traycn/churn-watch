@@ -27,8 +27,9 @@ An account is at risk if a reasonable CSM would worry it could fail to renew, or
    - a departed champion with an engaged, named successor
    - a late payment caused by the customer's own finance-system change, with payment confirmed
 3. Notes that reveal a risk the numbers hide also win: a competitor pilot, a price comparison or an RFP makes an account at risk even with healthy usage.
-4. A large usage drop with **no** notes is still at risk, even in a seasonal segment: nobody has confirmed it is seasonal.
-5. When several drivers apply, `main_reason` is the one the CSM should open the call with, usually what the customer said out loud.
+4. A large usage drop that the notes don't explain is still at risk, even in a seasonal segment: nobody has confirmed it is seasonal. In a seasonal segment, say in the explanation that seasonality is a possible cause, and make confirming it the next step.
+5. Judge a drop by its percentage, not its size. In a small account, losing a few dozen {{ units_h }} can be a large drop.
+6. When several drivers apply, `main_reason` is the one the CSM should open the call with, usually what the customer said out loud.
 
 ## Evidence rules
 
@@ -36,6 +37,7 @@ Every driver must cite 1 to 3 pieces of evidence as (field, value) pairs:
 - `field` is an exact key from the record.
 - `value` is copied exactly as it appears in the record. Do not round, convert or compute new numbers.
 - For `{{ notes_field }}`, `value` is a short verbatim quote (a few words) from the notes.
+- When the notes describe the event behind a driver (a sponsor leaving, an RFI, an escalation), quote that event as evidence, not only the field that reflects it.
 
 Your answers are checked automatically against the record. Evidence that is not in the record counts as an error.
 
