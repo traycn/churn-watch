@@ -62,18 +62,40 @@ def model_input(record: dict) -> str:
     return json.dumps(record, indent=1, default=str)
 
 
-def cache_key(model: str, prompt: str, record: dict, max_tokens: int, temperature: float | None) -> str:
+def cache_key(model: str, prompt: str, record: dict, max_tokens: int) -> str:
     blob = json.dumps(
         {"model": model, "prompt": prompt, "schema": tool_schema(), "record": record,
-         "max_tokens": max_tokens, "temperature": temperature},
+         "max_tokens": max_tokens},
         sort_keys=True, default=str,
     )
     return hashlib.sha256(blob.encode()).hexdigest()[:24]
 
 
+def maybe_billed(e: Exception) -> bool:
+    """Could a failed call still have been billed?
+
+    - The API answered with an error status (400 bad request, 401, 429, 529, 500...):
+      the request was refused or failed server-side and is not billed.
+    - The request never left this machine (a TypeError from a wrong argument, a missing
+      key): not billed.
+    - The connection dropped or timed out after the request was sent: it may have been
+      processed, so it is counted at its worst case.
+    """
+    if getattr(e, "status_code", None) is not None:
+        return False
+    try:
+        import anthropic
+
+        if isinstance(e, anthropic.APIConnectionError):  # includes APITimeoutError
+            return True
+    except ImportError:
+        pass
+    return isinstance(e, (TimeoutError, ConnectionError))
+
+
 class ClaudeScorer:
     def __init__(self, model: str, prompt_version: str, pack: Pack, *, max_tokens: int = 4000,
-                 temperature: float | None = 0, replay: bool = False, client=None,
+                 replay: bool = False, client=None,
                  cache_dir: Path = CACHE_DIR, budget: Budget | None = None):
         self.model = model
         self.prompt_version = prompt_version
@@ -81,7 +103,6 @@ class ClaudeScorer:
         self.prompt = render_prompt(prompt_version, pack)
         self.id_field = pack.col("account_id")
         self.max_tokens = max_tokens
-        self.temperature = temperature
         self.replay = replay
         self.cache_dir = cache_dir / model
         self._client = client
@@ -90,7 +111,7 @@ class ClaudeScorer:
             raise ValueError("Live scoring needs a Budget so spend stays under the cap.")
 
     def _cache_path(self, record: dict) -> Path:
-        key = cache_key(self.model, self.prompt, record, self.max_tokens, self.temperature)
+        key = cache_key(self.model, self.prompt, record, self.max_tokens)
         return self.cache_dir / f"{key}.json"
 
     def is_cached(self, record: dict) -> bool:
@@ -110,8 +131,10 @@ class ClaudeScorer:
             self._client = anthropic.Anthropic(max_retries=2, timeout=120)
         return self._client
 
-    def _call(self, record: dict) -> dict:
-        kwargs = dict(
+    def request_kwargs(self, record: dict) -> dict:
+        """Everything sent to messages.create. Sampling settings (temperature, top_p) are
+        not sent: the Anthropic SDK this repo pins (2.x) no longer accepts them."""
+        return dict(
             model=self.model,
             max_tokens=self.max_tokens,
             system=self.prompt,
@@ -120,12 +143,12 @@ class ClaudeScorer:
             tool_choice={"type": "tool", "name": TOOL_NAME},
             messages=[{"role": "user", "content": model_input(record)}],
         )
-        if self.temperature is not None:
-            kwargs["temperature"] = self.temperature
 
+    def _call(self, record: dict) -> dict:
+        kwargs = self.request_kwargs(record)
         # Newer models think by default, and some API versions refuse a forced tool
-        # choice or a temperature alongside thinking. Fall back one setting at a time
-        # and record what was actually used, so results stay explainable.
+        # choice alongside thinking. Fall back to "any tool" if so, and record it, so
+        # results stay explainable.
         notes: list[str] = []
         for _ in range(3):
             try:
@@ -136,10 +159,7 @@ class ClaudeScorer:
                 msg = str(e).lower()
                 if getattr(e, "status_code", None) != 400:
                     raise
-                if "temperature" in msg and "temperature" in kwargs:
-                    kwargs.pop("temperature")
-                    notes.append("temperature dropped")
-                elif "tool_choice" in msg and kwargs["tool_choice"].get("type") == "tool":
+                if "tool_choice" in msg and kwargs["tool_choice"].get("type") == "tool":
                     kwargs["tool_choice"] = {"type": "any"}
                     notes.append("tool_choice=any")
                 else:
@@ -173,8 +193,8 @@ class ClaudeScorer:
             try:
                 raw = self._call(record)
             except Exception as e:
-                if getattr(e, "status_code", None) is not None and 400 <= e.status_code < 500:
-                    self.budget.release(reserved)  # rejected requests are not billed
+                if not maybe_billed(e):
+                    self.budget.release(reserved)
                 else:
                     # Unknown whether it was billed (timeout, dropped connection): count the worst case.
                     self.budget.settle(reserved, model=self.model, prompt=f"{self.pack.slug}/{self.prompt_version}",

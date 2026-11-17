@@ -11,6 +11,11 @@ on:
       - "src/**"
       - "packs/**"
   workflow_dispatch:
+    inputs:
+      models:
+        description: "Only these models, space-separated (e.g. claude-haiku-5-5). Blank = every configured run."
+        required: false
+        default: ""
 
 # Paid runs happen only on main, one at a time, so there is exactly one spend ledger
 # (evals/spend.csv) and two runs can never both see the same remaining budget.
@@ -53,7 +58,10 @@ jobs:
       - name: Run evals (cached responses are free; refused if the worst case would pass the cap)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: uv run churnwatch eval
+        run: |
+          args=""
+          for m in ${{ inputs.models }}; do args="$args --model $m"; done
+          uv run churnwatch eval $args
 
       - name: Post the results and spend to the job summary
         if: always()

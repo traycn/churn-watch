@@ -3,7 +3,6 @@
 # evals in CI (cached responses are reused, so only what changed costs money).
 
 max_tokens = 4000  # includes thinking tokens on models that think by default
-temperature = 0
 concurrency = 8
 
 [defaults]

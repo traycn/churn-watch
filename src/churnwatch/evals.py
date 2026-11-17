@@ -66,7 +66,7 @@ def make_budget(cfg: dict, ledger: Path = LEDGER) -> Budget:
 def make_scorer(pack: Pack, model: str, prompt: str, cfg: dict, replay: bool,
                 budget: Budget | None) -> ClaudeScorer:
     return ClaudeScorer(model, prompt, pack, max_tokens=cfg.get("max_tokens", 4000),
-                        temperature=cfg.get("temperature"), replay=replay, budget=budget)
+                        replay=replay, budget=budget)
 
 
 def pack_runs(pack: Pack, cfg: dict, models=None, prompts=None) -> list[tuple[str, str]]:
