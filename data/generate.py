@@ -233,6 +233,8 @@ def make_account(rng: random.Random, idx: int, scenario: str, prefix: str) -> Ac
     b = rng.choice([n for n in FIRST_NAMES if n != a])
     note_kw = dict(a=a, b=b, n=rng.randint(4, 30),
                    d1=(EXPORT_DATE - timedelta(days=rng.randint(5, 40))).strftime("%b %d"))
+    if scenario == "ramping":  # rollout milestones are in the future
+        note_kw["d1"] = (EXPORT_DATE + timedelta(days=rng.randint(10, 40))).strftime("%b %d")
 
     if scenario == "expanding":
         ratio_now = rng.uniform(0.95, 1.0)
@@ -309,6 +311,8 @@ def make_account(rng: random.Random, idx: int, scenario: str, prefix: str) -> Ac
     users_ratio = rng.uniform(0.08, 0.15)
     wau_now = max(1, round(licensed * users_ratio * (active_now / licensed) / 0.9))
     wau_90 = max(1, round(wau_now / (trend * rng.uniform(0.95, 1.05))))
+    if tenure_days < 90:  # not yet a customer 90 days ago
+        active_90, wau_90 = 0, 0
 
     customer_since = EXPORT_DATE - timedelta(days=tenure_days)
     renewal = EXPORT_DATE + timedelta(days=days_to_renewal)
