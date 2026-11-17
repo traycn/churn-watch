@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0013",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0013",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "competitor",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "Procurement has issued an RFI for patient-support services due in Q1 that Marcus hints covers our scope, so the renewal may go out to competing hub vendors.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Procurement issued an RFI for patient-support services"
+     },
+     {
+      "field": "csm_notes",
+      "value": "covers our scope"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients are down about 7% over 90 days and portal users are down about 17%, which is moderate but worth watching alongside the RFI.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -6.7
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -16.7
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Operations are healthy: no tickets or sev1 incidents, no overdue invoices, an active champion, and a 4.2-day median time to first fill.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Marcus this week to ask directly whether the Q1 patient-support RFI covers our hub scope, and what evaluation criteria and timeline procurement is using."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4096,
+ "output_tokens": 607,
+ "latency_ms": 2360,
+ "call_settings": []
+}

@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0025",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0025",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 35.4% in 90 days (1,011 to 653) and sit at only 54.4% of forecast, so the program is well below the enrollment the manufacturer expects, even allowing for seasonality.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -35.4
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 54.4
+     },
+     {
+      "field": "active_patients_now",
+      "value": 653
+     }
+    ]
+   },
+   {
+    "field": "weekly_portal_users_change_90d_pct",
+    "value": -50.0
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Brand-team engagement with the portal has halved and is down to one weekly user, which weakens the signal that the manufacturer is watching and invested in the program.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_portal_users_90d_ago",
+      "value": 2
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Mitigating factors: no sev1 tickets, no open escalation, NPS of 8, zero days overdue on invoices, an active champion, and first fills in a median of 2.5 days with 81.1% refill adherence.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "last_nps",
+      "value": 8
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.5
+     }
+    ]
+   }
+  ],
+  "next_step": "Get the brand team's forecast-by-month for the spring ramp in writing from Victor this week, and schedule an exec check-in before renewal to confirm the seasonal dip is expected and to re-engage the portal users."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2084,
+ "output_tokens": 733,
+ "latency_ms": 3196,
+ "call_settings": []
+}

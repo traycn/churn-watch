@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0011",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0011",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "Copay card rejects at fill for three weeks, with three severity-1 incidents and an open executive escalation to their VP of market access, and the brand team's NPS of 4 suggests they are unhappy.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Copay card rejects at fill"
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 3
+     },
+     {
+      "field": "open_escalation",
+      "value": "yes"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 11.7% over 90 days and portal users dropped slightly, which is a softer warning that adds to the escalation risk.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.7
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -12.5
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Billing is current, the champion is still active, and the account is 114 days from renewal, which leaves time to resolve the copay issue.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Have Keisha confirm with the manufacturer's VP of market access this week that the copay card reject root cause is identified and a fix date is set, and schedule an executive business review, since the last one was 110 days ago."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4106,
+ "output_tokens": 619,
+ "latency_ms": 2561,
+ "call_settings": []
+}

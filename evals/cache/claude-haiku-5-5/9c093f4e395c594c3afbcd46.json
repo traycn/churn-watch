@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0029",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0029",
+  "at_risk": true,
+  "risk_score": 80,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 41.7% in 90 days (60 to 35), and the notes say fewer prescribers are routing patients to us with no explanation offered.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -41.7
+     },
+     {
+      "field": "csm_notes",
+      "value": "Fewer prescribers routing to us"
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "Keisha, the active program contact, has not answered the last two emails, so engagement is slipping even though the sponsor is still listed as active.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Keisha hasn't answered the last two emails"
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 58.3% of contracted patients are active, and weekly portal users fell 50% to 1, which signals a disengaging partner.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 58.3
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -50.0
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Keisha this week (or her manager if she stays unresponsive) to find out why prescribers stopped routing patients, and ask for a named prescriber-referral review before the renewal conversation."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4078,
+ "output_tokens": 599,
+ "latency_ms": 2383,
+ "call_settings": []
+}

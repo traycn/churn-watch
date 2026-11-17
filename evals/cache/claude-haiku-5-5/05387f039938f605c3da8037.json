@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0032",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0032",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "Repeated prior-auth delays with four Sev1 tickets in 90 days and an open escalation are causing patients to abandon before first fill.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 4
+     },
+     {
+      "field": "open_escalation",
+      "value": "yes"
+     },
+     {
+      "field": "csm_notes",
+      "value": "patients are abandoning before first fill"
+     }
+    ]
+   },
+   {
+    "field": "median_days_to_first_fill",
+    "value": 12.9
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell from 36 to 34 over 90 days and forecast attainment is 85%, so the program is shrinking against plan.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -5.6
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 85.0
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, flat over 90 days, and NPS of 2 signal weak engagement and sentiment from the brand team.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "last_nps",
+      "value": 2
+     }
+    ]
+   }
+  ],
+  "next_step": "Get a dated, committed fix plan for the prior-auth backlog from the operations lead this week, and bring Beth and the brand team a joint recovery review before the next exec touchpoint."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2075,
+ "output_tokens": 620,
+ "latency_ms": 2538,
+ "call_settings": []
+}

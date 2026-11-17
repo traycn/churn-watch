@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0040",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0040",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 40.4% in 90 days and sit at 47.5% of forecast, which is a real shrinkage signal even though allergy seasonality likely explains part of the drop.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -40.4
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 47.5
+     },
+     {
+      "field": "active_patients_now",
+      "value": 1664
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users dropped from 12 to 7, so the brand team is engaging less with program data.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_change_90d_pct",
+      "value": -41.7
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 7
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Relationship signals are healthy: the account renewed early, the champion is active, there are no open escalations or Sev1 tickets, and invoices are paid on time.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "csm_notes",
+      "value": "renewed early"
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Nikhil for the brand's fall-winter seasonal forecast and confirm whether the 90-day drop matches last year's pattern, then schedule an exec check-in before the spring ramp to reconfirm the 3,500-patient commitment."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2081,
+ "output_tokens": 668,
+ "latency_ms": 2876,
+ "call_settings": []
+}

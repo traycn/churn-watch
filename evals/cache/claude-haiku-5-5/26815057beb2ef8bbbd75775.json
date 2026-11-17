@@ -1,0 +1,66 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0009",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0009",
+  "at_risk": true,
+  "risk_score": 55,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "The account logged 12 tickets in the last 90 days, including 2 Sev1 tickets, and the two data-feed failures last month are a reliability problem the brand team has felt directly, even though they were backfilled.",
+    "evidence": [
+     {
+      "field": "tickets_90d",
+      "value": 12
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 2
+     },
+     {
+      "field": "csm_notes",
+      "value": "Two data-feed failures last month"
+     }
+    ]
+   },
+   {
+    "file": "",
+    "driver": "low_adoption",
+    "explanation": "Portal engagement is flat and low at 3 weekly users, and the account has not had an executive meeting in 119 days, so the relationship is thin above the day-to-day contacts.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 3
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 119
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients are slipping slightly, down 1.8% over 90 days, and refill adherence at 73.6% is a concern to watch, though the decline is small.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -1.8
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 73.6
+     }
+    ]
+   }
+  ],
+  "next_step": "Book an executive check-in with the brand team this week to review the two Sev1 incidents, confirm the data feed fix is holding, and walk through the active patient and refill adherence trend before the December 12 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2076,
+ "output_tokens": 653,
+ "latency_ms": 2850,
+ "call_settings": []
+}

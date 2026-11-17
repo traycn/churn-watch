@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0047",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0047",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who signed the program was reorganized out, and no successor is named, so nobody owns the relationship before the February renewal.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Nobody owns the relationship now"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients are down about 11% over 90 days and sit at 80% of forecast, a softer decline that adds to the renewal concern.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.0
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 80.2
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Service levels are healthy: no severe incidents, no open escalation, and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the Southeast account lead to identify the new patient-services owner at Brightwater this week, and book an executive business review with that person before the February 18 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4094,
+ "output_tokens": 548,
+ "latency_ms": 2138,
+ "call_settings": []
+}

@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0050",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0050",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are growing and sit at 92.8% of forecast, with the sponsor active, no open escalation, no sev1 incidents, and NPS of 10.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 3.5
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 92.8
+     },
+     {
+      "field": "last_nps",
+      "value": 10
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent action this week; keep on the regular cadence and schedule the executive business review, since the last one was 85 days ago."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4056,
+ "output_tokens": 338,
+ "latency_ms": 1570,
+ "call_settings": []
+}

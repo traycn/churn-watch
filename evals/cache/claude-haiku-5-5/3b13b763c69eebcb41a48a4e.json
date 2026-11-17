@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0042",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0042",
+  "at_risk": true,
+  "risk_score": 62,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Rafael says the program budget is under review after a pricing hit, which could shrink scope at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "budgets are under review"
+     },
+     {
+      "field": "csm_notes",
+      "value": "after a pricing hit"
+     }
+    ]
+   },
+   {
+    "driver": "billing",
+    "explanation": "Two program-fee invoices are unpaid and the oldest is 65 days past due, which may signal the budget squeeze is affecting payment.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 65
+     },
+     {
+      "field": "csm_notes",
+      "value": "Two program-fee invoices unpaid"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Usage is only modestly down and the account still has 6,310 active patients, with no sev1 incidents and an active champion.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -8.6
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Rafael this week to confirm how the budget review affects program scope and renewal, and agree a plan for the two unpaid invoices (65 days overdue)."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4095,
+ "output_tokens": 559,
+ "latency_ms": 2195,
+ "call_settings": []
+}

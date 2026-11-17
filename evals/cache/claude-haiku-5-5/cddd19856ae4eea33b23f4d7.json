@@ -1,0 +1,47 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0024",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0024",
+  "at_risk": false,
+  "risk_score": 22,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are nearly flat over 90 days and the departed sponsor has an engaged successor, so the account is not at risk.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.0
+     },
+     {
+      "field": "csm_notes",
+      "value": "replacement Priya is engaged"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "No support incidents, no open escalation, and invoices are current.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Have the CSM send Priya the program playbook she requested and book an intro call to establish her as the new program sponsor."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4100,
+ "output_tokens": 397,
+ "latency_ms": 1824,
+ "call_settings": []
+}

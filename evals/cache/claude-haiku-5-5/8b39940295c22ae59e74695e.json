@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0048",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0048",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "competitor",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "The manufacturer's hub vendor pitched a bundled specialty pharmacy and asked for our per-patient pricing for comparison, so they are evaluating an alternative even though usage is steady.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "asked for our per-patient pricing 'for comparison'"
+     },
+     {
+      "field": "csm_notes",
+      "value": "bundled specialty pharmacy"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Active patients are at 80.5% of forecast and only one brand-team user is active in the portal, so the program's value is not widely visible internally.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 80.5
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Usage is roughly flat and there are no severe incidents, no open escalation, and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.6
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Tom for a call this week to learn what the competing bundled specialty pharmacy offer includes, and prepare a value summary and per-patient pricing comparison before renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4106,
+ "output_tokens": 616,
+ "latency_ms": 2498,
+ "call_settings": []
+}

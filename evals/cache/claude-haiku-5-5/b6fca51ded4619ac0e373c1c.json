@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0042",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0042",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Rafael says the manufacturer's budgets are under review after a pricing hit, and the account is already showing payment strain, so a renewal could shrink in scope or contracted patients.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Rafael said budgets are under review after a pricing hit"
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 65
+     },
+     {
+      "field": "csm_notes",
+      "value": "Two program-fee invoices unpaid"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 8.6% in 90 days and sit at 84.1% of forecast, so the program is delivering less volume than the manufacturer expects.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -8.6
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 84.1
+     },
+     {
+      "field": "active_patients_now",
+      "value": 6310
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 70.1% refill adherence and 25 weekly portal users (down 7.4%) suggest weak engagement with the program and the partner portal.",
+    "evidence": [
+     {
+      "field": "refill_adherence_pct",
+      "value": 70.1
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 25
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -7.4
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Rafael this week to confirm the budget review timeline and get the two unpaid program-fee invoices (65 days overdue) on a payment plan or cleared, and ask whether the renewal scope is under discussion."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2075,
+ "output_tokens": 709,
+ "latency_ms": 2788,
+ "call_settings": []
+}

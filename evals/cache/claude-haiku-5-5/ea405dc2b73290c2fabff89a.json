@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0027",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0027",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who signed the program was reorganized out, and nobody currently owns the relationship.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Luis (patient-services lead, signed the program) was reorganized out"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 1 weekly portal user and active patients at 77.8% of forecast, with the account 79 days from renewal and no executive meeting in 239 days.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 77.8
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 239
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 15% over 90 days, below the 25% threshold but a downward trend heading into renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -15.2
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the Cirrane Genetics leadership contact who now owns the program, and book an executive sponsor meeting with them this week to re-establish the relationship before the 2027-02-03 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4086,
+ "output_tokens": 579,
+ "latency_ms": 2387,
+ "call_settings": []
+}

@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0033",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0033",
+  "at_risk": true,
+  "risk_score": 88,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "The brand is losing exclusivity next year and Victor has asked to cut the program to copay assistance only at renewal, which would shrink the account materially.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Victor asked to cut the program to copay assistance only"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Brand loses exclusivity next year"
+     },
+     {
+      "field": "days_to_renewal",
+      "value": 45
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 34.5% in 90 days and weekly portal users fell about 36.8%, with nothing in the notes explaining the drop away.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -34.5
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -36.8
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Fills are fast and the champion is still active with no open escalation or billing issues.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 5.0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Contact Victor this week to understand the scope of the proposed copay-only cut, and present a renewal case covering the post-exclusivity patient plan before the 2026-12-31 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4098,
+ "output_tokens": 609,
+ "latency_ms": 2380,
+ "call_settings": []
+}

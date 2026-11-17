@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0031",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0031",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are growing fast and tracking forecast, with strong fill speed, adherence, NPS, and an active champion, so renewal risk is low.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 24.5
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.4
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 5.0
+     },
+     {
+      "field": "last_nps",
+      "value": 10
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Portal usage is flat at one weekly user, which is a minor engagement gap to watch even though the program is performing well.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Active patients are at 482 of 500 contracted with no billing issues and no severity-1 tickets, which supports renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 482
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a scoping call with Luis this week to plan routing the Q1 new-indication launch through pharmacy from day one, and ask whether the brand team can add a second portal user."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2071,
+ "output_tokens": 620,
+ "latency_ms": 2594,
+ "call_settings": []
+}

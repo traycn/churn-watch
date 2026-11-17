@@ -1,0 +1,42 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0036",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0036",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are at 96.2% of forecast and grew slightly over 90 days, with the program budget already approved for next year.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.2
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.1
+     }
+    ]
+   },
+   {
+    "field": "none",
+    "explanation": "",
+    "evidence": []
+   }
+  ],
+  "next_step": "No urgent action; keep the early renewal conversation on track and schedule the overdue executive business review (96 days since last meeting) at a convenient time."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4084,
+ "output_tokens": 365,
+ "latency_ms": 1653,
+ "call_settings": []
+}

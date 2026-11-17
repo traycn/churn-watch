@@ -1,0 +1,47 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0006",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0006",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are up 14.9% over 90 days and at 95.2% of forecast, with a sponsor still in place and no open issues.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 14.9
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 95.2
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Brand sponsor Luis is expanding the program to a new indication, a sign of continued commitment.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "launching a new indication in Q1"
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent action; use the next routine check-in to plan the Q1 new-indication routing through pharmacy with Luis."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4094,
+ "output_tokens": 413,
+ "latency_ms": 2038,
+ "call_settings": []
+}

@@ -1,0 +1,47 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0020",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0020",
+  "at_risk": true,
+  "risk_score": 75,
+  "main_reason": "competitor",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "Procurement has issued an RFI for patient-support services covering our scope, so the account may be evaluating other hub vendors before renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Procurement issued an RFI for patient-support services"
+     },
+     {
+      "field": "csm_notes",
+      "value": "covers our scope"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Usage is roughly flat, with active patients down only 3% and a fast median time to first fill.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.0
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.7
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Marcus this week to ask directly about the Q1 patient-support RFI, what scope it covers, and what would keep Elmstead with Parcella through renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4092,
+ "output_tokens": 441,
+ "latency_ms": 1840,
+ "call_settings": []
+}

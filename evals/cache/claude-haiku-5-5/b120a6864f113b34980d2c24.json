@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0014",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0014",
+  "at_risk": true,
+  "risk_score": 45,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "The October benefits-verification outage drove 3 Sev1 tickets and 12 tickets in 90 days, and first fills were delayed, though the root cause was fixed Nov 02 and the escalation is closed.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 3
+     },
+     {
+      "field": "tickets_90d",
+      "value": 12
+     },
+     {
+      "field": "csm_notes",
+      "value": "Benefits-verification outage in October delayed first fills"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Active patients are at 2,983 of 3,500 contracted (85.2% of forecast), and refill adherence is 81.5%, so the program is trailing its enrollment forecast.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 85.2
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 81.5
+     },
+     {
+      "field": "active_patients_now",
+      "value": 2983
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "The executive sponsor has not met in 77 days and the renewal is 48 days away, which leaves little time to rebuild the relationship before a renewal decision.",
+    "evidence": [
+     {
+      "field": "days_since_exec_meeting",
+      "value": 77
+     },
+     {
+      "field": "days_to_renewal",
+      "value": 48
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule an executive business review with the Orrin sponsor this week to confirm the Nov 02 fix holds, and walk through the active-patient gap to forecast with a plan to close it before renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2096,
+ "output_tokens": 673,
+ "latency_ms": 2752,
+ "call_settings": []
+}

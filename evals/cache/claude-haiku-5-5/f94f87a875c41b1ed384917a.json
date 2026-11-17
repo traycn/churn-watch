@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0022",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0022",
+  "at_risk": true,
+  "risk_score": 88,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "The brand loses exclusivity next year and the champion has asked to cut the program to copay assistance only at renewal, which would remove pharmacy fulfillment and the data feed.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Mei asked to cut the program to copay assistance only"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Brand loses exclusivity next year"
+     },
+     {
+      "field": "renewal_date",
+      "value": "2027-01-12"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about a third in 90 days and are running well below the enrollment forecast, so the program is shrinking in volume before renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -32.4
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 56.6
+     },
+     {
+      "field": "active_patients_now",
+      "value": 1980
+     }
+    ]
+   },
+   {
+    "field": "weekly_portal_users_change_90d_pct",
+    "value": -36.4
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Portal engagement has dropped by over a third and only 1,980 of 3,500 contracted patients are active, so the brand team is disengaging from the program.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 7
+     },
+     {
+      "field": "weekly_portal_users_90d_ago",
+      "value": 11
+     },
+     {
+      "field": "contracted_patients",
+      "value": 3500
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule an executive business review with Mei this week to present the active-patient decline and forecast gap, and agree on a plan to re-engage patients before the copay-only cut is finalized."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2069,
+ "output_tokens": 717,
+ "latency_ms": 2889,
+ "call_settings": []
+}

@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0014",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0014",
+  "at_risk": false,
+  "risk_score": 28,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are growing and the portal user base is up, so usage is healthy and the October outage is closed.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 2.6
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 8.3
+     },
+     {
+      "field": "csm_notes",
+      "value": "Root cause fixed Nov 02"
+     }
+    ]
+   },
+   {
+    "driver": "support_issues",
+    "explanation": "Three severity-1 incidents in 90 days is a watch item even though the escalation is closed and the customer accepted the credit.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 3
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a routine executive business review with the Orrin Skin Sciences brand team, since the last one was 77 days ago, and confirm the sev-1 fixes are holding."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4116,
+ "output_tokens": 460,
+ "latency_ms": 1917,
+ "call_settings": []
+}

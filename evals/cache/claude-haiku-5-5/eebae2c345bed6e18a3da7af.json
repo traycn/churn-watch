@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0017",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0017",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days and the brand director is pleased, asking to expand to a second brand.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -0.1
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand onto the platform"
+     }
+    ]
+   },
+   {
+    "field": "median_days_to_first_fill",
+    "value": 3.6
+   }
+  ],
+  "next_step": "Not on this week's call list; use the Oct 27 QBR follow-up to scope the second-brand expansion with Tom, the brand director."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4102,
+ "output_tokens": 343,
+ "latency_ms": 1558,
+ "call_settings": []
+}

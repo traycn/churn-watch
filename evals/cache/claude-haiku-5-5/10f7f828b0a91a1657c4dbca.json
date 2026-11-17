@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0043",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0043",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 44.6% in 90 days, from 900 to 499, and the program is at 55.4% of its enrollment forecast, so the account is shrinking well below contracted volume.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -44.6
+     },
+     {
+      "field": "active_patients_now",
+      "value": 499
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 55.4
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "The brand's field team is reportedly focused elsewhere and won't commit to a review, which suggests the manufacturer may be deprioritizing this program and could downsize at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "field team 'is focused elsewhere'"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 258
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Portal engagement has halved and refill adherence is only 51.3%, so patients and the brand team are both disengaging from the program.",
+    "evidence": [
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -50.0
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 51.3
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Hannah to book an executive-sponsor review this week, framed around the 44.6% active-patient drop, and come with a plan to recover new starts and refill adherence."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2083,
+ "output_tokens": 636,
+ "latency_ms": 2628,
+ "call_settings": []
+}

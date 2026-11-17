@@ -1,0 +1,74 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0018",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0018",
+  "at_risk": true,
+  "risk_score": 82,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 224 of 900 contracted patients are active (about 25%), and forecast attainment is 24.9%, so the program is far behind the manufacturer's enrollment plan after more than a year live.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 224
+     },
+     {
+      "field": "contracted_patients",
+      "value": 900
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 24.9
+     }
+    ]
+   },
+   {
+    "find": "",
+    "driver": "budget_or_downsizing",
+    "explanation": "Active patients are drifting down and the account is paying for roughly 676 unused contracted seats, which puts the $343,700 ARR under pressure at renewal and invites a downsizing conversation.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.9
+     },
+     {
+      "field": "arr_usd",
+      "value": 343700
+     },
+     {
+      "field": "active_patients_90d_ago",
+      "value": 233
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell from 233 to 224 over 90 days, and portal usage is flat at a single weekly user, so engagement is not recovering.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.9
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 55.9
+     }
+    ]
+   }
+  ],
+  "next_step": "Request an executive sponsor meeting with Halvard this week to review the enrollment gap against forecast, and bring a field-team retraining plan with clear enrollment targets."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2050,
+ "output_tokens": 681,
+ "latency_ms": 2950,
+ "call_settings": []
+}

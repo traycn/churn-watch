@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0044",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0044",
+  "at_risk": false,
+  "risk_score": 18,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days and the brand's next-year program budget is already approved, so there is no sign of shrinkage at renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.9
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   },
+   {
+    "field": "median_days_to_first_fill",
+    "value": 2.5
+   }
+  ],
+  "next_step": "No urgent action; keep the routine renewal conversation on track and ask the program sponsor about any patient-enrollment growth plans for the coming year."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4071,
+ "output_tokens": 352,
+ "latency_ms": 1765,
+ "call_settings": []
+}

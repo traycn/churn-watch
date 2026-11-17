@@ -1,0 +1,68 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0004",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0004",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 36.8% in 90 days, from 3,827 to 2,417, and only 48.3% of the forecast is being met, so the program is shrinking well below its 5,000 contracted patients.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -36.8
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 48.3
+     },
+     {
+      "field": "active_patients_now",
+      "value": 2417
+     }
+    ]
+   },
+   {
+    "file": "champion_loss",
+    "field": "",
+    "value": "",
+    "driver": "champion_loss",
+    "explanation": "Our contact Luis has not answered the last two emails, and the account has had no executive meeting in 162 days, so we may be losing the champion.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Luis hasn't answered the last two emails"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 162
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users dropped 36.4% to 7, and refill adherence is only 62.1%, which signals weak engagement with the program.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_change_90d_pct",
+      "value": -36.4
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 62.1
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Luis this week, and if he doesn't pick up, reach out to another stakeholder on the brand team to ask about the drop in prescriber routing and to book an executive review before renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2068,
+ "output_tokens": 658,
+ "latency_ms": 5098,
+ "call_settings": []
+}

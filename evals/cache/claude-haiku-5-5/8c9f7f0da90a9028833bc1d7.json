@@ -1,0 +1,55 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0035",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0035",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are flat at 115 of 120 contracted, forecast attainment is 95.8%, first fills come in about 2 days, and the brand director is pleased and asking about expansion.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 115
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 95.8
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.2
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand onto the platform"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user and 70.7% refill adherence are soft spots to watch, though neither is trending down.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 70.7
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a call with Tom this week to scope the second-brand expansion and ask whether more brand-team users should get portal access."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2089,
+ "output_tokens": 490,
+ "latency_ms": 2079,
+ "call_settings": []
+}

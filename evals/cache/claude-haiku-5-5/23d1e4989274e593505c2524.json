@@ -1,0 +1,57 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0019",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0019",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "billing",
+  "drivers": [
+   {
+    "driver": "billing",
+    "explanation": "Two program-fee invoices are 118 days past due, and the sponsor says budgets are under review after a pricing hit, so payment and scope are both at risk.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 118
+     },
+     {
+      "field": "csm_notes",
+      "value": "Two program-fee invoices unpaid"
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Priya says budgets are under review after a pricing hit, which could shrink the program at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "budgets are under review"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Patient volume is only down 6.4% and first fills are fast, which are reassuring signs of program health.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -6.4
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.5
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Priya this week to ask about the two unpaid program-fee invoices (118 days overdue) and whether the budget review will cut program scope before the 2027-09-12 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4092,
+ "output_tokens": 535,
+ "latency_ms": 2242,
+ "call_settings": []
+}

@@ -1,0 +1,70 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0044",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0044",
+  "at_risk": true,
+  "risk_score": 35,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients slipped from 35 to 34 over 90 days and sit at 85% of contracted forecast, a mild shortfall that could widen if not addressed.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 85.0
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.9
+     },
+     {
+      "field": "active_patients_now",
+      "value": 34
+     }
+    ]
+   },
+   {
+    "day_driver_placeholder": "",
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, unchanged over 90 days, so the brand team has little visibility into program results ahead of renewal.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_portal_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Mitigating: champion is active, budget for next year is approved, no open escalation, no sev1 tickets, and first fills are fast.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.5
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a call with Aiko this week to review the 85% forecast gap and the 34-patient active count, and ask whether a second brand-team user can be added to the portal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2051,
+ "output_tokens": 634,
+ "latency_ms": 2641,
+ "call_settings": []
+}

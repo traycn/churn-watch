@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0037",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0037",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat and at 92% of forecast, with the sponsor still in place and next year's budget already approved.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -1.8
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent call needed; keep the early renewal conversation with Marcus on the calendar and schedule the overdue executive business review (116 days since last meeting)."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4095,
+ "output_tokens": 339,
+ "latency_ms": 1539,
+ "call_settings": []
+}

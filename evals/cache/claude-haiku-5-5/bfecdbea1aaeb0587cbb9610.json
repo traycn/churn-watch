@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0046",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0046",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who signed the program was reorganized out, and nobody currently owns the relationship.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Marcus (patient-services lead, signed the program) was reorganized out"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 16% over 90 days and sit at roughly 75% of forecast, with portal use also slipping.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -16.1
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 75.3
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -11.5
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Service quality is healthy: fills ship fast and there are no severe incidents or open escalations.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.5
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the CSM manager to identify the new patient-services owner at Elmstead this week, then book an executive business review with that person, since the last one was 235 days ago."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4104,
+ "output_tokens": 576,
+ "latency_ms": 2461,
+ "call_settings": []
+}

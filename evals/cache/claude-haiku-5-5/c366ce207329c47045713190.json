@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0036",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0036",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are holding steady and near forecast, the champion is active, and the program budget for next year is approved.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.2
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.1
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Portal usage is flat at two weekly users and refill adherence of 77.3% is the softest metric, so these are worth watching even though they do not signal churn.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 2
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 77.3
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Service quality is solid: no Sev1 tickets, no open escalation, invoices are current, and first fill comes in about four days.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.0
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule an executive check-in with the brand team within the next 30 days, since the last exec meeting was 96 days ago, and ask about portal usage and adherence goals for the renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2064,
+ "output_tokens": 644,
+ "latency_ms": 2750,
+ "call_settings": []
+}

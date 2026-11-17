@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0037",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0037",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days, the champion is active, NPS is strong, and the program budget for next year is approved.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -1.8
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "last_nps",
+      "value": 9
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Forecast attainment is 92% and patients reach their first fill in under three days, so the program is delivering against the manufacturer's plan.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 92.0
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.8
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 2 weekly portal users with no change over 90 days, and 552 of 600 contracted patients are active, so engagement is a modest watch item rather than a churn signal.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 2
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "active_patients_now",
+      "value": 552
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule an executive check-in with Marcus before the renewal window, and ask whether the portal team needs more than two weekly users to track the program."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2075,
+ "output_tokens": 622,
+ "latency_ms": 2521,
+ "call_settings": []
+}

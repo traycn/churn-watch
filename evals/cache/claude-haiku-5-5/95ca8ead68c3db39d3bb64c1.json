@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0028",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0028",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are up 17.3% over 90 days and at 96.8% of forecast, with no sev-1 incidents, no open escalation, an active champion, and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 17.3
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.8
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "The sponsor is active, the NPS is a 10, and the manufacturer is planning a new indication routed through Parcella.",
+    "evidence": [
+     {
+      "field": "last_nps",
+      "value": 10
+     },
+     {
+      "field": "csm_notes",
+      "value": "wants it routed through our pharmacy from day one"
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Victor to walk through the Q1 new-indication launch plan and confirm pharmacy routing and forecast so onboarding is scoped before the next renewal discussion."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4100,
+ "output_tokens": 481,
+ "latency_ms": 2127,
+ "call_settings": []
+}

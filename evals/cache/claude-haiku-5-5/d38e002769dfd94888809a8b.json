@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0026",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0026",
+  "at_risk": false,
+  "risk_score": 25,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "The 42% active-patient drop is an off-season dip that the customer confirmed matches their own forecast curve, so it is not a usage risk.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Off-season for this brand"
+     },
+     {
+      "field": "csm_notes",
+      "value": "volume matches their own forecast curve"
+     }
+    ]
+   },
+   {
+    "field": "champion_status",
+    "value": "active"
+   }
+  ],
+  "next_step": "No call needed this week; at the next routine check-in, confirm with Priya that the in-season ramp matches the forecast curve before the 2027-06-18 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4090,
+ "output_tokens": 349,
+ "latency_ms": 1572,
+ "call_settings": []
+}

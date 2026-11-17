@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0035",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0035",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are flat at 115 against a 120-patient forecast, the sponsor is active, and the brand director is pleased and asking to expand to a second brand.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand onto the platform"
+     }
+    ]
+   }
+  ],
+  "next_step": "Use the call to scope the second-brand expansion with Tom (brand director) and check whether the 1 weekly portal user is enough for the brand team."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4109,
+ "output_tokens": 353,
+ "latency_ms": 1583,
+ "call_settings": []
+}

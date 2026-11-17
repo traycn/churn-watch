@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0015",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0015",
+  "at_risk": false,
+  "risk_score": 35,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "The 32% active-patient drop looks like the fall-winter seasonal dip the notes describe, and the customer already renewed early.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "new starts drop every fall and winter"
+     },
+     {
+      "field": "csm_notes",
+      "value": "they renewed early"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Operations look healthy: no severe incidents, no escalation, invoices current, and the champion is active.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm with Beth that the drop is the seasonal pattern and that the spring ramp is on track, then schedule the next executive business review, which is 68 days overdue."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4109,
+ "output_tokens": 443,
+ "latency_ms": 1935,
+ "call_settings": []
+}

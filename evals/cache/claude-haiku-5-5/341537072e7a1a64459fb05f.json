@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0031",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0031",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are at 96% of forecast and growing, with fast first fills, strong adherence, no sev1 incidents, and a champion still in place.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.4
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 24.5
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 5.0
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent action; use the scheduled check-in to scope the Q1 new-indication routing through pharmacy from day one with Luis, and book the overdue executive business review (82 days since last meeting)."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4091,
+ "output_tokens": 365,
+ "latency_ms": 1718,
+ "call_settings": []
+}

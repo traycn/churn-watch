@@ -1,0 +1,81 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0011",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0011",
+  "at_risk": true,
+  "risk_score": 80,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "Copay card rejections at fill for three weeks, with three Sev1 tickets in 90 days and an open escalation to the manufacturer's VP of market access, are driving the account's problems.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 3
+     },
+     {
+      "field": "tickets_90d",
+      "value": 19
+     },
+     {
+      "field": "open_escalation",
+      "value": "yes"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Copay card rejects at fill"
+     }
+    ]
+   },
+   {
+    "field": "active_patients_change_90d_pct",
+    "value": -11.7
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell from 1716 to 1515 over 90 days (-11.7%), and weekly portal users dropped 12.5%, so the program is shrinking while the contract stays at 1800 patients.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.7
+     },
+     {
+      "field": "active_patients_now",
+      "value": 1515
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -12.5
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Forecast attainment is 84.2% and the executive relationship is stale, with no exec meeting in 110 days and an NPS of 4, which signals weak sponsor confidence heading into renewal.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 84.2
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 110
+     },
+     {
+      "field": "last_nps",
+      "value": 4
+     }
+    ]
+   }
+  ],
+  "next_step": "Have Keisha confirm with the manufacturer's VP of market access this week that a fix date exists for the copay card rejections, and book an executive business review before the 2027-03-10 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2086,
+ "output_tokens": 750,
+ "latency_ms": 3099,
+ "call_settings": []
+}

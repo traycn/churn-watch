@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0045",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0045",
+  "at_risk": true,
+  "risk_score": 62,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "The customer signed for full hub services but only uses pharmacy fulfillment, and active patients sit at about a third of the contracted forecast.",
+    "evidence": [
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment"
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 34.2
+     },
+     {
+      "field": "csm_notes",
+      "value": "only pharmacy fulfillment is used"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Active patients and portal usage are flat over 90 days, so there is no sharp usage decline and the account is not losing volume.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.0
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the brand team lead to schedule a call this week to plan a prescriber education campaign, since prescribers were never told about the program, and review the unused hub services."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4073,
+ "output_tokens": 483,
+ "latency_ms": 2155,
+ "call_settings": []
+}

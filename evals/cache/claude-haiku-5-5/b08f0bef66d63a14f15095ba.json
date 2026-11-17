@@ -1,0 +1,55 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0008",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0008",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are flat at 367 over 90 days and sit at 91.8% of forecast, with the champion active and next year's budget reported as approved.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "No severe incidents, no open escalation, no invoices overdue, and first fills happen in about 4.6 days.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Keep on the regular cadence: schedule the executive business review, since the last one was 89 days ago, and ask Luis to confirm the portal user count (only 1 weekly user) so the brand team gets more value from the data."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4073,
+ "output_tokens": 490,
+ "latency_ms": 2074,
+ "call_settings": []
+}

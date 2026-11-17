@@ -1,0 +1,47 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0016",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0016",
+  "at_risk": false,
+  "risk_score": 25,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "The account is a new customer still rolling out its program, so the low forecast attainment and missing 90-day history are expected rather than a sign of decline.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Program went live recently"
+     },
+     {
+      "field": "customer_since",
+      "value": "2026-08-31"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Patients are being filled quickly and refills are mostly on time, with no support incidents or open escalation.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 6.7
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent action; keep the Dec 23 second-wave prescriber targeting on the calendar and confirm with Beth that active patients track toward the 1,800 forecast before the next review."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4075,
+ "output_tokens": 433,
+ "latency_ms": 1921,
+ "call_settings": []
+}

@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0041",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0041",
+  "at_risk": true,
+  "risk_score": 35,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 3.9% over 90 days (557 to 535) and sit at 89.2% of forecast, so the program is trending slightly below the manufacturer's expected enrollment.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.9
+     },
+     {
+      "field": "active_patients_now",
+      "value": 535
+     },
+     {
+      "field": "active_patients_90d_ago",
+      "value": 557
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 89.2
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 2 weekly portal users, flat over 90 days, and refill adherence is 78.1%, which suggests limited engagement with the program data and adherence outcomes.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 2
+     },
+     {
+      "field": "weekly_portal_users_90d_ago",
+      "value": 2
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 78.1
+     }
+    ]
+   },
+   {
+    "driver": "billing",
+    "explanation": "Invoices are 64 days overdue, but the CSM notes attribute this to a procurement system change and a confirmed PO and payment date, so it is a timing issue rather than a sign of dissatisfaction.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 64
+     },
+     {
+      "field": "csm_notes",
+      "value": "Dana confirmed the PO and a payment date"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm with Dana that the promised payment date is met and that the invoice is cleared, then schedule an executive check-in to review the enrollment gap and portal adoption before the 102-day gap grows further."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2088,
+ "output_tokens": 708,
+ "latency_ms": 2848,
+ "call_settings": []
+}

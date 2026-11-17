@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0017",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0017",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days, the champion is active, and the brand director is pleased enough to ask about adding a second brand.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -0.1
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand onto the platform"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Patients reach their first fill quickly and no sev1 tickets or escalations are open, which supports the renewal.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 3.6
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Active patients sit at about 89% of contracted patients and forecast attainment is 88.7%, so a seat-based fee could be pressured at renewal if the gap persists.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 3105
+     },
+     {
+      "field": "contracted_patients",
+      "value": 3500
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 88.7
+     }
+    ]
+   }
+  ],
+  "next_step": "Use the October 27 QBR to review the 88.7% forecast attainment and the gap between 3,105 active and 3,500 contracted patients, and open the second-brand conversation with Tom."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2082,
+ "output_tokens": 638,
+ "latency_ms": 2676,
+ "call_settings": []
+}

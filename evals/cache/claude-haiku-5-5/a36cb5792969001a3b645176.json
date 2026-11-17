@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0028",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0028",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients grew 17.3% over 90 days and forecast attainment is 96.8%, so the program is tracking enrollment well and is likely to renew.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 17.3
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 96.8
+     },
+     {
+      "field": "active_patients_now",
+      "value": 387
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Patients are getting to first fill quickly and staying adherent, with no escalations or billing issues.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.2
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 89.4
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Champion is active, NPS is a 10, and the customer has an expansion opportunity with a new Q1 indication.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "last_nps",
+      "value": 10
+     },
+     {
+      "field": "csm_notes",
+      "value": "launching a new indication in Q1"
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a scoping call with Victor this week to plan routing the new Q1 indication through Parcella pharmacy from day one, and confirm onboarding and any contract amendment needed."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2080,
+ "output_tokens": 604,
+ "latency_ms": 2352,
+ "call_settings": []
+}

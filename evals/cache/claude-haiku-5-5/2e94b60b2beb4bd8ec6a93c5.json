@@ -1,0 +1,63 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0007",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0007",
+  "at_risk": false,
+  "risk_score": 15,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are flat and near contracted volume, first fills are fast, NPS is high, and the champion is active with budget already approved for next year.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 0.6
+     },
+     {
+      "field": "active_patients_now",
+      "value": 165
+     },
+     {
+      "field": "contracted_patients",
+      "value": 180
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.5
+     },
+     {
+      "field": "last_nps",
+      "value": 9
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, unchanged over 90 days, is a light-engagement watch item rather than a current churn driver.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm the renewal scope with Luis by mapping the 15 unused contracted slots (180 contracted vs 165 active) to the 2027 forecast, and ask whether a second portal user is needed for the brand team."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2052,
+ "output_tokens": 545,
+ "latency_ms": 4665,
+ "call_settings": []
+}

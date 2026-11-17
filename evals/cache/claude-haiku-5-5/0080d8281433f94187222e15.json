@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0033",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0033",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Victor has asked to cut the program to copay assistance only at renewal, which would drop pharmacy fulfillment and telehealth and shrink the account ahead of a loss of exclusivity next year.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Victor asked to cut the program to copay assistance only at renewal"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Brand loses exclusivity next year"
+     },
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment;copay_assistance;telehealth_connect"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 35% in 90 days, from 6,703 to 4,390, and only 58.5% of forecast is being met, so the program is shrinking well below what was contracted.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -34.5
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 58.5
+     },
+     {
+      "field": "active_patients_now",
+      "value": 4390
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users dropped from 19 to 12 (down 36.8%), and refill adherence is 70.4%, indicating weak engagement from the brand team and patients.",
+    "evidence": [
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -36.8
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 70.4
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule an executive meeting with Victor this week (last exec meeting was 73 days ago) to review the patient decline, the 58.5% forecast attainment, and the plan to re-engage the portal users before the proposed scope cut is finalized."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2078,
+ "output_tokens": 743,
+ "latency_ms": 3026,
+ "call_settings": []
+}

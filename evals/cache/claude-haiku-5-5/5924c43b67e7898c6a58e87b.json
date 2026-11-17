@@ -1,0 +1,84 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0012",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0012",
+  "at_risk": true,
+  "risk_score": 45,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who championed the program left in September, and the replacement, Omar, is only just getting up to speed, so the relationship is not yet re-established.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Patient-services lead left in September"
+     }
+    ]
+   },
+   {
+    "field": "weekly_portal_users_now",
+    "value": 1,
+    "explanation": "Portal engagement is minimal at a single weekly user, with no growth over 90 days, so the brand team has little visibility into program value.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Portal usage is flat at one weekly user, which suggests limited day-to-day engagement with program data even though patient volume is stable.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Patients are active and growing, the program is delivering fills and adherence on pace, and the new contact is engaged and asking for the playbook.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.7
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 87.8
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.4
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked for the program playbook"
+     }
+    ]
+   }
+  ],
+  "next_step": "Meet with Omar this week to walk him through the program playbook and set up a joint review of portal use, with a plan to bring the brand team back into the portal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2074,
+ "output_tokens": 748,
+ "latency_ms": 2997,
+ "call_settings": []
+}

@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0039",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0039",
+  "at_risk": false,
+  "risk_score": 20,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are stable and up slightly over 90 days, with no sev1 incidents, no open escalation, no overdue invoices, and an active champion.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 2.1
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Invoices are current and the NPS score is positive.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "last_nps",
+      "value": 8
+     }
+    ]
+   }
+  ],
+  "next_step": "Keep on the regular cadence; since the last executive review was 92 days ago, schedule a routine executive business review with Dana this quarter, but no urgent call is needed this week."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4081,
+ "output_tokens": 428,
+ "latency_ms": 1819,
+ "call_settings": []
+}

@@ -1,0 +1,55 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0043",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0043",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 44.6% in 90 days to 499 against a 900-patient forecast, and the notes say new starts have been falling since summer with no explanation given.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -44.6
+     },
+     {
+      "field": "csm_notes",
+      "value": "New patient starts falling since summer"
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 55.4
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users halved to one, and Hannah says the field team is focused elsewhere and won't commit to a review.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "csm_notes",
+      "value": "won't commit to a review"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 258
+     }
+    ]
+   }
+  ],
+  "next_step": "This week, call Hannah to ask what is pulling the field team away and what is driving the drop in new starts, and push for a executive review date before the 2027-04-02 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4103,
+ "output_tokens": 510,
+ "latency_ms": 2161,
+ "call_settings": []
+}

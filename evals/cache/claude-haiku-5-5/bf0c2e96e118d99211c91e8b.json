@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0016",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0016",
+  "at_risk": true,
+  "risk_score": 62,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 738 of 1,800 contracted patients are active (41%), and forecast attainment is 41%, so the program is well behind the enrollment the manufacturer expects.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 738
+     },
+     {
+      "field": "contracted_patients",
+      "value": 1800
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 41.0
+     }
+    ]
+   },
+   {
+    "field": "weekly_portal_users_now",
+    "value": 3
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Portal engagement is thin at 3 weekly users, and the 90-day trend fields are null, so there is no baseline to show whether usage is growing.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 3
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": "null"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Fills are fast and refills are reasonable, and there are no tickets, escalations, or overdue invoices, which lowers the chance of a abrupt loss.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 6.7
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 82.9
+     },
+     {
+      "field": "tickets_90d",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Beth to share the prescriber-targeting plan for the Dec 23 second wave and agree on a 90-day active-patient milestone with the Halvard brand team before the next exec check-in."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2055,
+ "output_tokens": 658,
+ "latency_ms": 2704,
+ "call_settings": []
+}

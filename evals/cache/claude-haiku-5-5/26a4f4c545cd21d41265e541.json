@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0002",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0002",
+  "at_risk": true,
+  "risk_score": 88,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients have fallen by more than half in 90 days, from 1,782 to 842, and the program is at only 46.8% of forecast, so the program is shrinking well below what Norvale expected.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -52.7
+     },
+     {
+      "field": "active_patients_now",
+      "value": 842
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 46.8
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "With the field team reportedly focused elsewhere and new patient starts falling since summer, the manufacturer may be cutting back its investment in this brand program, which puts the $798,700 ARR at risk at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "field team 'is focused elsewhere'"
+     },
+     {
+      "field": "arr_usd",
+      "value": 798700
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users halved over 90 days and the executive sponsor has not met in 246 days, so the brand team is disengaging from the program.",
+    "evidence": [
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -50.0
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 246
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 3
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Mei to set up a review with the Norvale brand lead and field team leadership this week, bringing the active-patient decline and forecast gap (46.8% attainment) and a plan to restore new patient starts."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2074,
+ "output_tokens": 682,
+ "latency_ms": 5042,
+ "call_settings": []
+}

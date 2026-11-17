@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0001",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0001",
+  "at_risk": true,
+  "risk_score": 82,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 36.4% in 90 days, from 1416 to 901, and the notes say fewer prescribers are routing patients to us, with no explanation offered.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -36.4
+     },
+     {
+      "field": "csm_notes",
+      "value": "Fewer prescribers routing to us"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Active patients are at 50.1% of the contracted forecast, and refill adherence is 57.9%, well below the healthy range.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 50.1
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 57.9
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "The champion is listed as active, but the contact Mei has not answered the last two emails, so engagement is slipping.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Mei hasn't answered the last two emails"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 173
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Mei this week to find out why prescribers are routing elsewhere, and if she stays silent, escalate to her executive sponsor to book an overdue business review."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4094,
+ "output_tokens": 583,
+ "latency_ms": 2418,
+ "call_settings": []
+}

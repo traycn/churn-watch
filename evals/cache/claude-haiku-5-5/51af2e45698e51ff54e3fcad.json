@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0041",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0041",
+  "at_risk": false,
+  "risk_score": 18,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are down only 3.9% over 90 days and the late invoices are explained by a procurement-system change with a confirmed PO and payment date.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.9
+     },
+     {
+      "field": "csm_notes",
+      "value": "Dana confirmed the PO and a payment date"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "The sponsor is active, the account has no sev1 incidents or open escalation, and the NPS is a 10.",
+    "evidence": [
+     {
+      "field": "last_nps",
+      "value": 10
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm with Dana that the payment on the 64-day overdue invoice arrives on the agreed date, and schedule the overdue executive business review (102 days since last meeting) when convenient."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4108,
+ "output_tokens": 462,
+ "latency_ms": 1941,
+ "call_settings": []
+}

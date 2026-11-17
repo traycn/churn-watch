@@ -1,0 +1,47 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0007",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0007",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days and at 91.7% of the enrollment forecast, with the champion active and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 0.6
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 91.7
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Luis confirmed next year's program budget is approved and the renewal conversation has already started early.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent call needed; keep the account on the normal cadence and use the next check-in to ask Luis about expanding portal usage, since only one weekly portal user is active."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4072,
+ "output_tokens": 426,
+ "latency_ms": 1917,
+ "call_settings": []
+}

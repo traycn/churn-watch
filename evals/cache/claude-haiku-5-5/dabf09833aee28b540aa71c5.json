@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0025",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0025",
+  "at_risk": false,
+  "risk_score": 35,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "The active patient drop is a confirmed seasonal pattern that repeats each fall and winter, and the manufacturer already renewed early, so the account is not expected to shrink at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "same as last year"
+     },
+     {
+      "field": "csm_notes",
+      "value": "they renewed early"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Operations look healthy: no severe incidents, no open escalation, invoices current, and fills ship quickly.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.5
+     }
+    ]
+   }
+  ],
+  "next_step": "No urgent call needed; confirm the spring ramp with Victor at the next scheduled touchpoint and check portal user drop (2 to 1) when convenient."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4104,
+ "output_tokens": 462,
+ "latency_ms": 2061,
+ "call_settings": []
+}

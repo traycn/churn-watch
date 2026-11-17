@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0024",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0024",
+  "at_risk": true,
+  "risk_score": 55,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who owned the program left in September, and the replacement is new, so the account has lost its internal sponsor even though the successor is engaged.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Patient-services lead left in September"
+     }
+    ]
+   },
+   {
+    "field": "forecast_attainment_pct",
+    "value": 84.8
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Active patients are at 84.8% of forecast, with 339 active out of 400 contracted and a 2% decline over 90 days, and weekly portal use is flat at one user.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 84.8
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.0
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Operations are healthy: no tickets or sev1 issues in 90 days, no open escalation, invoices current, and NPS is 8.",
+    "evidence": [
+     {
+      "field": "tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "last_nps",
+      "value": 8
+     }
+    ]
+   }
+  ],
+  "next_step": "Meet Priya this week to walk her through the program playbook, and book an executive check-in to rebuild sponsorship and review the 84.8% forecast attainment gap."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2080,
+ "output_tokens": 638,
+ "latency_ms": 2814,
+ "call_settings": []
+}

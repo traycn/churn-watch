@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0013",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0013",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "competitor",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "Procurement has issued an RFI for patient-support services covering our scope ahead of the Q1 decision window, so the account may be put out to competing vendors before renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Procurement issued an RFI for patient-support services due in Q1"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Marcus hinted it covers our scope"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 6.7% over 90 days and are running 81.8% of forecast, with weekly portal users down 16.7%, which weakens the case for renewing at the contracted level.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -6.7
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 81.8
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -16.7
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Only 2,044 of 2,500 contracted patients are active, so the account is paying for unused capacity and may seek to shrink the contract at renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 2044
+     },
+     {
+      "field": "contracted_patients",
+      "value": 2500
+     }
+    ]
+   }
+  ],
+  "next_step": "This week, get a meeting with Marcus to confirm the RFI scope and timeline, and ask what the brand team needs to see from us on forecast attainment and patient reactivation before the Q1 decision."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2076,
+ "output_tokens": 657,
+ "latency_ms": 2831,
+ "call_settings": []
+}

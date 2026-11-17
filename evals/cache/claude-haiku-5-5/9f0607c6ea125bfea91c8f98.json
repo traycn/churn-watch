@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0045",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0045",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 854 of 2,500 contracted patients are active (34.2% of the forecast), and the account uses only pharmacy fulfillment despite signing for full hub services.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 34.2
+     },
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment"
+     },
+     {
+      "field": "contracted_patients",
+      "value": 2500
+     }
+    ]
+   },
+   {
+    "field": "csm_notes",
+    "value": "prescribers were never told about the program"
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "With roughly a third of contracted patients active, the manufacturer has strong grounds to downsize at the June 2027 renewal, since it is paying for capacity it is not using.",
+    "evidence": [
+     {
+      "field": "arr_usd",
+      "value": 472400
+     },
+     {
+      "field": "active_patients_now",
+      "value": 854
+     },
+     {
+      "field": "renewal_date",
+      "value": "2027-06-09"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients are drifting down slightly and portal use is flat at 4 weekly users, with no executive contact in over a year, so the account is not being actively managed.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.0
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 4
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 375
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the brand team to schedule a prescriber-education plan for full hub services, and book an executive business review this month to reset the forecast and adoption targets before the renewal conversation."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2053,
+ "output_tokens": 698,
+ "latency_ms": 2835,
+ "call_settings": []
+}

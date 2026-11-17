@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0023",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0023",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are up 17.5% over 90 days and at 95.7% of forecast, with an active champion, no sev1 incidents, no open escalation, and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 17.5
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 95.7
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Not needed on this week's call list; use the planned Q1 new-indication conversation with Jen to confirm routing through the pharmacy from day one."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4105,
+ "output_tokens": 353,
+ "latency_ms": 1487,
+ "call_settings": []
+}

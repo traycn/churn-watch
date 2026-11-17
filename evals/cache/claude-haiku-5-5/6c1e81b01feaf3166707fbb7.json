@@ -1,0 +1,55 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0005",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0005",
+  "at_risk": true,
+  "risk_score": 62,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Zeller signed for full hub services but only uses pharmacy fulfillment, and active patients sit at 28% of forecast with only 2 weekly portal users.",
+    "evidence": [
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment"
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 28.0
+     },
+     {
+      "field": "csm_notes",
+      "value": "prescribers were never told about the program"
+     }
+    ]
+   },
+   {
+    "field": "weekly_portal_users_now",
+    "value": 2
+   },
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days and first fills are reasonably quick, so there is no sharp decline to explain.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.2
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 4.4
+     }
+    ]
+   }
+  ],
+  "next_step": "Contact the Zeller brand team this week to schedule a prescriber-education plan and a services review covering the unused hub services, and book the executive business review, which is 324 days overdue."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4071,
+ "output_tokens": 515,
+ "latency_ms": 2208,
+ "call_settings": []
+}

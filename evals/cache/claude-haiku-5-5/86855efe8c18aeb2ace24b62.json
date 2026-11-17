@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0027",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0027",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The signing champion, Luis, was reorganized out and nobody currently owns the relationship, with the last executive meeting 239 days ago.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "was reorganized out"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 239
+     }
+    ]
+   },
+   {
+    "field": "active_patients_change_90d_pct",
+    "value": -15.2
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 15.2% over 90 days (165 to 140), and forecast attainment is only 77.8%, so the program is shrinking against the manufacturer's plan.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -15.2
+     },
+     {
+      "field": "active_patients_now",
+      "value": 140
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 77.8
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, unchanged over 90 days, and no NPS on file, so the brand team shows little engagement with the program data.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "last_nps",
+      "value": "null"
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the Cirrane Genetics brand lead or their finance/program owner to schedule an executive sponsor call this week, and identify who now owns the program internally."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2066,
+ "output_tokens": 641,
+ "latency_ms": 2551,
+ "call_settings": []
+}

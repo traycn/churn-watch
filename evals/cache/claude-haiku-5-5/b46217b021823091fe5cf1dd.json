@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0001",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0001",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 36.4% in 90 days (1,416 to 901), and forecast attainment is only 50.1%, so the program is well below the manufacturer's enrollment plan.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -36.4
+     },
+     {
+      "field": "active_patients_90d_ago",
+      "value": 1416
+     },
+     {
+      "field": "active_patients_now",
+      "value": 901
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 50.1
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "Champion Mei has not answered the last two emails, and the executive sponsor has not met in 173 days, so the relationship is weakening even though the champion is still flagged active.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Mei hasn't answered the last two emails"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 173
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users dropped 40% and refill adherence is 57.9%, which signals weak engagement with the program and its data.",
+    "evidence": [
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -40.0
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 3
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 57.9
+     }
+    ]
+   }
+  ],
+  "next_step": "Call the manufacturer's executive sponsor this week to request a meeting, and ask a second contact on the brand team (not Mei) to diagnose the prescriber-routing drop and forecast gap before the 84-day renewal window closes."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2074,
+ "output_tokens": 714,
+ "latency_ms": 5046,
+ "call_settings": []
+}

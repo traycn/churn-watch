@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0021",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0021",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "Repeated prior-auth delays have led to patients abandoning before first fill, and the fix ETA keeps slipping, so Sablewood is unhappy and has an open escalation.",
+    "evidence": [
+     {
+      "field": "open_escalation",
+      "value": "yes"
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 4
+     },
+     {
+      "field": "csm_notes",
+      "value": "repeated prior-auth delays"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Median time to first fill is 13.3 days and refill adherence is 70.4%, both signs the program is not converting enrollments into steady therapy.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 13.3
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 70.4
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 11.5% over 90 days and portal users fell 11.1%, a moderate decline that is likely tied to the access problems.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.5
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 8
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Aiko this week to get a firm, dated fix plan for the prior-auth backlog, and confirm a named owner and a first-fill recovery target before the escalation goes further."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4103,
+ "output_tokens": 617,
+ "latency_ms": 2565,
+ "call_settings": []
+}

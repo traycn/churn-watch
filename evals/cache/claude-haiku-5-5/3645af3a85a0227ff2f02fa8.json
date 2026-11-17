@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0046",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0046",
+  "at_risk": true,
+  "risk_score": 80,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The program signer, Marcus, was reorganized out and nobody owns the relationship now, with the executive meeting last held 235 days ago.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Marcus (patient-services lead, signed the program) was reorganized out"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 235
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 16.1% over 90 days and are at 75.3% of forecast, well below the contracted 7,500.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -16.1
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 75.3
+     },
+     {
+      "field": "active_patients_now",
+      "value": 5644
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Refill adherence is 73.1% and weekly portal users dropped 11.5%, so engagement is softening on both the patient and brand-team side.",
+    "evidence": [
+     {
+      "field": "refill_adherence_pct",
+      "value": 73.1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -11.5
+     }
+    ]
+   }
+  ],
+  "next_step": "Identify Marcus's successor or the new owner of the Elmstead program this week, and request an executive sponsor meeting to review the patient decline against the 75.3% forecast attainment."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2084,
+ "output_tokens": 636,
+ "latency_ms": 2482,
+ "call_settings": []
+}

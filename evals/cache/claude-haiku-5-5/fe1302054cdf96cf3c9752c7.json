@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0032",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0032",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "support_issues",
+  "drivers": [
+   {
+    "driver": "support_issues",
+    "explanation": "Four severity-1 incidents and an open executive escalation over prior-auth delays, with the fix ETA still slipping, so the brand team is unhappy and patients are abandoning before first fill.",
+    "evidence": [
+     {
+      "field": "open_escalation",
+      "value": "yes"
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 4
+     },
+     {
+      "field": "csm_notes",
+      "value": "Fix ETA keeps slipping"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Median time to first fill is nearly 13 days and refill adherence is 70.8%, both signs that patients are not getting started or staying on therapy well.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 12.9
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 70.8
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Active patients are only down 5.6% over 90 days and the champion is still active, which are mitigating factors.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -5.6
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Have the CSM call Beth this week to get a committed, dated prior-auth fix plan with an owner, and bring the open escalation status to the next exec review."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4095,
+ "output_tokens": 595,
+ "latency_ms": 2359,
+ "call_settings": []
+}

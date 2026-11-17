@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0020",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0020",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "Procurement has issued an RFI for patient-support services due in Q1 that appears to cover our scope, so the account may be re-bid before renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Procurement issued an RFI for patient-support services due in Q1"
+     },
+     {
+      "field": "csm_notes",
+      "value": "covers our scope"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients are drifting down and sit well below the contracted volume and forecast, with portal engagement also falling.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.0
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 79.3
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -9.1
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 3,964 of 5,000 contracted patients are active and refill adherence is 75.8%, which weakens the case for renewing at the current scale.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 3964
+     },
+     {
+      "field": "contracted_patients",
+      "value": 5000
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 75.8
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Marcus this week for the RFI timeline and scope, and book an executive sponsor meeting to review active-patient recovery plans before Q1 bid submission."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2072,
+ "output_tokens": 633,
+ "latency_ms": 2638,
+ "call_settings": []
+}

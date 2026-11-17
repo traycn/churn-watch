@@ -1,0 +1,59 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0003",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0003",
+  "at_risk": false,
+  "risk_score": 22,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Patient growth, fill speed, champion engagement, and payment all look healthy, and the brand director is asking about expanding to a second brand.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.7
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.8
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand onto the platform"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 9 weekly portal users with no change over 90 days, and forecast attainment is 89.9%, so patient enrollment is slightly under the manufacturer's forecast; these are the main watch items before renewal.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 9
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 89.9
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a meeting with Hannah this week to scope the second-brand expansion, and ask her team to add portal users so the 9-user count doesn't stall the renewal conversation."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2103,
+ "output_tokens": 554,
+ "latency_ms": 4644,
+ "call_settings": []
+}

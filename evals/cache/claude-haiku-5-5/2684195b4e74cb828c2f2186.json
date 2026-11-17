@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0003",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0003",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are growing and the brand director is pleased with time to first fill, with interest in expanding to a second brand.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.7
+     },
+     {
+      "field": "csm_notes",
+      "value": "pleased with time to first fill"
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked about moving a second brand"
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a check-in with Hannah (brand director) to scope the second-brand expansion and book the overdue executive business review, since 113 days have passed since the last one."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4123,
+ "output_tokens": 348,
+ "latency_ms": 1562,
+ "call_settings": []
+}

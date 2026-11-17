@@ -1,0 +1,2568 @@
+{
+ "pack": "pharma-patient-access",
+ "model": "claude-haiku-5-5",
+ "prompt": "v2",
+ "label_set": "reviewed",
+ "accounts": [
+  {
+   "account_id": "TST-0001",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0001",
+    "at_risk": true,
+    "risk_score": 82,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 36.4% in 90 days, from 1416 to 901, and the notes say fewer prescribers are routing patients to us, with no explanation offered.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -36.4
+       },
+       {
+        "field": "csm_notes",
+        "value": "Fewer prescribers routing to us"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Active patients are at 50.1% of the contracted forecast, and refill adherence is 57.9%, well below the healthy range.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 50.1
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 57.9
+       }
+      ]
+     },
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion is listed as active, but the contact Mei has not answered the last two emails, so engagement is slipping.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Mei hasn't answered the last two emails"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 173
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Mei this week to find out why prescribers are routing elsewhere, and if she stays silent, escalate to her executive sponsor to book an overdue business review."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0002",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0002",
+    "at_risk": true,
+    "risk_score": 85,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 52.7% in 90 days, from 1782 to 842, and the notes say new starts have been falling since summer with no explanation given.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -52.7
+       },
+       {
+        "field": "csm_notes",
+        "value": "New patient starts falling since summer"
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 46.8
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Mei says the field team is focused elsewhere and won't commit to a review, which may signal deprioritization of this brand program.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "won't commit to a review"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 246
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Refill adherence is well below the 80% proportion-of-days-covered threshold, and weekly portal users halved.",
+      "evidence": [
+       {
+        "field": "refill_adherence_pct",
+        "value": 56.9
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 3
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Mei this week to find out why the field team is focused elsewhere and why new starts fell since summer, and push to book an executive business review before the April 2027 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0003",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0003",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are growing and the brand director is pleased with time to first fill, with interest in expanding to a second brand.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 1.7
+       },
+       {
+        "field": "csm_notes",
+        "value": "pleased with time to first fill"
+       },
+       {
+        "field": "csm_notes",
+        "value": "asked about moving a second brand"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a check-in with Hannah (brand director) to scope the second-brand expansion and book the overdue executive business review, since 113 days have passed since the last one."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0004",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0004",
+    "at_risk": true,
+    "risk_score": 78,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 37% in 90 days and sit at 48% of forecast, and the notes give no explanation beyond fewer prescribers routing to us, so this is not confirmed as seasonal.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -36.8
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 48.3
+       },
+       {
+        "field": "csm_notes",
+        "value": "Fewer prescribers routing to us"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Refill adherence is 62.1%, well below the 80% proportion-of-days-covered benchmark, so patients who remain active are not staying on therapy.",
+      "evidence": [
+       {
+        "field": "refill_adherence_pct",
+        "value": 62.1
+       }
+      ]
+     },
+     {
+      "driver": "champion_loss",
+      "explanation": "The sponsor is still listed as active, but Luis has not answered the last two emails, and the executive review is 162 days old, so engagement is slipping.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Luis hasn't answered the last two emails"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 162
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Luis this week, or go over his head to the brand's patient-services lead if he stays silent, to find out why prescribers are routing away and whether the drop is seasonal, and book an executive business review before the February 24, 2027 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0005",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0006",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0006",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are up 14.9% over 90 days and at 95.2% of forecast, with a sponsor still in place and no open issues.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 14.9
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 95.2
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Brand sponsor Luis is expanding the program to a new indication, a sign of continued commitment.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "launching a new indication in Q1"
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent action; use the next routine check-in to plan the Q1 new-indication routing through pharmacy with Luis."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 4,
+    "total": 4,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0007",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0007",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are essentially flat over 90 days and at 91.7% of the enrollment forecast, with the champion active and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 0.6
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 91.7
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Luis confirmed next year's program budget is approved and the renewal conversation has already started early.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "next year's program budget is approved"
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent call needed; keep the account on the normal cadence and use the next check-in to ask Luis about expanding portal usage, since only one weekly portal user is active."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 4,
+    "total": 4,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0008",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0008",
+    "at_risk": false,
+    "risk_score": 15,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are flat at 367 over 90 days and sit at 91.8% of forecast, with the champion active and next year's budget reported as approved.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 0.0
+       },
+       {
+        "field": "csm_notes",
+        "value": "next year's program budget is approved"
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "No severe incidents, no open escalation, no invoices overdue, and first fills happen in about 4.6 days.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Keep on the regular cadence: schedule the executive business review, since the last one was 89 days ago, and ask Luis to confirm the portal user count (only 1 weekly user) so the brand team gets more value from the data."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0009",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0009",
+    "at_risk": false,
+    "risk_score": 30,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are essentially flat over 90 days and at 91% of forecast, with no overdue invoices and an active champion.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -1.8
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 91.0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "support_issues",
+      "explanation": "Two data-feed failures last month were backfilled and Omar says brand reporting is whole again, so this is a watch item rather than a live risk.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "both backfilled"
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 2
+       }
+      ]
+     }
+    ],
+    "next_step": "Before the renewal window, confirm with Omar that the backfilled data-feed failures are fully closed and ask about the 119 days since the last executive business review, scheduling one if possible."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0010",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0010",
+    "at_risk": false,
+    "risk_score": 30,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are essentially flat over 90 days, the champion is active, and the brand team says reporting is whole again after the data-feed failures.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.9
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "csm_notes",
+        "value": "reporting is whole again"
+       }
+      ]
+     },
+     {
+      "driver": "support_issues",
+      "explanation": "Two data-feed failures last month were a real incident, but they were backfilled and the customer has accepted the recovery, so it is a watch item rather than a renewal threat.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 2
+       },
+       {
+        "field": "csm_notes",
+        "value": "both backfilled"
+       }
+      ]
+     }
+    ],
+    "next_step": "Hold the account off this week's call list and, at the next scheduled check-in with Mei, confirm the data feed has had no further failures and ask whether the brand team is satisfied with reporting."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0011",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0011",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Copay card rejects at fill for three weeks, with three severity-1 incidents and an open executive escalation to their VP of market access, and the brand team's NPS of 4 suggests they are unhappy.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Copay card rejects at fill"
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 11.7% over 90 days and portal users dropped slightly, which is a softer warning that adds to the escalation risk.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -11.7
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -12.5
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Billing is current, the champion is still active, and the account is 114 days from renewal, which leaves time to resolve the copay issue.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Have Keisha confirm with the manufacturer's VP of market access this week that the copay card reject root cause is identified and a fix date is set, and schedule an executive business review, since the last one was 110 days ago."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0012",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0012",
+    "at_risk": false,
+    "risk_score": 22,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are steady and near forecast, and the departed sponsor has a named, engaged successor who is asking for the playbook.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "replacement Omar is engaged"
+       },
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 1.7
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 87.8
+       }
+      ]
+     }
+    ],
+    "next_step": "Send Omar the program playbook he requested and schedule an intro call to walk him through the program data in the partner portal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0013",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0013",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "competitor",
+    "drivers": [
+     {
+      "driver": "competitor",
+      "explanation": "Procurement has issued an RFI for patient-support services due in Q1 that Marcus hints covers our scope, so the renewal may go out to competing hub vendors.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Procurement issued an RFI for patient-support services"
+       },
+       {
+        "field": "csm_notes",
+        "value": "covers our scope"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients are down about 7% over 90 days and portal users are down about 17%, which is moderate but worth watching alongside the RFI.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -6.7
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -16.7
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Operations are healthy: no tickets or sev1 incidents, no overdue invoices, an active champion, and a 4.2-day median time to first fill.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Marcus this week to ask directly whether the Q1 patient-support RFI covers our hub scope, and what evaluation criteria and timeline procurement is using."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0014",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0014",
+    "at_risk": false,
+    "risk_score": 28,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are growing and the portal user base is up, so usage is healthy and the October outage is closed.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 2.6
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": 8.3
+       },
+       {
+        "field": "csm_notes",
+        "value": "Root cause fixed Nov 02"
+       }
+      ]
+     },
+     {
+      "driver": "support_issues",
+      "explanation": "Three severity-1 incidents in 90 days is a watch item even though the escalation is closed and the customer accepted the credit.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a routine executive business review with the Orrin Skin Sciences brand team, since the last one was 77 days ago, and confirm the sev-1 fixes are holding."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0015",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0015",
+    "at_risk": false,
+    "risk_score": 35,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "The 32% active-patient drop looks like the fall-winter seasonal dip the notes describe, and the customer already renewed early.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "new starts drop every fall and winter"
+       },
+       {
+        "field": "csm_notes",
+        "value": "they renewed early"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Operations look healthy: no severe incidents, no escalation, invoices current, and the champion is active.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Confirm with Beth that the drop is the seasonal pattern and that the spring ramp is on track, then schedule the next executive business review, which is 68 days overdue."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0016",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0016",
+    "at_risk": false,
+    "risk_score": 25,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "The account is a new customer still rolling out its program, so the low forecast attainment and missing 90-day history are expected rather than a sign of decline.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Program went live recently"
+       },
+       {
+        "field": "customer_since",
+        "value": "2026-08-31"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Patients are being filled quickly and refills are mostly on time, with no support incidents or open escalation.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 6.7
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent action; keep the Dec 23 second-wave prescriber targeting on the calendar and confirm with Beth that active patients track toward the 1,800 forecast before the next review."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 4,
+    "total": 4,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0017",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0018",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0019",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0019",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "billing",
+    "drivers": [
+     {
+      "driver": "billing",
+      "explanation": "Two program-fee invoices are 118 days past due, and the sponsor says budgets are under review after a pricing hit, so payment and scope are both at risk.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 118
+       },
+       {
+        "field": "csm_notes",
+        "value": "Two program-fee invoices unpaid"
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Priya says budgets are under review after a pricing hit, which could shrink the program at renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "budgets are under review"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Patient volume is only down 6.4% and first fills are fast, which are reassuring signs of program health.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -6.4
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 4.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Priya this week to ask about the two unpaid program-fee invoices (118 days overdue) and whether the budget review will cut program scope before the 2027-09-12 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0020",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0020",
+    "at_risk": true,
+    "risk_score": 75,
+    "main_reason": "competitor",
+    "drivers": [
+     {
+      "driver": "competitor",
+      "explanation": "Procurement has issued an RFI for patient-support services covering our scope, so the account may be evaluating other hub vendors before renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Procurement issued an RFI for patient-support services"
+       },
+       {
+        "field": "csm_notes",
+        "value": "covers our scope"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Usage is roughly flat, with active patients down only 3% and a fast median time to first fill.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.0
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 4.7
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Marcus this week to ask directly about the Q1 patient-support RFI, what scope it covers, and what would keep Elmstead with Parcella through renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 4,
+    "total": 4,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0021",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0021",
+    "at_risk": true,
+    "risk_score": 78,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated prior-auth delays have led to patients abandoning before first fill, and the fix ETA keeps slipping, so Sablewood is unhappy and has an open escalation.",
+      "evidence": [
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 4
+       },
+       {
+        "field": "csm_notes",
+        "value": "repeated prior-auth delays"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Median time to first fill is 13.3 days and refill adherence is 70.4%, both signs the program is not converting enrollments into steady therapy.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 13.3
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 70.4
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 11.5% over 90 days and portal users fell 11.1%, a moderate decline that is likely tied to the access problems.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -11.5
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 8
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Aiko this week to get a firm, dated fix plan for the prior-auth backlog, and confirm a named owner and a first-fill recovery target before the escalation goes further."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0022",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0022",
+    "at_risk": true,
+    "risk_score": 88,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "The brand is losing exclusivity next year and Mei has asked to cut the program to copay assistance only at renewal, which would shrink scope materially.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Mei asked to cut the program to copay assistance only"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Brand loses exclusivity next year"
+       },
+       {
+        "field": "renewal_date",
+        "value": "2027-01-12"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 32% in 90 days and portal users fell about 36%, with no note explaining the drop.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -32.4
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -36.4
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Operations are healthy: few tickets, no severe incidents, no billing issues, and the champion is active.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Mei this week to understand the exclusivity timeline and what a copay-only scope would mean, and propose a renewal plan that keeps the full program before the 57-day window closes."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0023",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0023",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are up 17.5% over 90 days and at 95.7% of forecast, with an active champion, no sev1 incidents, no open escalation, and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 17.5
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 95.7
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Not needed on this week's call list; use the planned Q1 new-indication conversation with Jen to confirm routing through the pharmacy from day one."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0024",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0024",
+    "at_risk": false,
+    "risk_score": 22,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are nearly flat over 90 days and the departed sponsor has an engaged successor, so the account is not at risk.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.0
+       },
+       {
+        "field": "csm_notes",
+        "value": "replacement Priya is engaged"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "No support incidents, no open escalation, and invoices are current.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Have the CSM send Priya the program playbook she requested and book an intro call to establish her as the new program sponsor."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 4,
+    "total": 4,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0025",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0025",
+    "at_risk": false,
+    "risk_score": 35,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "The active patient drop is a confirmed seasonal pattern that repeats each fall and winter, and the manufacturer already renewed early, so the account is not expected to shrink at renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "same as last year"
+       },
+       {
+        "field": "csm_notes",
+        "value": "they renewed early"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Operations look healthy: no severe incidents, no open escalation, invoices current, and fills ship quickly.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 2.5
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent call needed; confirm the spring ramp with Victor at the next scheduled touchpoint and check portal user drop (2 to 1) when convenient."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0026",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0027",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0027",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The patient-services lead who signed the program was reorganized out, and nobody currently owns the relationship.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Luis (patient-services lead, signed the program) was reorganized out"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 1 weekly portal user and active patients at 77.8% of forecast, with the account 79 days from renewal and no executive meeting in 239 days.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 77.8
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 239
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 15% over 90 days, below the 25% threshold but a downward trend heading into renewal.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -15.2
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask the Cirrane Genetics leadership contact who now owns the program, and book an executive sponsor meeting with them this week to re-establish the relationship before the 2027-02-03 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0028",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0028",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are up 17.3% over 90 days and at 96.8% of forecast, with no sev-1 incidents, no open escalation, an active champion, and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 17.3
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 96.8
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "The sponsor is active, the NPS is a 10, and the manufacturer is planning a new indication routed through Parcella.",
+      "evidence": [
+       {
+        "field": "last_nps",
+        "value": 10
+       },
+       {
+        "field": "csm_notes",
+        "value": "wants it routed through our pharmacy from day one"
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Victor to walk through the Q1 new-indication launch plan and confirm pharmacy routing and forecast so onboarding is scoped before the next renewal discussion."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0029",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0029",
+    "at_risk": true,
+    "risk_score": 80,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 41.7% in 90 days (60 to 35), and the notes say fewer prescribers are routing patients to us with no explanation offered.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -41.7
+       },
+       {
+        "field": "csm_notes",
+        "value": "Fewer prescribers routing to us"
+       }
+      ]
+     },
+     {
+      "driver": "champion_loss",
+      "explanation": "Keisha, the active program contact, has not answered the last two emails, so engagement is slipping even though the sponsor is still listed as active.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Keisha hasn't answered the last two emails"
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 58.3% of contracted patients are active, and weekly portal users fell 50% to 1, which signals a disengaging partner.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 58.3
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -50.0
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Keisha this week (or her manager if she stays unresponsive) to find out why prescribers stopped routing patients, and ask for a named prescriber-referral review before the renewal conversation."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0030",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0030",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The patient-services lead who signed the program was reorganized out and no successor is named, so nobody on the manufacturer side owns the relationship before renewal in 83 days.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Nobody owns the relationship now"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 12% over 90 days and weekly portal users fell about 17%, and the notes do not explain either drop.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -11.8
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -16.7
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Active patients are at about 77% of the contracted forecast, so the program is well short of its enrollment target.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 76.6
+       }
+      ]
+     }
+    ],
+    "next_step": "Call the Aurelian Pharma Labs Group brand team this week to identify who replaced Victor as patient-services lead, and book an executive business review with that new sponsor before the 2027-02-07 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0031",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0031",
+    "at_risk": false,
+    "risk_score": 15,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are at 96% of forecast and growing, with fast first fills, strong adherence, no sev1 incidents, and a champion still in place.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 96.4
+       },
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 24.5
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 5.0
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent action; use the scheduled check-in to scope the Q1 new-indication routing through pharmacy from day one with Luis, and book the overdue executive business review (82 days since last meeting)."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0032",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0032",
+    "at_risk": true,
+    "risk_score": 78,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Four severity-1 incidents and an open executive escalation over prior-auth delays, with the fix ETA still slipping, so the brand team is unhappy and patients are abandoning before first fill.",
+      "evidence": [
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 4
+       },
+       {
+        "field": "csm_notes",
+        "value": "Fix ETA keeps slipping"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Median time to first fill is nearly 13 days and refill adherence is 70.8%, both signs that patients are not getting started or staying on therapy well.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 12.9
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 70.8
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Active patients are only down 5.6% over 90 days and the champion is still active, which are mitigating factors.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -5.6
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Have the CSM call Beth this week to get a committed, dated prior-auth fix plan with an owner, and bring the open escalation status to the next exec review."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0033",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0033",
+    "at_risk": true,
+    "risk_score": 88,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "The brand is losing exclusivity next year and Victor has asked to cut the program to copay assistance only at renewal, which would shrink the account materially.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Victor asked to cut the program to copay assistance only"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Brand loses exclusivity next year"
+       },
+       {
+        "field": "days_to_renewal",
+        "value": 45
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 34.5% in 90 days and weekly portal users fell about 36.8%, with nothing in the notes explaining the drop away.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -34.5
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -36.8
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Fills are fast and the champion is still active with no open escalation or billing issues.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 5.0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Contact Victor this week to understand the scope of the proposed copay-only cut, and present a renewal case covering the post-exclusivity patient plan before the 2026-12-31 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0034",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0034",
+    "at_risk": false,
+    "risk_score": 25,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "This is a new launch account still ramping, and the sponsor says enrollment is on plan, so the low attainment is not yet a renewal risk.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Launch brand still ramping"
+       },
+       {
+        "field": "customer_since",
+        "value": "2026-09-15"
+       },
+       {
+        "field": "csm_notes",
+        "value": "enrollment is on plan"
+       }
+      ]
+     }
+    ],
+    "next_step": "Confirm the Dec 02 payer coverage wins and field-force expansion with Nikhil, and check that active patients are tracking toward the 90-patient forecast at the next check-in."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0035",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0035",
+    "at_risk": false,
+    "risk_score": 15,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are flat at 115 against a 120-patient forecast, the sponsor is active, and the brand director is pleased and asking to expand to a second brand.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 0.0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "csm_notes",
+        "value": "asked about moving a second brand onto the platform"
+       }
+      ]
+     }
+    ],
+    "next_step": "Use the call to scope the second-brand expansion with Tom (brand director) and check whether the 1 weekly portal user is enough for the brand team."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0036",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0037",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0037",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are essentially flat and at 92% of forecast, with the sponsor still in place and next year's budget already approved.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -1.8
+       },
+       {
+        "field": "csm_notes",
+        "value": "next year's program budget is approved"
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent call needed; keep the early renewal conversation with Marcus on the calendar and schedule the overdue executive business review (116 days since last meeting)."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0038",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0038",
+    "at_risk": false,
+    "risk_score": 25,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "The account is a new customer still ramping a launch brand, so the low forecast attainment and missing 90-day history are expected rather than a sign of decline.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Launch brand still ramping"
+       },
+       {
+        "field": "customer_since",
+        "value": "2026-09-16"
+       },
+       {
+        "field": "csm_notes",
+        "value": "enrollment is on plan"
+       }
+      ]
+     }
+    ],
+    "next_step": "Confirm with Omar that the Dec 10 payer coverage wins and field-force expansion are on track, and schedule the first executive business review since the account is 99 days past its last meeting."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0039",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0039",
+    "at_risk": false,
+    "risk_score": 20,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are stable and up slightly over 90 days, with no sev1 incidents, no open escalation, no overdue invoices, and an active champion.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 2.1
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Invoices are current and the NPS score is positive.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "last_nps",
+        "value": 8
+       }
+      ]
+     }
+    ],
+    "next_step": "Keep on the regular cadence; since the last executive review was 92 days ago, schedule a routine executive business review with Dana this quarter, but no urgent call is needed this week."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0040",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0040",
+    "at_risk": true,
+    "risk_score": 55,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 40% over 90 days and portal users fell about 42%; the notes attribute new-start drops to a seasonal fall/winter pattern, but seasonality is a possible cause that has not been confirmed for this drop.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -40.4
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -41.7
+       },
+       {
+        "field": "csm_notes",
+        "value": "new starts drop every fall and winter"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "The customer renewed early and the sponsor is active, with no tickets severe enough to matter and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Nikhil to confirm in writing that the active-patient drop matches last year's fall/winter seasonal pattern, and pull last year's 90-day curve to compare with the current decline."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0041",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0041",
+    "at_risk": false,
+    "risk_score": 18,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are down only 3.9% over 90 days and the late invoices are explained by a procurement-system change with a confirmed PO and payment date.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.9
+       },
+       {
+        "field": "csm_notes",
+        "value": "Dana confirmed the PO and a payment date"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "The sponsor is active, the account has no sev1 incidents or open escalation, and the NPS is a 10.",
+      "evidence": [
+       {
+        "field": "last_nps",
+        "value": 10
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     }
+    ],
+    "next_step": "Confirm with Dana that the payment on the 64-day overdue invoice arrives on the agreed date, and schedule the overdue executive business review (102 days since last meeting) when convenient."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0042",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0042",
+    "at_risk": true,
+    "risk_score": 62,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Rafael says the program budget is under review after a pricing hit, which could shrink scope at renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "budgets are under review"
+       },
+       {
+        "field": "csm_notes",
+        "value": "after a pricing hit"
+       }
+      ]
+     },
+     {
+      "driver": "billing",
+      "explanation": "Two program-fee invoices are unpaid and the oldest is 65 days past due, which may signal the budget squeeze is affecting payment.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 65
+       },
+       {
+        "field": "csm_notes",
+        "value": "Two program-fee invoices unpaid"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Usage is only modestly down and the account still has 6,310 active patients, with no sev1 incidents and an active champion.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -8.6
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Rafael this week to confirm how the budget review affects program scope and renewal, and agree a plan for the two unpaid invoices (65 days overdue)."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0043",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0043",
+    "at_risk": true,
+    "risk_score": 85,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 44.6% in 90 days to 499 against a 900-patient forecast, and the notes say new starts have been falling since summer with no explanation given.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -44.6
+       },
+       {
+        "field": "csm_notes",
+        "value": "New patient starts falling since summer"
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 55.4
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Weekly portal users halved to one, and Hannah says the field team is focused elsewhere and won't commit to a review.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       },
+       {
+        "field": "csm_notes",
+        "value": "won't commit to a review"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 258
+       }
+      ]
+     }
+    ],
+    "next_step": "This week, call Hannah to ask what is pulling the field team away and what is driving the drop in new starts, and push for a executive review date before the 2027-04-02 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0044",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0045",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0045",
+    "at_risk": true,
+    "risk_score": 62,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "The customer signed for full hub services but only uses pharmacy fulfillment, and active patients sit at about a third of the contracted forecast.",
+      "evidence": [
+       {
+        "field": "services_adopted",
+        "value": "pharmacy_fulfillment"
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 34.2
+       },
+       {
+        "field": "csm_notes",
+        "value": "only pharmacy fulfillment is used"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Active patients and portal usage are flat over 90 days, so there is no sharp usage decline and the account is not losing volume.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.0
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": 0.0
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask the brand team lead to schedule a call this week to plan a prescriber education campaign, since prescribers were never told about the program, and review the unused hub services."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 5,
+    "total": 5,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0046",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0046",
+    "at_risk": true,
+    "risk_score": 68,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The patient-services lead who signed the program was reorganized out, and nobody currently owns the relationship.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Marcus (patient-services lead, signed the program) was reorganized out"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 16% over 90 days and sit at roughly 75% of forecast, with portal use also slipping.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -16.1
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 75.3
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -11.5
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Service quality is healthy: fills ship fast and there are no severe incidents or open escalations.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 2.5
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask the CSM manager to identify the new patient-services owner at Elmstead this week, then book an executive business review with that person, since the last one was 235 days ago."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0047",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0047",
+    "at_risk": true,
+    "risk_score": 68,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The patient-services lead who signed the program was reorganized out, and no successor is named, so nobody owns the relationship before the February renewal.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Nobody owns the relationship now"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients are down about 11% over 90 days and sit at 80% of forecast, a softer decline that adds to the renewal concern.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -11.0
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 80.2
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Service levels are healthy: no severe incidents, no open escalation, and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask the Southeast account lead to identify the new patient-services owner at Brightwater this week, and book an executive business review with that person before the February 18 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 6,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0048",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0048",
+    "at_risk": true,
+    "risk_score": 68,
+    "main_reason": "competitor",
+    "drivers": [
+     {
+      "driver": "competitor",
+      "explanation": "The manufacturer's hub vendor pitched a bundled specialty pharmacy and asked for our per-patient pricing for comparison, so they are evaluating an alternative even though usage is steady.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "asked for our per-patient pricing 'for comparison'"
+       },
+       {
+        "field": "csm_notes",
+        "value": "bundled specialty pharmacy"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Active patients are at 80.5% of forecast and only one brand-team user is active in the portal, so the program's value is not widely visible internally.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 80.5
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Usage is roughly flat and there are no severe incidents, no open escalation, and no overdue invoices.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.6
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Tom for a call this week to learn what the competing bundled specialty pharmacy offer includes, and prepare a value summary and per-patient pricing comparison before renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0049",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0049",
+    "at_risk": false,
+    "risk_score": 18,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are near forecast and barely changed over 90 days, and the late invoices stem from a procurement-system change with a confirmed payment date.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 92.5
+       },
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.9
+       },
+       {
+        "field": "csm_notes",
+        "value": "Dana confirmed the PO and a payment date"
+       }
+      ]
+     }
+    ],
+    "next_step": "Confirm with Dana that the payment lands on the confirmed date, and log the overdue invoice so it is checked again if it slips."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0050",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0050",
+    "at_risk": false,
+    "risk_score": 15,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are growing and sit at 92.8% of forecast, with the sponsor active, no open escalation, no sev1 incidents, and NPS of 10.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 3.5
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 92.8
+       },
+       {
+        "field": "last_nps",
+        "value": 10
+       }
+      ]
+     }
+    ],
+    "next_step": "No urgent action this week; keep on the regular cadence and schedule the executive business review, since the last one was 85 days ago."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 3,
+    "total": 3,
+    "failures": []
+   }
+  }
+ ]
+}

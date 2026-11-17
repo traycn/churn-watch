@@ -1,0 +1,55 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0040",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0040",
+  "at_risk": true,
+  "risk_score": 55,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 40% over 90 days and portal users fell about 42%; the notes attribute new-start drops to a seasonal fall/winter pattern, but seasonality is a possible cause that has not been confirmed for this drop.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -40.4
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -41.7
+     },
+     {
+      "field": "csm_notes",
+      "value": "new starts drop every fall and winter"
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "The customer renewed early and the sponsor is active, with no tickets severe enough to matter and no overdue invoices.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Nikhil to confirm in writing that the active-patient drop matches last year's fall/winter seasonal pattern, and pull last year's 90-day curve to compare with the current decline."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4101,
+ "output_tokens": 531,
+ "latency_ms": 2191,
+ "call_settings": []
+}

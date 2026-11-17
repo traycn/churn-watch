@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0030",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0030",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The program signer, Victor, was reorganized out and nobody currently owns the relationship, with no executive meeting in 154 days.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Victor (patient-services lead, signed the program) was reorganized out"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 154
+     }
+    ]
+   },
+   {
+    "field": "active_patients_change_90d_pct",
+    "value": -11.8
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 11.8% over 90 days and are at 76.6% of forecast, with the active base at 1,915 against 2,500 contracted patients.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.8
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 76.6
+     },
+     {
+      "field": "active_patients_now",
+      "value": 1915
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Weekly portal users dropped 16.7% to 5, and refill adherence of 75.2% is weak for a program that depends on ongoing fills.",
+    "evidence": [
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -16.7
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 5
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 75.2
+     }
+    ]
+   }
+  ],
+  "next_step": "Identify the new executive owner on Aurelian's brand or patient-services side this week, request an intro call, and bring the forecast gap (76.6% attainment, 11.8% patient decline) to that meeting with a recovery plan."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2093,
+ "output_tokens": 709,
+ "latency_ms": 2797,
+ "call_settings": []
+}

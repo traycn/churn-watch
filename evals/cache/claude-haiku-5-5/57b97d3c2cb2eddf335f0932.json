@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0023",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0023",
+  "at_risk": false,
+  "risk_score": 12,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients grew 17.5% in 90 days and sit at 96% of contracted volume, with forecast attainment at 95.7%, so the program is tracking its enrollment plan.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 17.5
+     },
+     {
+      "field": "active_patients_now",
+      "value": 3348
+     },
+     {
+      "field": "contracted_patients",
+      "value": 3500
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 95.7
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Sponsor engagement is strong: champion is active, there are no open escalations, no sev1 tickets, NPS is 10, and invoices are current.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "last_nps",
+      "value": 10
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Fulfillment speed is good at a median of 2.8 days to first fill, and the account has adopted five services including the partner data feed, which deepens switching costs.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.8
+     },
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment;benefits_verification;telehealth_connect;partner_data_feed;prior_auth_support"
+     }
+    ]
+   }
+  ],
+  "next_step": "Use the Q1 new-indication launch to book the executive meeting now, since it has been 108 days since the last one, and confirm pharmacy routing for the new indication from day one."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2085,
+ "output_tokens": 691,
+ "latency_ms": 2619,
+ "call_settings": []
+}

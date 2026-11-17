@@ -1,0 +1,57 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0030",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0030",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The patient-services lead who signed the program was reorganized out and no successor is named, so nobody on the manufacturer side owns the relationship before renewal in 83 days.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Nobody owns the relationship now"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 12% over 90 days and weekly portal users fell about 17%, and the notes do not explain either drop.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.8
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -16.7
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Active patients are at about 77% of the contracted forecast, so the program is well short of its enrollment target.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 76.6
+     }
+    ]
+   }
+  ],
+  "next_step": "Call the Aurelian Pharma Labs Group brand team this week to identify who replaced Victor as patient-services lead, and book an executive business review with that new sponsor before the 2027-02-07 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4113,
+ "output_tokens": 562,
+ "latency_ms": 2258,
+ "call_settings": []
+}

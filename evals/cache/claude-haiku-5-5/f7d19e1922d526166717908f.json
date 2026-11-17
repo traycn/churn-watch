@@ -1,0 +1,59 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0008",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0008",
+  "at_risk": false,
+  "risk_score": 20,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are flat over 90 days, the champion is active, and the program has few support issues and no open escalation, with next year's budget reported as approved.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     },
+     {
+      "field": "csm_notes",
+      "value": "next year's program budget is approved"
+     }
+    ]
+   },
+   {
+    "field": "forecast_attainment_pct",
+    "value": 91.8
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user and 367 of 400 contracted patients active is a watch item, though the usage is flat rather than declining.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "active_patients_now",
+      "value": 367
+     }
+    ]
+   }
+  ],
+  "next_step": "Schedule a call with Luis this week to confirm the approved budget and review the 33 unused contracted slots and the low portal usage ahead of the July 2027 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2053,
+ "output_tokens": 506,
+ "latency_ms": 4496,
+ "call_settings": []
+}

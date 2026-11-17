@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0038",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0038",
+  "at_risk": false,
+  "risk_score": 25,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "The account is a new customer still ramping a launch brand, so the low forecast attainment and missing 90-day history are expected rather than a sign of decline.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Launch brand still ramping"
+     },
+     {
+      "field": "customer_since",
+      "value": "2026-09-16"
+     },
+     {
+      "field": "csm_notes",
+      "value": "enrollment is on plan"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm with Omar that the Dec 10 payer coverage wins and field-force expansion are on track, and schedule the first executive business review since the account is 99 days past its last meeting."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4082,
+ "output_tokens": 360,
+ "latency_ms": 1545,
+ "call_settings": []
+}

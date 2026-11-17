@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0048",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0048",
+  "at_risk": true,
+  "risk_score": 68,
+  "main_reason": "competitor",
+  "drivers": [
+   {
+    "driver": "competitor",
+    "explanation": "The customer is comparing Parcella's per-patient pricing against a bundled specialty pharmacy pitched by their hub vendor, which is a direct threat to renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "hub vendor pitched a bundled specialty pharmacy"
+     },
+     {
+      "field": "csm_notes",
+      "value": "asked for our per-patient pricing 'for comparison'"
+     }
+    ]
+   },
+   {
+    "field": "forecast_attainment_pct",
+    "value": 80.5
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Active patients are sliding and sit well below the 400 contracted, which weakens the per-patient fee case and could lead to a smaller renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 322
+     },
+     {
+      "field": "contracted_patients",
+      "value": 400
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -3.6
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, flat over 90 days, means the brand team has little visible engagement with the program ahead of a pricing conversation.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     }
+    ]
+   }
+  ],
+  "next_step": "Before sharing per-patient pricing, schedule an executive meeting this week (last one was 49 days ago) to reset the value case, and ask Tom what the bundled vendor's scope and price cover versus Parcella's services."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2086,
+ "output_tokens": 673,
+ "latency_ms": 2659,
+ "call_settings": []
+}

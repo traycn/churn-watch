@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0034",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0034",
+  "at_risk": false,
+  "risk_score": 25,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "This is a new launch account still ramping, and the sponsor says enrollment is on plan, so the low attainment is not yet a renewal risk.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Launch brand still ramping"
+     },
+     {
+      "field": "customer_since",
+      "value": "2026-09-15"
+     },
+     {
+      "field": "csm_notes",
+      "value": "enrollment is on plan"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm the Dec 02 payer coverage wins and field-force expansion with Nikhil, and check that active patients are tracking toward the 90-patient forecast at the next check-in."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4078,
+ "output_tokens": 359,
+ "latency_ms": 1510,
+ "call_settings": []
+}

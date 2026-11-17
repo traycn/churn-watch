@@ -1,0 +1,45 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0010",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0010",
+  "at_risk": true,
+  "risk_score": 55,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 2.9% over 90 days and sit at 89.9% of forecast, so the program is drifting below the manufacturer's enrollment plan heading into renewal.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.9
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 89.9
+     },
+     {
+      "field": "active_patients_now",
+      "value": 6745
+     }
+    ]
+   },
+   {
+    "field": "support_issues",
+    "value": 0
+   },
+   {
+    "field": "none",
+    "value": 0
+   }
+  ],
+  "next_step": "Review the 90-day active patient decline and forecast gap with the brand team, and schedule an executive meeting, since the last one was 96 days ago."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2078,
+ "output_tokens": 394,
+ "latency_ms": 1630,
+ "call_settings": []
+}

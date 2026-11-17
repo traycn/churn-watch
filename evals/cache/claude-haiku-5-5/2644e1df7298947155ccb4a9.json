@@ -1,0 +1,61 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0004",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0004",
+  "at_risk": true,
+  "risk_score": 78,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 37% in 90 days and sit at 48% of forecast, and the notes give no explanation beyond fewer prescribers routing to us, so this is not confirmed as seasonal.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -36.8
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 48.3
+     },
+     {
+      "field": "csm_notes",
+      "value": "Fewer prescribers routing to us"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Refill adherence is 62.1%, well below the 80% proportion-of-days-covered benchmark, so patients who remain active are not staying on therapy.",
+    "evidence": [
+     {
+      "field": "refill_adherence_pct",
+      "value": 62.1
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "The sponsor is still listed as active, but Luis has not answered the last two emails, and the executive review is 162 days old, so engagement is slipping.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Luis hasn't answered the last two emails"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 162
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Luis this week, or go over his head to the brand's patient-services lead if he stays silent, to find out why prescribers are routing away and whether the drop is seasonal, and book an executive business review before the February 24, 2027 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4088,
+ "output_tokens": 639,
+ "latency_ms": 2770,
+ "call_settings": []
+}

@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0012",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0012",
+  "at_risk": false,
+  "risk_score": 22,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are steady and near forecast, and the departed sponsor has a named, engaged successor who is asking for the playbook.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "replacement Omar is engaged"
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 1.7
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 87.8
+     }
+    ]
+   }
+  ],
+  "next_step": "Send Omar the program playbook he requested and schedule an intro call to walk him through the program data in the partner portal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4094,
+ "output_tokens": 334,
+ "latency_ms": 1501,
+ "call_settings": []
+}

@@ -1,0 +1,87 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0019",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0019",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Priya says the budget is under review after a pricing hit, and active patients are slipping, so the account may shrink or be cut at renewal.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "budgets are under review after a pricing hit"
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -6.4
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 85.8
+     }
+    ]
+   },
+   {
+    "field": "billing",
+    "explanation": "Two program-fee invoices are unpaid and 118 days overdue, which signals financial strain or a dispute.",
+    "evidence": [
+     {
+      "field": "invoice_days_overdue",
+      "value": 118
+     },
+     {
+      "field": "csm_notes",
+      "value": "Two program-fee invoices unpaid"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell from 110 to 103 over 90 days and are at 86% of forecast, though the account still uses several services.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 103
+     },
+     {
+      "field": "active_patients_90d_ago",
+      "value": 110
+     },
+     {
+      "field": "contracted_patients",
+      "value": 120
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "The executive relationship is stale at 118 days since the last meeting, and the only portal user has no activity, so engagement is thin.",
+    "evidence": [
+     {
+      "field": "days_since_exec_meeting",
+      "value": 118
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Priya for a call this week to confirm the budget review timeline and the status of the two unpaid invoices, and ask finance whether the overdue balance is a dispute or a payment issue."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2072,
+ "output_tokens": 751,
+ "latency_ms": 2982,
+ "call_settings": []
+}

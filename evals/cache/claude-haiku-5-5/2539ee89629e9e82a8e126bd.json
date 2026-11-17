@@ -1,0 +1,69 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0034",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0034",
+  "at_risk": true,
+  "risk_score": 58,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Only 43 of 90 contracted patients are active and forecast attainment is 47.8%, so the program is well short of the enrollment the manufacturer expects to pay for.",
+    "evidence": [
+     {
+      "field": "active_patients_now",
+      "value": 43
+     },
+     {
+      "field": "contracted_patients",
+      "value": 90
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 47.8
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Portal use is minimal, with one weekly user now and none 90 days ago, so the brand team has little visibility into the program.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_portal_users_90d_ago",
+      "value": 0
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Mitigating factors: the program is clean on service and payment, with no sev1 tickets, no open escalation, no overdue invoices, and a median of 6.9 days to first fill.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 6.9
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Nikhil for the enrollment forecast for the next two quarters and a ramp plan that shows how the 43 active patients will grow toward the 90 contracted, then schedule an exec check-in before the Dec 02 coverage wins land."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2058,
+ "output_tokens": 651,
+ "latency_ms": 2610,
+ "call_settings": []
+}

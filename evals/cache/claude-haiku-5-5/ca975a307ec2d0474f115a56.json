@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0026",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0026",
+  "at_risk": true,
+  "risk_score": 55,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 42% in 90 days (1,800 to 1,044) and weekly portal users halved, but the CSM notes say the drop is seasonal and matches the manufacturer's own forecast curve.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -42.0
+     },
+     {
+      "field": "active_patients_now",
+      "value": 1044
+     },
+     {
+      "field": "csm_notes",
+      "value": "Priya confirmed volume matches their own forecast curve"
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Active patients sit at 58% of contracted volume, so the contract is being underused on the fee-per-patient basis and could be pressured to shrink at renewal.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 58.0
+     },
+     {
+      "field": "contracted_patients",
+      "value": 1800
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Service quality is strong: first fill in about 2 days, adherence 77.1%, one ticket with no Sev1s, no open escalation, NPS 9, active champion, and no invoice overdue.",
+    "evidence": [
+     {
+      "field": "median_days_to_first_fill",
+      "value": 2.2
+     },
+     {
+      "field": "refill_adherence_pct",
+      "value": 77.1
+     },
+     {
+      "field": "last_nps",
+      "value": 9
+     },
+     {
+      "field": "open_escalation",
+      "value": "no"
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Priya for the full-year forecast curve in writing, then schedule a pre-renewal review before the off-season ends to confirm the contract volume reflects the seasonal pattern and does not get cut at renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2070,
+ "output_tokens": 706,
+ "latency_ms": 3040,
+ "call_settings": []
+}

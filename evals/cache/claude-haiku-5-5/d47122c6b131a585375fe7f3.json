@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0010",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0010",
+  "at_risk": false,
+  "risk_score": 30,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days, the champion is active, and the brand team says reporting is whole again after the data-feed failures.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.9
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     },
+     {
+      "field": "csm_notes",
+      "value": "reporting is whole again"
+     }
+    ]
+   },
+   {
+    "driver": "support_issues",
+    "explanation": "Two data-feed failures last month were a real incident, but they were backfilled and the customer has accepted the recovery, so it is a watch item rather than a renewal threat.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 2
+     },
+     {
+      "field": "csm_notes",
+      "value": "both backfilled"
+     }
+    ]
+   }
+  ],
+  "next_step": "Hold the account off this week's call list and, at the next scheduled check-in with Mei, confirm the data feed has had no further failures and ask whether the brand team is satisfied with reporting."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4098,
+ "output_tokens": 477,
+ "latency_ms": 2109,
+ "call_settings": []
+}

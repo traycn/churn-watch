@@ -1,0 +1,51 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0009",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0009",
+  "at_risk": false,
+  "risk_score": 30,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are essentially flat over 90 days and at 91% of forecast, with no overdue invoices and an active champion.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -1.8
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 91.0
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "support_issues",
+    "explanation": "Two data-feed failures last month were backfilled and Omar says brand reporting is whole again, so this is a watch item rather than a live risk.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "both backfilled"
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 2
+     }
+    ]
+   }
+  ],
+  "next_step": "Before the renewal window, confirm with Omar that the backfilled data-feed failures are fully closed and ask about the 119 days since the last executive business review, scheduling one if possible."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4096,
+ "output_tokens": 462,
+ "latency_ms": 1962,
+ "call_settings": []
+}

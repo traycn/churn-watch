@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0047",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0047",
+  "at_risk": true,
+  "risk_score": 72,
+  "main_reason": "champion_loss",
+  "drivers": [
+   {
+    "driver": "champion_loss",
+    "explanation": "The program signer, Mei, was reorganized out and nobody currently owns the relationship, so there is no internal advocate to defend the program at renewal.",
+    "evidence": [
+     {
+      "field": "champion_status",
+      "value": "left"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Mei (patient-services lead, signed the program) was reorganized out"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 202
+     }
+    ]
+   },
+   {
+    "field": "active_patients_change_90d_pct",
+    "value": -11.0
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 11% in 90 days (2,252 to 2,005) and now sit at 80% of the 2,500 contracted patients, which will weaken the renewal case.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -11.0
+     },
+     {
+      "field": "active_patients_now",
+      "value": 2005
+     },
+     {
+      "field": "contracted_patients",
+      "value": 2500
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Forecast attainment is 80.2% and weekly portal users are down 9.1% with only 10 users, so the brand team's engagement with the program is thin.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 80.2
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 10
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -9.1
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask the Brightwater brand team to name a new executive sponsor and a day-to-day program owner this week, then book an exec business review before the 2027-02-18 renewal to reset the forecast against the 80% attainment and the 11% active-patient decline."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2074,
+ "output_tokens": 727,
+ "latency_ms": 2794,
+ "call_settings": []
+}

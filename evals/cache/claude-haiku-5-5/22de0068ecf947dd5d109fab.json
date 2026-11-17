@@ -1,0 +1,73 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0029",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0029",
+  "at_risk": true,
+  "risk_score": 82,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell from 60 to 35 over 90 days (-41.7%), and forecast attainment is only 58.3%, so the program is well below what the manufacturer expected.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -41.7
+     },
+     {
+      "field": "active_patients_now",
+      "value": 35
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 58.3
+     }
+    ]
+   },
+   {
+    "driver": "champion_loss",
+    "explanation": "Our main contact Keisha has not answered the last two emails, and the account has had no executive meeting in 185 days, so the relationship is weakening even though the champion is still marked active.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Keisha hasn't answered the last two emails"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 185
+     },
+     {
+      "field": "champion_status",
+      "value": "active"
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Fewer prescribers are routing patients to us, and portal use has dropped by half, which suggests the brand team is disengaging from the program.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Fewer prescribers routing to us"
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -50.0
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     }
+    ]
+   }
+  ],
+  "next_step": "Call the brand team's executive sponsor this week to ask about the drop in prescriber routing, and request a meeting to review the enrollment forecast and a recovery plan before the 2027-02-24 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2058,
+ "output_tokens": 690,
+ "latency_ms": 2682,
+ "call_settings": []
+}

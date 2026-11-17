@@ -1,0 +1,37 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0049",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0049",
+  "at_risk": false,
+  "risk_score": 18,
+  "main_reason": "none",
+  "drivers": [
+   {
+    "driver": "none",
+    "explanation": "Active patients are near forecast and barely changed over 90 days, and the late invoices stem from a procurement-system change with a confirmed payment date.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 92.5
+     },
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -2.9
+     },
+     {
+      "field": "csm_notes",
+      "value": "Dana confirmed the PO and a payment date"
+     }
+    ]
+   }
+  ],
+  "next_step": "Confirm with Dana that the payment lands on the confirmed date, and log the overdue invoice so it is checked again if it slips."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4101,
+ "output_tokens": 351,
+ "latency_ms": 1579,
+ "call_settings": []
+}

@@ -1,0 +1,42 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0018",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0018",
+  "at_risk": true,
+  "risk_score": 62,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Halvard has been live for over a year but active patients are at about 25% of forecast, with only pharmacy fulfillment in use and one portal user.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 24.9
+     },
+     {
+      "field": "services_adopted",
+      "value": "pharmacy_fulfillment"
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     }
+    ]
+   },
+   {
+    "field": "csm_notes",
+    "value": "Repeated offers to retrain the field team declined",
+    "evidence": []
+   }
+  ],
+  "next_step": "Ask the brand-team sponsor (the program lead named in the account contacts) for a call this week to understand why retraining was declined and what is blocking enrollment against the 900-patient forecast."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4070,
+ "output_tokens": 409,
+ "latency_ms": 1813,
+ "call_settings": []
+}

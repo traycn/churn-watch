@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0002",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0002",
+  "at_risk": true,
+  "risk_score": 85,
+  "main_reason": "usage_decline",
+  "drivers": [
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell 52.7% in 90 days, from 1782 to 842, and the notes say new starts have been falling since summer with no explanation given.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -52.7
+     },
+     {
+      "field": "csm_notes",
+      "value": "New patient starts falling since summer"
+     },
+     {
+      "field": "forecast_attainment_pct",
+      "value": 46.8
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Mei says the field team is focused elsewhere and won't commit to a review, which may signal deprioritization of this brand program.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "won't commit to a review"
+     },
+     {
+      "field": "days_since_exec_meeting",
+      "value": 246
+     }
+    ]
+   },
+   {
+    "driver": "low_adoption",
+    "explanation": "Refill adherence is well below the 80% proportion-of-days-covered threshold, and weekly portal users halved.",
+    "evidence": [
+     {
+      "field": "refill_adherence_pct",
+      "value": 56.9
+     },
+     {
+      "field": "weekly_portal_users_now",
+      "value": 3
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Mei this week to find out why the field team is focused elsewhere and why new starts fell since summer, and push to book an executive business review before the April 2027 renewal."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4094,
+ "output_tokens": 596,
+ "latency_ms": 2427,
+ "call_settings": []
+}

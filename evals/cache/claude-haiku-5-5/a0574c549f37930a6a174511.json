@@ -1,0 +1,77 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0039",
+ "prompt_version": "v1",
+ "tool_input": {
+  "account_id": "TST-0039",
+  "at_risk": true,
+  "risk_score": 40,
+  "main_reason": "low_adoption",
+  "drivers": [
+   {
+    "driver": "low_adoption",
+    "explanation": "Only one weekly portal user, flat over 90 days, and the brand team is not engaging with the program beyond the data feed, which makes the relationship thin at renewal.",
+    "evidence": [
+     {
+      "field": "weekly_portal_users_now",
+      "value": 1
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": 0.0
+     },
+     {
+      "field": "csm_notes",
+      "value": "Quiet program"
+     }
+    ]
+   },
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "Forecast attainment is 84.8% with 339 of 400 contracted patients active, so the manufacturer may question paying for the 61 unused seats when they renew.",
+    "evidence": [
+     {
+      "field": "forecast_attainment_pct",
+      "value": 84.8
+     },
+     {
+      "field": "contracted_patients",
+      "value": 400
+     },
+     {
+      "field": "active_patients_now",
+      "value": 339
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Program operations are healthy: active patients grew 2.1% over 90 days, fills are fast, no escalations or sev1 tickets, and invoices are current.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": 2.1
+     },
+     {
+      "field": "median_days_to_first_fill",
+      "value": 3.8
+     },
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Ask Dana to schedule a 30-minute portal walkthrough this week, and ask about the executive sponsor, since the last exec meeting was 92 days ago."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 2061,
+ "output_tokens": 685,
+ "latency_ms": 2734,
+ "call_settings": []
+}

@@ -1,0 +1,65 @@
+{
+ "pack": "pharma-patient-access",
+ "account_id": "TST-0022",
+ "prompt_version": "v2",
+ "tool_input": {
+  "account_id": "TST-0022",
+  "at_risk": true,
+  "risk_score": 88,
+  "main_reason": "budget_or_downsizing",
+  "drivers": [
+   {
+    "driver": "budget_or_downsizing",
+    "explanation": "The brand is losing exclusivity next year and Mei has asked to cut the program to copay assistance only at renewal, which would shrink scope materially.",
+    "evidence": [
+     {
+      "field": "csm_notes",
+      "value": "Mei asked to cut the program to copay assistance only"
+     },
+     {
+      "field": "csm_notes",
+      "value": "Brand loses exclusivity next year"
+     },
+     {
+      "field": "renewal_date",
+      "value": "2027-01-12"
+     }
+    ]
+   },
+   {
+    "driver": "usage_decline",
+    "explanation": "Active patients fell about 32% in 90 days and portal users fell about 36%, with no note explaining the drop.",
+    "evidence": [
+     {
+      "field": "active_patients_change_90d_pct",
+      "value": -32.4
+     },
+     {
+      "field": "weekly_users_change_90d_pct",
+      "value": -36.4
+     }
+    ]
+   },
+   {
+    "driver": "none",
+    "explanation": "Operations are healthy: few tickets, no severe incidents, no billing issues, and the champion is active.",
+    "evidence": [
+     {
+      "field": "sev1_tickets_90d",
+      "value": 0
+     },
+     {
+      "field": "invoice_days_overdue",
+      "value": 0
+     }
+    ]
+   }
+  ],
+  "next_step": "Call Mei this week to understand the exclusivity timeline and what a copay-only scope would mean, and propose a renewal plan that keeps the full program before the 57-day window closes."
+ },
+ "stop_reason": "tool_use",
+ "input_tokens": 4089,
+ "output_tokens": 607,
+ "latency_ms": 2351,
+ "call_settings": []
+}

@@ -1,0 +1,1752 @@
+{
+ "pack": "pharma-patient-access",
+ "model": "claude-haiku-5-5",
+ "prompt": "v1",
+ "label_set": "reviewed",
+ "accounts": [
+  {
+   "account_id": "TST-0001",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0002",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0002",
+    "at_risk": true,
+    "risk_score": 88,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients have fallen by more than half in 90 days, from 1,782 to 842, and the program is at only 46.8% of forecast, so the program is shrinking well below what Norvale expected.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -52.7
+       },
+       {
+        "field": "active_patients_now",
+        "value": 842
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 46.8
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "With the field team reportedly focused elsewhere and new patient starts falling since summer, the manufacturer may be cutting back its investment in this brand program, which puts the $798,700 ARR at risk at renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "field team 'is focused elsewhere'"
+       },
+       {
+        "field": "arr_usd",
+        "value": 798700
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Weekly portal users halved over 90 days and the executive sponsor has not met in 246 days, so the brand team is disengaging from the program.",
+      "evidence": [
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -50.0
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 246
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 3
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Mei to set up a review with the Norvale brand lead and field team leadership this week, bringing the active-patient decline and forecast gap (46.8% attainment) and a plan to restore new patient starts."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0003",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0004",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0004",
+    "at_risk": true,
+    "risk_score": 85,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 36.8% in 90 days, from 3,827 to 2,417, and only 48.3% of the forecast is being met, so the program is shrinking well below its 5,000 contracted patients.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -36.8
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 48.3
+       },
+       {
+        "field": "active_patients_now",
+        "value": 2417
+       }
+      ]
+     },
+     {
+      "driver": "champion_loss",
+      "explanation": "Our contact Luis has not answered the last two emails, and the account has had no executive meeting in 162 days, so we may be losing the champion.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Luis hasn't answered the last two emails"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 162
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Weekly portal users dropped 36.4% to 7, and refill adherence is only 62.1%, which signals weak engagement with the program.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_change_90d_pct",
+        "value": -36.4
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 62.1
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Luis this week, and if he doesn't pick up, reach out to another stakeholder on the brand team to ask about the drop in prescriber routing and to book an executive review before renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 6,
+    "total": 7,
+    "failures": [
+     "weekly_portal_users_change_90d_pct=-36.4 (record has '<no such field>')"
+    ]
+   }
+  },
+  {
+   "account_id": "TST-0005",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0005",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 701 of 2,500 contracted patients are active (28% forecast attainment), and the account uses only pharmacy fulfillment despite signing for full hub services, so the program is well short of what the manufacturer bought.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 28.0
+       },
+       {
+        "field": "contracted_patients",
+        "value": 2500
+       },
+       {
+        "field": "services_adopted",
+        "value": "pharmacy_fulfillment"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients slipped 2.2% over the last 90 days and the portal has only 2 weekly users with no growth, so there is little momentum to offset the gap.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.2
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 2
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": 0.0
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "With ARR of $1.15M paid on 2,500 contracted patients but only about 701 active, the manufacturer is likely to question the value at renewal and push for a smaller contract.",
+      "evidence": [
+       {
+        "field": "arr_usd",
+        "value": 1151400
+       },
+       {
+        "field": "active_patients_now",
+        "value": 701
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a meeting this week with the manufacturer's brand team to walk through the hub services they bought, and ask Zeller to brief prescribers on the program so enrollment starts moving toward the forecast."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0006",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0007",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 6 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0008",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0009",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0009",
+    "at_risk": true,
+    "risk_score": 55,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "The account logged 12 tickets in the last 90 days, including 2 Sev1 tickets, and the two data-feed failures last month are a reliability problem the brand team has felt directly, even though they were backfilled.",
+      "evidence": [
+       {
+        "field": "tickets_90d",
+        "value": 12
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 2
+       },
+       {
+        "field": "csm_notes",
+        "value": "Two data-feed failures last month"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Portal engagement is flat and low at 3 weekly users, and the account has not had an executive meeting in 119 days, so the relationship is thin above the day-to-day contacts.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_now",
+        "value": 3
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 119
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients are slipping slightly, down 1.8% over 90 days, and refill adherence at 73.6% is a concern to watch, though the decline is small.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -1.8
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 73.6
+       }
+      ]
+     }
+    ],
+    "next_step": "Book an executive check-in with the brand team this week to review the two Sev1 incidents, confirm the data feed fix is holding, and walk through the active patient and refill adherence trend before the December 12 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0010",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: Field required at ('drivers', 1, 'driver')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0011",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0012",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0013",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0013",
+    "at_risk": true,
+    "risk_score": 68,
+    "main_reason": "competitor",
+    "drivers": [
+     {
+      "driver": "competitor",
+      "explanation": "Procurement has issued an RFI for patient-support services covering our scope ahead of the Q1 decision window, so the account may be put out to competing vendors before renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Procurement issued an RFI for patient-support services due in Q1"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Marcus hinted it covers our scope"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 6.7% over 90 days and are running 81.8% of forecast, with weekly portal users down 16.7%, which weakens the case for renewing at the contracted level.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -6.7
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 81.8
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -16.7
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Only 2,044 of 2,500 contracted patients are active, so the account is paying for unused capacity and may seek to shrink the contract at renewal.",
+      "evidence": [
+       {
+        "field": "active_patients_now",
+        "value": 2044
+       },
+       {
+        "field": "contracted_patients",
+        "value": 2500
+       }
+      ]
+     }
+    ],
+    "next_step": "This week, get a meeting with Marcus to confirm the RFI scope and timeline, and ask what the brand team needs to see from us on forecast attainment and patient reactivation before the Q1 decision."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0014",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0014",
+    "at_risk": true,
+    "risk_score": 45,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "The October benefits-verification outage drove 3 Sev1 tickets and 12 tickets in 90 days, and first fills were delayed, though the root cause was fixed Nov 02 and the escalation is closed.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "tickets_90d",
+        "value": 12
+       },
+       {
+        "field": "csm_notes",
+        "value": "Benefits-verification outage in October delayed first fills"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Active patients are at 2,983 of 3,500 contracted (85.2% of forecast), and refill adherence is 81.5%, so the program is trailing its enrollment forecast.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 85.2
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 81.5
+       },
+       {
+        "field": "active_patients_now",
+        "value": 2983
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "The executive sponsor has not met in 77 days and the renewal is 48 days away, which leaves little time to rebuild the relationship before a renewal decision.",
+      "evidence": [
+       {
+        "field": "days_since_exec_meeting",
+        "value": 77
+       },
+       {
+        "field": "days_to_renewal",
+        "value": 48
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule an executive business review with the Orrin sponsor this week to confirm the Nov 02 fix holds, and walk through the active-patient gap to forecast with a plan to close it before renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0015",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0016",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0017",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0017",
+    "at_risk": false,
+    "risk_score": 15,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients are essentially flat over 90 days, the champion is active, and the brand director is pleased enough to ask about adding a second brand.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -0.1
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "csm_notes",
+        "value": "asked about moving a second brand onto the platform"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Patients reach their first fill quickly and no sev1 tickets or escalations are open, which supports the renewal.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 3.6
+       },
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Active patients sit at about 89% of contracted patients and forecast attainment is 88.7%, so a seat-based fee could be pressured at renewal if the gap persists.",
+      "evidence": [
+       {
+        "field": "active_patients_now",
+        "value": 3105
+       },
+       {
+        "field": "contracted_patients",
+        "value": 3500
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 88.7
+       }
+      ]
+     }
+    ],
+    "next_step": "Use the October 27 QBR to review the 88.7% forecast attainment and the gap between 3,105 active and 3,500 contracted patients, and open the second-brand conversation with Tom."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 9,
+    "total": 9,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0018",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0018",
+    "at_risk": true,
+    "risk_score": 82,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 224 of 900 contracted patients are active (about 25%), and forecast attainment is 24.9%, so the program is far behind the manufacturer's enrollment plan after more than a year live.",
+      "evidence": [
+       {
+        "field": "active_patients_now",
+        "value": 224
+       },
+       {
+        "field": "contracted_patients",
+        "value": 900
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 24.9
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Active patients are drifting down and the account is paying for roughly 676 unused contracted seats, which puts the $343,700 ARR under pressure at renewal and invites a downsizing conversation.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.9
+       },
+       {
+        "field": "arr_usd",
+        "value": 343700
+       },
+       {
+        "field": "active_patients_90d_ago",
+        "value": 233
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell from 233 to 224 over 90 days, and portal usage is flat at a single weekly user, so engagement is not recovering.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.9
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 55.9
+       }
+      ]
+     }
+    ],
+    "next_step": "Request an executive sponsor meeting with Halvard this week to review the enrollment gap against forecast, and bring a field-team retraining plan with clear enrollment targets."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 9,
+    "total": 9,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0019",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0020",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0020",
+    "at_risk": true,
+    "risk_score": 68,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "competitor",
+      "explanation": "Procurement has issued an RFI for patient-support services due in Q1 that appears to cover our scope, so the account may be re-bid before renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Procurement issued an RFI for patient-support services due in Q1"
+       },
+       {
+        "field": "csm_notes",
+        "value": "covers our scope"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients are drifting down and sit well below the contracted volume and forecast, with portal engagement also falling.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -3.0
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 79.3
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -9.1
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 3,964 of 5,000 contracted patients are active and refill adherence is 75.8%, which weakens the case for renewing at the current scale.",
+      "evidence": [
+       {
+        "field": "active_patients_now",
+        "value": 3964
+       },
+       {
+        "field": "contracted_patients",
+        "value": 5000
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 75.8
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Marcus this week for the RFI timeline and scope, and book an executive sponsor meeting to review active-patient recovery plans before Q1 bid submission."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0021",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 5 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0022",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0023",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0024",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0025",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0026",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 2, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0027",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0028",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0028",
+    "at_risk": false,
+    "risk_score": 12,
+    "main_reason": "none",
+    "drivers": [
+     {
+      "driver": "none",
+      "explanation": "Active patients grew 17.3% over 90 days and forecast attainment is 96.8%, so the program is tracking enrollment well and is likely to renew.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": 17.3
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 96.8
+       },
+       {
+        "field": "active_patients_now",
+        "value": 387
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Patients are getting to first fill quickly and staying adherent, with no escalations or billing issues.",
+      "evidence": [
+       {
+        "field": "median_days_to_first_fill",
+        "value": 4.2
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 89.4
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Champion is active, NPS is a 10, and the customer has an expansion opportunity with a new Q1 indication.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "last_nps",
+        "value": 10
+       },
+       {
+        "field": "csm_notes",
+        "value": "launching a new indication in Q1"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a scoping call with Victor this week to plan routing the new Q1 indication through Parcella pharmacy from day one, and confirm onboarding and any contract amendment needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 9,
+    "total": 9,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0029",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0029",
+    "at_risk": true,
+    "risk_score": 82,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell from 60 to 35 over 90 days (-41.7%), and forecast attainment is only 58.3%, so the program is well below what the manufacturer expected.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -41.7
+       },
+       {
+        "field": "active_patients_now",
+        "value": 35
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 58.3
+       }
+      ]
+     },
+     {
+      "driver": "champion_loss",
+      "explanation": "Our main contact Keisha has not answered the last two emails, and the account has had no executive meeting in 185 days, so the relationship is weakening even though the champion is still marked active.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Keisha hasn't answered the last two emails"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 185
+       },
+       {
+        "field": "champion_status",
+        "value": "active"
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer prescribers are routing patients to us, and portal use has dropped by half, which suggests the brand team is disengaging from the program.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Fewer prescribers routing to us"
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -50.0
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       }
+      ]
+     }
+    ],
+    "next_step": "Call the brand team's executive sponsor this week to ask about the drop in prescriber routing, and request a meeting to review the enrollment forecast and a recovery plan before the 2027-02-24 renewal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 9,
+    "total": 9,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0030",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0031",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0032",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0033",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0033",
+    "at_risk": true,
+    "risk_score": 85,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Victor has asked to cut the program to copay assistance only at renewal, which would drop pharmacy fulfillment and telehealth and shrink the account ahead of a loss of exclusivity next year.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Victor asked to cut the program to copay assistance only at renewal"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Brand loses exclusivity next year"
+       },
+       {
+        "field": "services_adopted",
+        "value": "pharmacy_fulfillment;copay_assistance;telehealth_connect"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell about 35% in 90 days, from 6,703 to 4,390, and only 58.5% of forecast is being met, so the program is shrinking well below what was contracted.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -34.5
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 58.5
+       },
+       {
+        "field": "active_patients_now",
+        "value": 4390
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Weekly portal users dropped from 19 to 12 (down 36.8%), and refill adherence is 70.4%, indicating weak engagement from the brand team and patients.",
+      "evidence": [
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -36.8
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 70.4
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule an executive meeting with Victor this week (last exec meeting was 73 days ago) to review the patient decline, the 58.5% forecast attainment, and the plan to re-engage the portal users before the proposed scope cut is finalized."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0034",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0034",
+    "at_risk": true,
+    "risk_score": 58,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 43 of 90 contracted patients are active and forecast attainment is 47.8%, so the program is well short of the enrollment the manufacturer expects to pay for.",
+      "evidence": [
+       {
+        "field": "active_patients_now",
+        "value": 43
+       },
+       {
+        "field": "contracted_patients",
+        "value": 90
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 47.8
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Portal use is minimal, with one weekly user now and none 90 days ago, so the brand team has little visibility into the program.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       },
+       {
+        "field": "weekly_portal_users_90d_ago",
+        "value": 0
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Mitigating factors: the program is clean on service and payment, with no sev1 tickets, no open escalation, no overdue invoices, and a median of 6.9 days to first fill.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 0
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 0
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 6.9
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Nikhil for the enrollment forecast for the next two quarters and a ramp plan that shows how the 43 active patients will grow toward the 90 contracted, then schedule an exec check-in before the Dec 02 coverage wins land."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0035",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0036",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0037",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0038",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0039",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 2, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0040",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 2, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0041",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0042",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0042",
+    "at_risk": true,
+    "risk_score": 72,
+    "main_reason": "budget_or_downsizing",
+    "drivers": [
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "Rafael says the manufacturer's budgets are under review after a pricing hit, and the account is already showing payment strain, so a renewal could shrink in scope or contracted patients.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "Rafael said budgets are under review after a pricing hit"
+       },
+       {
+        "field": "invoice_days_overdue",
+        "value": 65
+       },
+       {
+        "field": "csm_notes",
+        "value": "Two program-fee invoices unpaid"
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 8.6% in 90 days and sit at 84.1% of forecast, so the program is delivering less volume than the manufacturer expects.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -8.6
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 84.1
+       },
+       {
+        "field": "active_patients_now",
+        "value": 6310
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Only 70.1% refill adherence and 25 weekly portal users (down 7.4%) suggest weak engagement with the program and the partner portal.",
+      "evidence": [
+       {
+        "field": "refill_adherence_pct",
+        "value": 70.1
+       },
+       {
+        "field": "weekly_portal_users_now",
+        "value": 25
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -7.4
+       }
+      ]
+     }
+    ],
+    "next_step": "Call Rafael this week to confirm the budget review timeline and get the two unpaid program-fee invoices (65 days overdue) on a payment plan or cleared, and ask whether the renewal scope is under discussion."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 9,
+    "total": 9,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0043",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0043",
+    "at_risk": true,
+    "risk_score": 85,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 44.6% in 90 days, from 900 to 499, and the program is at 55.4% of its enrollment forecast, so the account is shrinking well below contracted volume.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -44.6
+       },
+       {
+        "field": "active_patients_now",
+        "value": 499
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 55.4
+       }
+      ]
+     },
+     {
+      "driver": "budget_or_downsizing",
+      "explanation": "The brand's field team is reportedly focused elsewhere and won't commit to a review, which suggests the manufacturer may be deprioritizing this program and could downsize at renewal.",
+      "evidence": [
+       {
+        "field": "csm_notes",
+        "value": "field team 'is focused elsewhere'"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 258
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Portal engagement has halved and refill adherence is only 51.3%, so patients and the brand team are both disengaging from the program.",
+      "evidence": [
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -50.0
+       },
+       {
+        "field": "refill_adherence_pct",
+        "value": 51.3
+       }
+      ]
+     }
+    ],
+    "next_step": "Ask Hannah to book an executive-sponsor review this week, framed around the 44.6% active-patient drop, and come with a plan to recover new starts and refill adherence."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 7,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0044",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0044",
+    "at_risk": true,
+    "risk_score": 35,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients slipped from 35 to 34 over 90 days and sit at 85% of contracted forecast, a mild shortfall that could widen if not addressed.",
+      "evidence": [
+       {
+        "field": "forecast_attainment_pct",
+        "value": 85.0
+       },
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -2.9
+       },
+       {
+        "field": "active_patients_now",
+        "value": 34
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Only one weekly portal user, unchanged over 90 days, so the brand team has little visibility into program results ahead of renewal.",
+      "evidence": [
+       {
+        "field": "weekly_portal_users_now",
+        "value": 1
+       },
+       {
+        "field": "weekly_portal_users_change_90d_pct",
+        "value": 0.0
+       }
+      ]
+     },
+     {
+      "driver": "none",
+      "explanation": "Mitigating: champion is active, budget for next year is approved, no open escalation, no sev1 tickets, and first fills are fast.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "active"
+       },
+       {
+        "field": "csm_notes",
+        "value": "next year's program budget is approved"
+       },
+       {
+        "field": "median_days_to_first_fill",
+        "value": 2.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a call with Aiko this week to review the 85% forecast gap and the 34-patient active count, and ask whether a second brand-team user can be added to the portal."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 7,
+    "total": 8,
+    "failures": [
+     "weekly_portal_users_change_90d_pct=0.0 (record has '<no such field>')"
+    ]
+   }
+  },
+  {
+   "account_id": "TST-0045",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0046",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0046",
+    "at_risk": true,
+    "risk_score": 80,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The program signer, Marcus, was reorganized out and nobody owns the relationship now, with the executive meeting last held 235 days ago.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       },
+       {
+        "field": "csm_notes",
+        "value": "Marcus (patient-services lead, signed the program) was reorganized out"
+       },
+       {
+        "field": "days_since_exec_meeting",
+        "value": 235
+       }
+      ]
+     },
+     {
+      "driver": "usage_decline",
+      "explanation": "Active patients fell 16.1% over 90 days and are at 75.3% of forecast, well below the contracted 7,500.",
+      "evidence": [
+       {
+        "field": "active_patients_change_90d_pct",
+        "value": -16.1
+       },
+       {
+        "field": "forecast_attainment_pct",
+        "value": 75.3
+       },
+       {
+        "field": "active_patients_now",
+        "value": 5644
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Refill adherence is 73.1% and weekly portal users dropped 11.5%, so engagement is softening on both the patient and brand-team side.",
+      "evidence": [
+       {
+        "field": "refill_adherence_pct",
+        "value": 73.1
+       },
+       {
+        "field": "weekly_users_change_90d_pct",
+        "value": -11.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Identify Marcus's successor or the new owner of the Elmstead program this week, and request an executive sponsor meeting to review the patient decline against the 75.3% forecast attainment."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 8,
+    "total": 8,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0047",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0048",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers',)",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0049",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 4 at ('drivers', 2, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0050",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": null,
+   "error": "schema: List should have at most 3 items after validation, not 5 at ('drivers', 0, 'evidence')",
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  }
+ ]
+}
