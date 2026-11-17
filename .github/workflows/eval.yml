@@ -10,29 +10,28 @@ on:
       - "evals/config.toml"
       - "src/**"
       - "data/testset/**"
-  pull_request:
-    paths:
-      - "prompts/**"
-      - "evals/config.toml"
-      - "src/**"
-      - "data/testset/**"
   workflow_dispatch:
+
+# Paid runs happen only on main, one at a time, so there is exactly one spend ledger
+# (evals/spend.csv) and two runs can never both see the same remaining budget.
+# Pull requests get the free replay check in test.yml instead.
 
 permissions:
   contents: write
 
 concurrency:
-  group: eval-${{ github.ref }}
+  group: paid-eval
   cancel-in-progress: false
 
 jobs:
   eval:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref || github.ref }}
+          ref: main
 
       - uses: astral-sh/setup-uv@v5
 
@@ -48,18 +47,27 @@ jobs:
             exit 1
           fi
 
-      - name: Run evals (cached responses are reused, only new ones hit the API)
+      - name: Budget before
+        run: uv run churnwatch budget || true
+
+      - name: Run evals (cached responses are free; refused if the worst case would pass the cap)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: uv run churnwatch eval
 
-      - name: Post the results table to the job summary
+      - name: Post the results and spend to the job summary
+        if: always()
         run: |
+          echo '## Spend' >> "$GITHUB_STEP_SUMMARY"
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
+          uv run churnwatch budget >> "$GITHUB_STEP_SUMMARY" || true
+          echo '```' >> "$GITHUB_STEP_SUMMARY"
           echo "## Evaluation results" >> "$GITHUB_STEP_SUMMARY"
           sed -n '/RESULTS:START/,/RESULTS:END/p' README.md | sed '1d;$d' >> "$GITHUB_STEP_SUMMARY"
 
-      - name: Commit updated scores
-        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+      # Runs even if the eval step failed part-way, so every paid call stays in the ledger.
+      - name: Commit updated scores, cache and spend ledger
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -68,5 +76,6 @@ jobs:
             echo "Scores unchanged."
           else
             git commit -m "eval: update scores for ${GITHUB_SHA::7} [skip ci]"
+            git pull --rebase origin main
             git push
           fi

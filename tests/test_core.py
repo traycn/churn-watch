@@ -5,6 +5,7 @@ import pytest
 from churnwatch import baseline
 from churnwatch.accounts import enrich, load_accounts
 from churnwatch.grounding import check_evidence, grounding
+from churnwatch.budget import Budget
 from churnwatch.llm import CacheMiss, ClaudeScorer
 from churnwatch.schema import Assessment, Evidence
 
@@ -18,6 +19,13 @@ ROW = {
     "days_since_exec_meeting": "200",
     "csm_notes": "Dispatch team went back to spreadsheets. Tried to schedule retraining, no reply.",
 }
+
+
+PRICES = {"claude-haiku-5-5": {"input": 0.10, "output": 0.50}}
+
+
+def _budget(tmp_path, cap=25.0):
+    return Budget(cap_usd=cap, prices=PRICES, ledger=tmp_path / "spend.csv")
 
 
 @pytest.fixture
@@ -102,7 +110,7 @@ GOOD = {
 
 def test_scorer_caches_and_replays(rec, tmp_path):
     client = FakeClient(GOOD)
-    s = ClaudeScorer("claude-haiku-5-5", "v2", client=client, cache_dir=tmp_path)
+    s = ClaudeScorer("claude-haiku-5-5", "v2", client=client, cache_dir=tmp_path, budget=_budget(tmp_path))
     r1 = s.score(rec)
     r2 = s.score(rec)
     assert client.calls == 1 and not r1.cached and r2.cached
@@ -115,7 +123,8 @@ def test_scorer_caches_and_replays(rec, tmp_path):
 
 def test_scorer_reports_schema_errors(rec, tmp_path):
     bad = {**GOOD, "main_reason": "vibes"}
-    res = ClaudeScorer("claude-haiku-5-5", "v2", client=FakeClient(bad), cache_dir=tmp_path).score(rec)
+    res = ClaudeScorer("claude-haiku-5-5", "v2", client=FakeClient(bad), cache_dir=tmp_path,
+                       budget=_budget(tmp_path)).score(rec)
     assert res.assessment is None and res.error.startswith("schema")
 
 
@@ -144,7 +153,8 @@ class RefusingClient(FakeClient):
 
 def test_scorer_falls_back_when_forced_tool_refused(rec, tmp_path):
     import json
-    s = ClaudeScorer("claude-haiku-5-5", "v2", client=RefusingClient(GOOD), cache_dir=tmp_path)
+    s = ClaudeScorer("claude-haiku-5-5", "v2", client=RefusingClient(GOOD), cache_dir=tmp_path / "c",
+                     budget=_budget(tmp_path))
     assert s.score(rec).assessment.at_risk
-    cached = json.loads(next(tmp_path.rglob("*.json")).read_text())
+    cached = json.loads(next((tmp_path / "c").rglob("*.json")).read_text())
     assert cached["call_settings"] == ["tool_choice=any"]

@@ -17,6 +17,7 @@ from pathlib import Path
 
 from pydantic import ValidationError
 
+from .budget import Budget, worst_case_cost
 from .schema import Assessment, tool_schema
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -59,7 +60,7 @@ def cache_key(model: str, prompt: str, record: dict, max_tokens: int, temperatur
 class ClaudeScorer:
     def __init__(self, model: str, prompt_version: str, *, max_tokens: int = 4000,
                  temperature: float | None = 0, replay: bool = False, client=None,
-                 cache_dir: Path = CACHE_DIR):
+                 cache_dir: Path = CACHE_DIR, budget: Budget | None = None):
         self.model = model
         self.prompt_version = prompt_version
         self.prompt = load_prompt(prompt_version)
@@ -68,6 +69,20 @@ class ClaudeScorer:
         self.replay = replay
         self.cache_dir = cache_dir / model
         self._client = client
+        self.budget = budget
+        if not replay and budget is None:
+            raise ValueError("Live scoring needs a Budget so spend stays under the cap.")
+
+    def _cache_path(self, record: dict) -> Path:
+        key = cache_key(self.model, self.prompt, record, self.max_tokens, self.temperature)
+        return self.cache_dir / f"{key}.json"
+
+    def is_cached(self, record: dict) -> bool:
+        return self._cache_path(record).exists()
+
+    def worst_case(self, record: dict) -> float:
+        return worst_case_cost(self.budget.prices, self.model, self.prompt, model_input(record),
+                               tool_schema(), self.max_tokens)
 
     @property
     def client(self):
@@ -76,7 +91,7 @@ class ClaudeScorer:
 
             if not os.environ.get("ANTHROPIC_API_KEY"):
                 raise RuntimeError("ANTHROPIC_API_KEY is not set. Use --replay to run from the cache.")
-            self._client = anthropic.Anthropic(max_retries=4)
+            self._client = anthropic.Anthropic(max_retries=2, timeout=120)
         return self._client
 
     def _call(self, record: dict) -> dict:
@@ -127,15 +142,31 @@ class ClaudeScorer:
         }
 
     def score(self, record: dict) -> Result:
-        key = cache_key(self.model, self.prompt, record, self.max_tokens, self.temperature)
-        path = self.cache_dir / f"{key}.json"
+        path = self._cache_path(record)
         cached = path.exists()
         if cached:
             raw = json.loads(path.read_text())
         elif self.replay:
             raise CacheMiss(f"No cached response for {record['account_id']} with {self.model}/{self.prompt_version}")
         else:
-            raw = self._call(record)
+            # Each attempt in _call is at most one billed request; reserve the worst case
+            # for it before sending and settle to the real cost after.
+            reserved = self.worst_case(record)
+            self.budget.reserve(reserved)
+            try:
+                raw = self._call(record)
+            except Exception as e:
+                if getattr(e, "status_code", None) is not None and 400 <= e.status_code < 500:
+                    self.budget.release(reserved)  # rejected requests are not billed
+                else:
+                    # Unknown whether it was billed (timeout, dropped connection): count the worst case.
+                    self.budget.settle(reserved, model=self.model, prompt=self.prompt_version,
+                                       account_id=record["account_id"] + " (failed, counted at worst case)",
+                                       input_tokens=0, output_tokens=0, cost_usd=reserved)
+                raise
+            self.budget.settle(reserved, model=self.model, prompt=self.prompt_version,
+                               account_id=record["account_id"], input_tokens=raw["input_tokens"],
+                               output_tokens=raw["output_tokens"])
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(json.dumps({"account_id": record["account_id"], "prompt_version": self.prompt_version,
                                         **raw}, indent=1))

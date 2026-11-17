@@ -48,6 +48,7 @@ Ranked CSV + one-page HTML report ("accounts to call this week")
 make setup
 export ANTHROPIC_API_KEY=...
 uv run churnwatch score data/accounts.csv --model claude-haiku-5-5 --prompt v2   # writes out/report.html
+make budget        # spend so far and the worst case to finish; no API calls
 make eval          # scores every model × prompt in evals/config.toml and updates this README
 make eval-replay   # reproduces the published numbers from cached responses, no API key needed
 make test
@@ -70,6 +71,33 @@ make test
 **Cached, replayable responses.** Responses are cached by a hash of model, prompt, schema, record and settings. Re-running an unchanged config costs nothing. `--replay` reproduces the published numbers with no API key, and the test workflow checks that it does.
 
 **Small model by default.** Scoring is one short call per account, so the default is Claude Haiku 5.5, with Sonnet 5.5 as the comparison. The table shows what the larger model buys per 1,000 accounts.
+
+## Cost and the spending cap
+
+The whole project has a **$25 hard cap on API spend**, set in [`evals/config.toml`](evals/config.toml) and enforced in [`budget.py`](src/churnwatch/budget.py):
+
+- **Every paid call is logged** with its actual cost in [`evals/spend.csv`](evals/spend.csv), which is committed. The running total therefore carries across runs.
+- **Runs are refused up front.** Before a run, the code adds up the worst case for every uncached call (an upper bound on input tokens plus the full `max_tokens` of output). If the worst case plus spend so far would pass the cap, nothing is sent.
+- **The required runs are reserved.** The acceptance criteria need 2 models × 2 prompts on the test set plus the 200-account demo, and their worst case is held back. An experiment, such as a third prompt, is refused if it would leave too little to finish them.
+- **Calls are capped one by one too.** Each call reserves its worst case before it is sent, so parallel calls can't overshoot.
+  - A call that fails in a way that might still have been billed, such as a timeout, is logged at its worst case.
+  - A request the API rejects isn't billed, so it costs nothing.
+- **Paid runs happen only in CI on `main`, one at a time.** That keeps a single spend log. Cached responses are free, so re-scoring after a label change costs $0.
+
+`make budget` prints spend so far and the worst case to finish:
+
+| Required run | Calls | Worst case |
+| --- | ---: | ---: |
+| Haiku 5.5 × prompt v1, test set | 50 | $0.11 |
+| Haiku 5.5 × prompt v2, test set | 50 | $0.11 |
+| Sonnet 5.5 × prompt v1, test set | 50 | $2.13 |
+| Sonnet 5.5 × prompt v2, test set | 50 | $2.22 |
+| Haiku 5.5 × prompt v2, 200-account demo | 200 | $0.44 |
+| **Total** | **400** | **$5.01** |
+
+Real calls cost less than the worst case, usually much less. That leaves about $20 for prompt iterations. Each new prompt version costs at most about $2.30 to score on both models.
+
+This cap only covers calls made through this code. The API key itself is also limited to $25 by a spend limit in the Claude Console.
 
 ## Limitations
 
@@ -97,6 +125,7 @@ make test
 | `evals/config.toml` | Models, prompts and prices under evaluation |
 | `evals/results.csv` | Every scored run |
 | `evals/cache/` | Cached model responses (for replay) |
+| `evals/spend.csv` | Every paid API call and its cost |
 
 ## About this project
 

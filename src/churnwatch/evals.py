@@ -21,11 +21,13 @@ from pathlib import Path
 
 from . import baseline
 from .accounts import load_accounts, load_labels
+from .budget import Budget
 from .grounding import grounding
 from .llm import ROOT, CacheMiss, ClaudeScorer, Result
 
 EVALS = ROOT / "evals"
 RESULTS_CSV = EVALS / "results.csv"
+LEDGER = EVALS / "spend.csv"
 RESULT_FIELDS = [
     "run_at", "git_sha", "label_set", "model", "prompt", "n",
     "precision", "recall", "f1", "accuracy", "ambiguous_accuracy", "reason_accuracy",
@@ -52,6 +54,71 @@ def load_config(path: Path = EVALS / "config.toml") -> dict:
         return tomllib.load(f)
 
 
+def make_budget(cfg: dict) -> Budget:
+    return Budget(cap_usd=float(cfg["budget"]["cap_usd"]), prices=cfg.get("prices", {}), ledger=LEDGER)
+
+
+def make_scorer(model: str, prompt: str, cfg: dict, replay: bool, budget: Budget | None) -> ClaudeScorer:
+    return ClaudeScorer(model, prompt, max_tokens=cfg.get("max_tokens", 4000),
+                        temperature=cfg.get("temperature"), replay=replay, budget=budget)
+
+
+def eval_pairs(cfg: dict, models=None, prompts=None) -> list[tuple[str, str]]:
+    pairs, seen_baseline = [], False
+    for m in models or cfg["models"]:
+        if m == "baseline":
+            if not seen_baseline:
+                pairs.append((m, "-"))
+                seen_baseline = True
+            continue
+        pairs += [(m, p) for p in prompts or cfg["prompts"]]
+    return pairs
+
+
+def worst_case_for(pairs, records, cfg, budget) -> tuple[float, list[tuple[str, str, int, float]]]:
+    """Worst-case cost of the uncached calls a run would make, per pair."""
+    total, lines = 0.0, []
+    for model, prompt in pairs:
+        if model == "baseline":
+            continue
+        s = make_scorer(model, prompt, cfg, False, budget)
+        todo = [r for r in records if not s.is_cached(r)]
+        cost = sum(s.worst_case(r) for r in todo)
+        total += cost
+        lines.append((model, prompt, len(todo), cost))
+    return total, lines
+
+
+def required_worst(cfg: dict, budget: Budget, *, skip: set[str] = frozenset()) -> tuple[float, list[tuple[str, int, float]]]:
+    """Worst-case cost of the uncached required runs (evals/config.toml budget.required), minus `skip`."""
+    test = load_accounts(ROOT / cfg["testset"])
+    demo = None
+    total, lines = 0.0, []
+    for item in cfg["budget"].get("required", []):
+        if item in skip:
+            continue
+        kind, spec = item.split(":", 1)
+        model, prompt = spec.split("/")
+        if kind == "demo":
+            demo = demo or load_accounts(ROOT / "data/accounts.csv")
+            records = demo
+        else:
+            records = test
+        s = make_scorer(model, prompt, cfg, False, budget)
+        todo = [r for r in records if not s.is_cached(r)]
+        cost = sum(s.worst_case(r) for r in todo)
+        total += cost
+        lines.append((item, len(todo), cost))
+    return total, lines
+
+
+def guarded_preflight(cfg: dict, budget: Budget, this_run: float, covers: set[str], what: str) -> None:
+    """Refuse a run unless it AND every unfinished required run still fit under the cap."""
+    reserve, _ = required_worst(cfg, budget, skip=covers)
+    budget.preflight(this_run + reserve, f"{what} (worst case ${this_run:.2f}, plus ${reserve:.2f} "
+                                         "held for unfinished required runs)")
+
+
 def resolve_labels(cfg: dict) -> tuple[Path, str]:
     """Use reviewed labels if they exist, else fall back to the generator's drafts."""
     reviewed = ROOT / cfg["labels"]
@@ -67,14 +134,13 @@ def _git_sha() -> str:
         return "unknown"
 
 
-def run_pair(model: str, prompt: str, records: list[dict], labels: dict, cfg: dict, replay: bool) -> list[Row]:
+def run_pair(model: str, prompt: str, records: list[dict], labels: dict, cfg: dict, replay: bool,
+             budget: Budget | None = None) -> list[Row]:
     if model == "baseline":
         def score(rec):
             return Result(baseline.assess(rec), None, 0, 0, 0, True)
     else:
-        scorer = ClaudeScorer(model, prompt, max_tokens=cfg.get("max_tokens", 4000),
-                              temperature=cfg.get("temperature"), replay=replay)
-        score = scorer.score
+        score = make_scorer(model, prompt, cfg, replay, budget).score
 
     with ThreadPoolExecutor(max_workers=cfg.get("concurrency", 8)) as pool:
         results = list(pool.map(score, records))
@@ -190,15 +256,19 @@ def run(replay: bool = False, models: list[str] | None = None, prompts: list[str
     run_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     sha = _git_sha()
 
-    pairs = [(m, p) for m in (models or cfg["models"]) for p in (prompts or cfg["prompts"])]
-    seen_baseline = False
+    pairs = eval_pairs(cfg, models, prompts)
+    budget = None
+    if not replay:
+        budget = make_budget(cfg)
+        worst, lines = worst_case_for(pairs, records, cfg, budget)
+        for m, p, n, c in lines:
+            print(f"  {m}/{p}: {n} uncached calls, worst case ${c:.2f}")
+        guarded_preflight(cfg, budget, worst, {f"eval:{m}/{p}" for m, p in pairs}, "this eval run")
+        print(f"Budget: spent ${budget.spent():.2f} of ${budget.cap_usd:.2f}; "
+              f"this run costs at most ${worst:.2f}.")
     for model, prompt in pairs:
-        if model == "baseline":
-            if seen_baseline:
-                continue
-            seen_baseline, prompt = True, "-"
         try:
-            rows = run_pair(model, prompt, records, labels, cfg, replay)
+            rows = run_pair(model, prompt, records, labels, cfg, replay, budget)
         except CacheMiss as e:
             print(f"{model:>18} {prompt:>3}  skipped in replay: {e}")
             continue
@@ -226,4 +296,6 @@ def run(replay: bool = False, models: list[str] | None = None, prompts: list[str
 
     update_readme()
     print(f"{len(new_rows)} new result row(s); label set: {label_set}")
+    if budget:
+        print(f"Spent so far: ${budget.spent():.2f} of ${budget.cap_usd:.2f} cap.")
     return new_rows

@@ -11,6 +11,20 @@ max_tokens = 4000  # includes thinking tokens on models that think by default
 temperature = 0
 concurrency = 8
 
+[budget]
+# Hard cap on total API spend for this project, in USD. Every paid call is logged in
+# evals/spend.csv; a run whose worst case would push the total past the cap is refused
+# before anything is sent. See src/churnwatch/budget.py.
+cap_usd = 25.00
+# The runs the acceptance criteria need. Their worst-case cost is held in reserve:
+# any other run (a new prompt, an extra model) is refused if it would leave too
+# little to finish these.
+required = [
+  "eval:claude-haiku-5-5/v1", "eval:claude-haiku-5-5/v2",
+  "eval:claude-sonnet-5-5/v1", "eval:claude-sonnet-5-5/v2",
+  "demo:claude-haiku-5-5/v2",
+]
+
 # USD per million tokens, standard API.
 # Source: https://platform.claude.com/docs/en/about-claude/pricing (checked 2026-11-17).
 # Haiku 5.5 prices are for prompts of 100K tokens or less, which every request here is.
