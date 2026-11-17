@@ -15,9 +15,9 @@ Scored on 50 labeled test accounts, 17 of them ambiguous by design (the numbers 
 <!-- RESULTS:START -->
 | Model | Prompt | Precision | Recall | F1 | Ambiguous cases right | Main reason right | Evidence verified | Errors | Cost per 1,000 accounts | Median latency | Run |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
-| Rules baseline | – | 58% | 86% | 69% | 0% | 90% | 100.0% | 0 | – | – | 2026-11-17 `e01f5c6` |
+| Rules baseline | – | 58% | 86% | 69% | 0% | 90% | 100.0% | 0 | – | – | 2026-11-17 `b2cfe28` |
 
-Labels: **draft** (generator drafts, not yet reviewed). 2 runs logged in [`evals/results.csv`](evals/results.csv); per-account errors in [`evals/misses.md`](evals/misses.md).
+Labels: **draft** (generator drafts, not yet reviewed). 1 runs logged in [`evals/results.csv`](evals/results.csv); per-account errors in [`evals/misses.md`](evals/misses.md).
 <!-- RESULTS:END -->
 
 <!-- FINDINGS -->
