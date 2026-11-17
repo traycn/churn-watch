@@ -22,7 +22,7 @@ from pathlib import Path
 from . import baseline
 from .accounts import load_accounts, load_labels
 from .grounding import grounding
-from .llm import ROOT, ClaudeScorer, Result
+from .llm import ROOT, CacheMiss, ClaudeScorer, Result
 
 EVALS = ROOT / "evals"
 RESULTS_CSV = EVALS / "results.csv"
@@ -197,7 +197,11 @@ def run(replay: bool = False, models: list[str] | None = None, prompts: list[str
             if seen_baseline:
                 continue
             seen_baseline, prompt = True, "-"
-        rows = run_pair(model, prompt, records, labels, cfg, replay)
+        try:
+            rows = run_pair(model, prompt, records, labels, cfg, replay)
+        except CacheMiss as e:
+            print(f"{model:>18} {prompt:>3}  skipped in replay: {e}")
+            continue
         all_rows[(model, prompt)] = rows
         m = metrics(rows, model, cfg)
         row = {"run_at": run_at, "git_sha": sha, "label_set": label_set, "model": model, "prompt": prompt, **m}

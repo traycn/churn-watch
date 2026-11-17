@@ -1,0 +1,72 @@
+name: eval
+
+# Re-score the test set whenever something that can change the scores changes:
+# a prompt, the model list or settings, the scoring code, or the labels.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "prompts/**"
+      - "evals/config.toml"
+      - "src/**"
+      - "data/testset/**"
+  pull_request:
+    paths:
+      - "prompts/**"
+      - "evals/config.toml"
+      - "src/**"
+      - "data/testset/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: eval-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref }}
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install
+        run: uv sync --extra dev
+
+      - name: Check the API key is configured
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          if [ -z "$ANTHROPIC_API_KEY" ]; then
+            echo "::error::Add ANTHROPIC_API_KEY under Settings > Secrets and variables > Actions."
+            exit 1
+          fi
+
+      - name: Run evals (cached responses are reused, only new ones hit the API)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: uv run churnwatch eval
+
+      - name: Post the results table to the job summary
+        run: |
+          echo "## Evaluation results" >> "$GITHUB_STEP_SUMMARY"
+          sed -n '/RESULTS:START/,/RESULTS:END/p' README.md | sed '1d;$d' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit updated scores
+        if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add evals/ README.md
+          if git diff --cached --quiet; then
+            echo "Scores unchanged."
+          else
+            git commit -m "eval: update scores for ${GITHUB_SHA::7} [skip ci]"
+            git push
+          fi

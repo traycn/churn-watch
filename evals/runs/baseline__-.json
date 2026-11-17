@@ -1,0 +1,1554 @@
+{
+ "model": "baseline",
+ "prompt": "-",
+ "label_set": "draft",
+ "accounts": [
+  {
+   "account_id": "TST-0001",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0001",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -47.3
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 49.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0002",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0002",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 4
+       },
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0003",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0003",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0004",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0004",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "billing",
+    "drivers": [
+     {
+      "driver": "billing",
+      "explanation": "Invoices are more than 45 days overdue.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 49
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0005",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0005",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -35.2
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0006",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0006",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -29.2
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0007",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0007",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0008",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0008",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "billing",
+    "drivers": [
+     {
+      "driver": "billing",
+      "explanation": "Invoices are more than 45 days overdue.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 103
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0009",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0009",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0010",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0010",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0011",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0011",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 40.9
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0012",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0012",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -51.0
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 43.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0013",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0013",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0014",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0014",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0015",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0015",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -37.5
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 40.0
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0016",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0016",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0017",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0017",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0018",
+   "label": {
+    "at_risk": true,
+    "main_reason": "champion_loss",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0018",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0019",
+   "label": {
+    "at_risk": true,
+    "main_reason": "billing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0019",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "billing",
+    "drivers": [
+     {
+      "driver": "billing",
+      "explanation": "Invoices are more than 45 days overdue.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 110
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0020",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0020",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0021",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0021",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0022",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0022",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0023",
+   "label": {
+    "at_risk": true,
+    "main_reason": "budget_or_downsizing",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0023",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -29.6
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0024",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0024",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -44.7
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 47.3
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0025",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0025",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0026",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0026",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0027",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0027",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0028",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0028",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 2
+       },
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0029",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0029",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0030",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0030",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0031",
+   "label": {
+    "at_risk": true,
+    "main_reason": "usage_decline",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0031",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -41.9
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 45.0
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0032",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0032",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0033",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0033",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -42.3
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0034",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0034",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "billing",
+    "drivers": [
+     {
+      "driver": "billing",
+      "explanation": "Invoices are more than 45 days overdue.",
+      "evidence": [
+       {
+        "field": "invoice_days_overdue",
+        "value": 53
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0035",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0035",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0036",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0036",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 33.3
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0037",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0037",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0038",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0038",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 37.1
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0039",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0039",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0040",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0040",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "champion_loss",
+    "drivers": [
+     {
+      "driver": "champion_loss",
+      "explanation": "The champion has left.",
+      "evidence": [
+       {
+        "field": "champion_status",
+        "value": "left"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0041",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0041",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0042",
+   "label": {
+    "at_risk": true,
+    "main_reason": "support_issues",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0042",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 2
+       },
+       {
+        "field": "open_escalation",
+        "value": "yes"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0043",
+   "label": {
+    "at_risk": true,
+    "main_reason": "competitor",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0043",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0044",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0044",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 37.3
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0045",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0045",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "support_issues",
+    "drivers": [
+     {
+      "driver": "support_issues",
+      "explanation": "Repeated severe tickets or an open escalation.",
+      "evidence": [
+       {
+        "field": "sev1_tickets_90d",
+        "value": 3
+       },
+       {
+        "field": "open_escalation",
+        "value": "no"
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0046",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0046",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -45.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0047",
+   "label": {
+    "at_risk": true,
+    "main_reason": "low_adoption",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0047",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 27.5
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0048",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0048",
+    "at_risk": true,
+    "risk_score": 60,
+    "main_reason": "usage_decline",
+    "drivers": [
+     {
+      "driver": "usage_decline",
+      "explanation": "Active vehicles fell 25% or more in 90 days.",
+      "evidence": [
+       {
+        "field": "vehicles_active_change_90d_pct",
+        "value": -48.3
+       }
+      ]
+     },
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 49.2
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 2,
+    "total": 2,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0049",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": true
+   },
+   "prediction": {
+    "account_id": "TST-0049",
+    "at_risk": true,
+    "risk_score": 30,
+    "main_reason": "low_adoption",
+    "drivers": [
+     {
+      "driver": "low_adoption",
+      "explanation": "Fewer than half of licensed vehicles are active.",
+      "evidence": [
+       {
+        "field": "vehicle_utilization_pct",
+        "value": 38.2
+       }
+      ]
+     }
+    ],
+    "next_step": "Schedule a health check call."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 1,
+    "total": 1,
+    "failures": []
+   }
+  },
+  {
+   "account_id": "TST-0050",
+   "label": {
+    "at_risk": false,
+    "main_reason": "none",
+    "ambiguous": false
+   },
+   "prediction": {
+    "account_id": "TST-0050",
+    "at_risk": false,
+    "risk_score": 0,
+    "main_reason": "none",
+    "drivers": [],
+    "next_step": "No action needed."
+   },
+   "error": null,
+   "grounding": {
+    "verified": 0,
+    "total": 0,
+    "failures": []
+   }
+  }
+ ]
+}
