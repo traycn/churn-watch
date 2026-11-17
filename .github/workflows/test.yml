@@ -15,4 +15,4 @@ jobs:
       - name: Published scores reproduce from the response cache (no API key)
         run: |
           uv run churnwatch eval --replay
-          git diff --exit-code -- evals/results.csv || (echo "::error::Replayed scores differ from evals/results.csv" && exit 1)
+          git diff --exit-code -- 'packs/*/evals/results.csv' || (echo "::error::Replayed scores differ from the committed results" && exit 1)

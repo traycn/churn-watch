@@ -1,4 +1,4 @@
-.PHONY: setup test data budget eval eval-replay demo
+.PHONY: setup test packs budget eval eval-replay
 
 setup:            ## install dependencies into .venv
 	uv sync --extra dev
@@ -6,17 +6,14 @@ setup:            ## install dependencies into .venv
 test:             ## unit tests (no API key needed)
 	uv run pytest -q
 
-data:             ## regenerate the synthetic export and test set
-	uv run python data/generate.py --seed 7
+packs:            ## list industry packs
+	uv run churnwatch packs
 
 budget:           ## spend so far and worst-case cost to finish; no API calls
 	uv run churnwatch budget
 
-eval:             ## score the test set for every model x prompt; needs ANTHROPIC_API_KEY
+eval:             ## score every pack's test set; needs ANTHROPIC_API_KEY (run in CI)
 	uv run churnwatch eval
 
-eval-replay:      ## reproduce the published scores from cached responses, no API key
+eval-replay:      ## reproduce every published score from cached responses, no API key
 	uv run churnwatch eval --replay
-
-demo:             ## score the 200-account export and write out/report.html
-	uv run churnwatch score data/accounts.csv --model claude-haiku-5-5 --prompt v2 --out out

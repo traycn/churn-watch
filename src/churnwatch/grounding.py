@@ -5,7 +5,7 @@ cite (field, value) pairs; this module verifies each one against the source row:
 
 - numeric fields must match within rounding (1% relative or 1.0 absolute);
 - text fields must match exactly (case-insensitive);
-- csm_notes evidence must be a verbatim substring of the notes.
+- notes evidence must be a verbatim substring of the CSM notes.
 """
 
 from __future__ import annotations
@@ -30,11 +30,11 @@ def _as_number(v) -> float | None:
     return None
 
 
-def check_evidence(ev: Evidence, record: dict) -> bool:
+def check_evidence(ev: Evidence, record: dict, notes_field: str = "csm_notes") -> bool:
     if ev.field not in record:
         return False
     actual = record[ev.field]
-    if ev.field == "csm_notes":
+    if ev.field == notes_field:
         quote = _norm(str(ev.value))
         return bool(quote) and quote in _norm(actual or "")
     if actual is None:
@@ -45,13 +45,13 @@ def check_evidence(ev: Evidence, record: dict) -> bool:
     return _norm(str(actual)) == _norm(str(ev.value))
 
 
-def grounding(assessment: Assessment, record: dict) -> tuple[int, int, list[str]]:
+def grounding(assessment: Assessment, record: dict, notes_field: str = "csm_notes") -> tuple[int, int, list[str]]:
     """Return (verified, total, failures) for all evidence in an assessment."""
     verified, total, failures = 0, 0, []
     for d in assessment.drivers:
         for ev in d.evidence:
             total += 1
-            if check_evidence(ev, record):
+            if check_evidence(ev, record, notes_field):
                 verified += 1
             else:
                 failures.append(f"{ev.field}={ev.value!r} (record has {record.get(ev.field, '<no such field>')!r})")

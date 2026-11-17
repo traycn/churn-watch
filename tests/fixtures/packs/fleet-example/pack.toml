@@ -1,0 +1,85 @@
+# Test fixture only: the original fleet-telematics domain, kept so the engine is tested
+# against a complete pack. Not published as a pack.
+
+[pack]
+name = "Fleet telematics SaaS (test fixture)"
+vendor_name = "Fleetline"
+export_date = "2026-11-16"
+seed = 7
+product = """
+Fleetline sells fleet-telematics software: GPS tracking, electronic logging (ELD),
+dashcams, driver safety coaching, routing and maintenance, priced per licensed vehicle.
+"""
+
+[unit]
+name = "vehicle"
+name_plural = "vehicles"
+column = "vehicle"
+column_plural = "vehicles"
+counts = [12, 18, 25, 30, 40, 55, 60, 75, 90, 120, 150, 200, 260, 340, 480, 650]
+users_per_unit = [0.08, 0.15]
+
+[users]
+name = "fleet managers"
+
+[[plans]]
+name = "Essentials"
+price_per_unit = 360
+min_units = 0
+weight = 2
+
+[[plans]]
+name = "Enterprise"
+price_per_unit = 520
+min_units = 0
+weight = 1
+
+[[segments]]
+name = "Trucking"
+name_suffixes = ["Freight", "Haulage", "Logistics", "Carriers"]
+
+[[segments]]
+name = "Construction"
+seasonal = true
+name_suffixes = ["Builders", "Construction", "Earthworks"]
+
+[[segments]]
+name = "Landscaping"
+seasonal = true
+name_suffixes = ["Landscaping", "Grounds", "Lawn & Tree"]
+
+[[segments]]
+name = "Field services"
+name_suffixes = ["Services", "Mechanical", "HVAC"]
+
+[features]
+core = "gps_tracking"
+optional = ["eld", "dashcams", "safety_coaching", "routing", "maintenance", "fuel_reporting"]
+
+[naming]
+prefixes = ["Redwood", "Granite", "Bluewater", "Summit", "Prairie", "Ironline", "Cedar", "Harbor",
+            "Copper", "Lakeside", "Northgate", "Sunridge", "Valley", "Keystone", "Silverpine", "Mesa"]
+contacts = ["Dana", "Marcus", "Priya", "Luis", "Keisha", "Tom", "Aiko", "Rafael", "Jen", "Omar"]
+
+[[extra_fields]]
+name = "harsh_events_per_1k_miles"
+description = "Harsh braking and acceleration events per 1,000 miles, last 30 days."
+base = [2, 6]
+decimals = 1
+by_scenario = { support_issues = [6, 9] }
+
+[notes]
+healthy = ["QBR on {d1}. {a} happy with driver safety scores.", "Quiet account. No open asks.", ""]
+expanding = ["{a} added {n} trucks from an acquisition and wants them on the platform by January."]
+seasonal_dip = ["Seasonal: crews park most trucks Nov-Mar every year. {a} confirmed spring ramp."]
+ramping = ["Onboarding: phase 2 of 3 rollout scheduled for {d1}. {a} is driving it."]
+resolved_incident = ["Sev1 on gateway firmware caused GPS gaps. Fixed {d1}; {a} thanked the team."]
+champion_replaced = ["Former fleet director left. New director {a} attended the QBR and wants dashcams."]
+ap_delay = ["Invoices late because their AP moved to a new ERP. {a} confirmed payment is queued."]
+usage_decline = ["Drivers reportedly 'stopped bothering' with the app. {a} won't commit to a QBR.", ""]
+champion_loss = ["Our champion {b} left in August. No response from the new ops lead."]
+support_issues = ["{a} furious about repeated dashcam upload failures; open escalation for 5 weeks."]
+billing = ["Two invoices unpaid. {a} mentioned cash flow is tight and asked about pausing."]
+competitor = ["Saw another vendor's dashcams on {n} of their trucks. {a} says it's 'just a test'."]
+downsizing = ["Company lost a major contract and is cutting drivers. {a} asked to reduce licenses."]
+low_adoption = ["Never finished the driver app rollout after kickoff. Only yard trucks use it."]

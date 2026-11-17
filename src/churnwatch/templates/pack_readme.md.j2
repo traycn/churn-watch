@@ -1,0 +1,36 @@
+# {{ pack.name }}
+
+<!-- Written once by `churnwatch generate`; edit freely. Only the RESULTS block is regenerated. -->
+
+{% if pack.meta.get("target_role") %}**Built for:** {{ pack.meta["target_role"] }}{% if pack.meta.get("target_company") %}, {{ pack.meta["target_company"] }}{% endif %}{% if pack.meta.get("target_url") %} ([posting]({{ pack.meta["target_url"] }})){% endif %}
+
+{% endif %}{{ product }}
+
+> {{ pack.words["company"] }} and every account here are synthetic, generated from [`pack.toml`](pack.toml) by the churn-watch engine.
+
+## Results
+
+Scored on {{ n }} labeled test accounts, {{ ambiguous }} of them ambiguous by design (the numbers and the CSM notes point different ways).
+
+<!-- RESULTS:START -->
+<!-- RESULTS:END -->
+
+<!-- FINDINGS -->
+
+## The data
+
+The CRM export has one row per customer. The {{ units_h }} each customer licenses are the billing unit.
+
+| Column | Meaning |
+| --- | --- |
+{% for name, desc in fields %}| `{{ name }}` | {{ desc }} |
+{% endfor %}
+
+Files: [`data/accounts.csv`](data/accounts.csv) (demo export), [`data/testset/`](data/testset/) (test set and labels), [`rubric.md`](rubric.md) (how labels are decided), [`evals/misses.md`](evals/misses.md) (every miss).
+
+## Run it
+
+```bash
+uv run churnwatch score --pack {{ pack.slug }}          # writes out/{{ pack.slug }}/report.html
+uv run churnwatch eval --pack {{ pack.slug }} --replay  # reproduce the scores above, no API key
+```

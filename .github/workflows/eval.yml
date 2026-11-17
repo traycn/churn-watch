@@ -1,7 +1,7 @@
 name: eval
 
 # Re-score the test set whenever something that can change the scores changes:
-# a prompt, the model list or settings, the scoring code, or the labels.
+# a prompt, the model list or settings, the engine, or any pack.
 on:
   push:
     branches: [main]
@@ -9,7 +9,7 @@ on:
       - "prompts/**"
       - "evals/config.toml"
       - "src/**"
-      - "data/testset/**"
+      - "packs/**"
   workflow_dispatch:
 
 # Paid runs happen only on main, one at a time, so there is exactly one spend ledger
@@ -71,7 +71,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add evals/ README.md
+          git add evals/ packs/ README.md
           if git diff --cached --quiet; then
             echo "Scores unchanged."
           else

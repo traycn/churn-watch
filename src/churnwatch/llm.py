@@ -18,6 +18,7 @@ from pathlib import Path
 from pydantic import ValidationError
 
 from .budget import Budget, worst_case_cost
+from .pack import Pack
 from .schema import Assessment, tool_schema
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -40,8 +41,20 @@ class Result:
     cached: bool
 
 
-def load_prompt(version: str) -> str:
-    return (PROMPTS_DIR / f"{version}.md").read_text()
+def render_prompt(version: str, pack: Pack) -> str:
+    """Prompts are Jinja templates in prompts/; the pack fills in the domain."""
+    from jinja2 import Template
+
+    text = (PROMPTS_DIR / f"{version}.md.j2").read_text()
+    seasonal = ", ".join(s["name"] for s in pack.raw["segments"] if s.get("seasonal"))
+    return Template(text, keep_trailing_newline=True).render(
+        company=pack.words["company"],
+        product=" ".join(pack.meta["product"].split()),
+        fields=list(pack.descriptions.items()),
+        reasons=list(pack.reasons.items()),
+        notes_field=pack.col("csm_notes"),
+        seasonal_segments=seasonal,
+    )
 
 
 def model_input(record: dict) -> str:
@@ -58,12 +71,14 @@ def cache_key(model: str, prompt: str, record: dict, max_tokens: int, temperatur
 
 
 class ClaudeScorer:
-    def __init__(self, model: str, prompt_version: str, *, max_tokens: int = 4000,
+    def __init__(self, model: str, prompt_version: str, pack: Pack, *, max_tokens: int = 4000,
                  temperature: float | None = 0, replay: bool = False, client=None,
                  cache_dir: Path = CACHE_DIR, budget: Budget | None = None):
         self.model = model
         self.prompt_version = prompt_version
-        self.prompt = load_prompt(prompt_version)
+        self.pack = pack
+        self.prompt = render_prompt(prompt_version, pack)
+        self.id_field = pack.col("account_id")
         self.max_tokens = max_tokens
         self.temperature = temperature
         self.replay = replay
@@ -147,7 +162,8 @@ class ClaudeScorer:
         if cached:
             raw = json.loads(path.read_text())
         elif self.replay:
-            raise CacheMiss(f"No cached response for {record['account_id']} with {self.model}/{self.prompt_version}")
+            raise CacheMiss(f"No cached response for {record[self.id_field]} with "
+                            f"{self.pack.slug}/{self.model}/{self.prompt_version}")
         else:
             # Each attempt in _call is at most one billed request; reserve the worst case
             # for it before sending and settle to the real cost after.
@@ -160,22 +176,23 @@ class ClaudeScorer:
                     self.budget.release(reserved)  # rejected requests are not billed
                 else:
                     # Unknown whether it was billed (timeout, dropped connection): count the worst case.
-                    self.budget.settle(reserved, model=self.model, prompt=self.prompt_version,
-                                       account_id=record["account_id"] + " (failed, counted at worst case)",
+                    self.budget.settle(reserved, model=self.model, prompt=f"{self.pack.slug}/{self.prompt_version}",
+                                       account_id=record[self.id_field] + " (failed, counted at worst case)",
                                        input_tokens=0, output_tokens=0, cost_usd=reserved)
                 raise
-            self.budget.settle(reserved, model=self.model, prompt=self.prompt_version,
-                               account_id=record["account_id"], input_tokens=raw["input_tokens"],
+            self.budget.settle(reserved, model=self.model, prompt=f"{self.pack.slug}/{self.prompt_version}",
+                               account_id=record[self.id_field], input_tokens=raw["input_tokens"],
                                output_tokens=raw["output_tokens"])
             path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_text(json.dumps({"account_id": record["account_id"], "prompt_version": self.prompt_version,
+            path.write_text(json.dumps({"pack": self.pack.slug, "account_id": record[self.id_field],
+                                        "prompt_version": self.prompt_version,
                                         **raw}, indent=1))
         assessment, error = None, None
         if raw.get("tool_input") is None:
             error = f"no tool call (stop_reason={raw.get('stop_reason')})"
         else:
             try:
-                assessment = Assessment.model_validate({**raw["tool_input"], "account_id": record["account_id"]})
+                assessment = Assessment.model_validate({**raw["tool_input"], "account_id": record[self.id_field]})
             except ValidationError as e:
                 error = f"schema: {e.errors()[0]['msg']} at {e.errors()[0]['loc']}"
         return Result(assessment, error, raw["input_tokens"], raw["output_tokens"], raw["latency_ms"], cached)

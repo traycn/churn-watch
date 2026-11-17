@@ -1,0 +1,146 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# churn-watch industry pack template
+#
+# Copy this folder to packs/<your-slug>/ (or run `churnwatch new-pack <slug>`),
+# fill in every section, then run `churnwatch generate --pack <slug>`.
+#
+# The engine already knows how account health behaves: healthy, expanding,
+# usage decline, a departed champion, a seasonal dip, a competitor pilot, and so on.
+# This file supplies the domain: what the product is, what a customer pays for,
+# which CRM columns exist, and how a CSM in this industry writes notes.
+#
+# Placeholders available in every text field:
+#   {unit_h} {units_h} {Units_h}   e.g. location / locations / Locations
+#   {users_h} {Users_h}            e.g. pharmacists / Pharmacists
+#   {company}                      the vendor's name
+# Extra placeholders in [notes]:
+#   {a} {b}  contact first names    {n} a small number    {d1} a date ("Nov 03")
+#   CSM-note dates are in the past, except for "ramping" notes, where they are upcoming.
+# ─────────────────────────────────────────────────────────────────────────────
+
+[pack]
+name = "Example: refill-reminder SaaS for independent pharmacies"
+vendor_name = "Refillwise"                     # invented vendor; never a real company
+export_date = "2026-11-16"                     # the "today" of the synthetic export
+seed = 7
+# The job this pack was built for (shown in the pack README). Optional.
+target_role = "Senior Solutions Consultant"
+target_company = "Example Co."
+target_url = ""
+# Two to four sentences. The model reads this first, so say what is sold, to whom,
+# and how customers get value from it.
+product = """
+Refillwise sells refill-reminder and adherence software to independent pharmacies.
+Each licensed pharmacy location gets automated text and voice reminders, a
+pharmacist dashboard, and adherence reports. Pharmacies get value when most of
+their locations send reminders and pharmacists act on the adherence queue every week.
+"""
+
+# What the customer pays for. Column names are built from `column` and `column_plural`,
+# e.g. locations_licensed, locations_active_now, location_utilization_pct.
+[unit]
+name = "pharmacy location"
+name_plural = "pharmacy locations"
+column = "location"
+column_plural = "locations"
+counts = [1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 25, 35, 50]   # account sizes to draw from
+users_per_unit = [1.5, 4.0]                                  # weekly active users per active unit
+
+[users]
+name = "pharmacists"
+
+# Plans are drawn at random, weighted, among those whose min_units fits the account.
+[[plans]]
+name = "Core"
+price_per_unit = 1800                          # USD per unit per year
+min_units = 0
+weight = 2
+
+[[plans]]
+name = "Plus"
+price_per_unit = 2600
+min_units = 3
+weight = 1
+
+# Customer segments. Mark seasonal = true where usage dips in a predictable season;
+# the seasonal-dip test cases are drawn only from those segments.
+# name_suffixes build account names: "<prefix> <suffix>".
+[[segments]]
+name = "Independent pharmacy"
+seasonal = false
+name_suffixes = ["Pharmacy", "Drug", "Apothecary", "Rx"]
+
+[[segments]]
+name = "Regional chain"
+seasonal = false
+name_suffixes = ["Pharmacies", "Drug Stores", "Health Mart"]
+
+[[segments]]
+name = "College-town pharmacy"
+seasonal = true
+name_suffixes = ["Campus Pharmacy", "University Rx"]
+
+[features]
+core = "text_reminders"                        # every account has this
+optional = ["voice_reminders", "adherence_reports", "sync_refills", "pos_integration",
+            "delivery_alerts", "vaccine_outreach"]
+
+[naming]
+prefixes = ["Maple", "Riverside", "Main Street", "Oak Park", "Hillcrest", "Lakeview", "Elm",
+            "Cedar", "Bayside", "Northside", "Valley", "Summit", "Westgate", "Harbor", "Pine Ridge"]
+contacts = ["Dana", "Marcus", "Priya", "Luis", "Keisha", "Tom", "Aiko", "Rafael", "Jen", "Omar"]
+
+# How a CSM in this industry would write notes for each scenario. Two or three
+# variants each; an empty string means "no notes" (a real CRM often has none).
+# Write them in the industry's own vocabulary: that is what makes the pack credible.
+[notes]
+healthy = [
+  "QBR on {d1}. {a} says reminders cut their missed refills; asked about vaccine outreach.",
+  "Quiet account. {a} answers within a day. No open asks.",
+  "",
+]
+expanding = ["{a} is opening {n} more locations in Q1 and wants them on the platform."]
+seasonal_dip = ["College town: volume drops every winter break. Same dip last year; {a} confirmed."]
+ramping = ["Onboarding: second wave of locations goes live {d1}. {a} is driving it; on track."]
+resolved_incident = ["SMS outage in October hit their area. Fixed {d1}; {a} said they're satisfied with the credit."]
+champion_replaced = ["Owner sold the store; new owner {a} attended training and wants adherence reports."]
+ap_delay = ["Late payment due to their switch to a new accounting system; {a} confirmed payment is scheduled."]
+usage_decline = ["Pharmacists stopped working the adherence queue. {a} won't commit to a check-in."]
+champion_loss = ["Our sponsor {b} retired. No response from the new pharmacist-in-charge."]
+support_issues = ["Reminders sent with wrong pickup times twice. {a} escalated; fix keeps slipping."]
+billing = ["Two invoices unpaid. {a} said reimbursements are squeezing cash flow and asked about pausing."]
+competitor = ["{a} mentioned their wholesaler is bundling a free reminder tool; asked for our pricing 'to compare'."]
+downsizing = ["Closing {n} locations after a DIR-fee hit. {a} asked to reduce licenses at renewal."]
+low_adoption = ["Signed for all locations but only the main store sends reminders. Training offers declined."]
+
+# ── Optional sections ────────────────────────────────────────────────────────
+
+# Rename any column (canonical name = new column name).
+# [columns]
+# segment = "pharmacy_type"
+
+# Re-describe any column for the prompt's field glossary.
+# [descriptions]
+# sev1_tickets_90d = "Tickets where reminders failed to send or went to the wrong patient."
+
+# Re-define any churn reason in the industry's terms.
+# [reasons]
+# usage_decline = "Reminder volume or pharmacist activity fell sharply ..."
+
+# Industry-specific metrics. `base` is the range for most accounts; `by_scenario`
+# overrides it for specific scenarios so the metric carries signal.
+# [[extra_fields]]
+# name = "reminder_response_rate_pct"
+# description = "Share of patients who confirmed a refill after a reminder, last 30 days."
+# base = [35, 60]
+# decimals = 1
+# by_scenario = { usage_decline = [10, 25], low_adoption = [5, 20], expanding = [55, 70] }
+
+# Change how many of each scenario go into the 50-account test set (defaults in pack.py).
+# [testset_mix]
+# seasonal_dip = 0
+
+# Which (model/prompt) runs score this pack; defaults come from evals/config.toml.
+# [evals]
+# runs = ["claude-haiku-5-5/v1", "claude-haiku-5-5/v2", "claude-sonnet-5-5/v2"]
+# demo = "claude-haiku-5-5/v2"

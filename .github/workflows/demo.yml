@@ -1,6 +1,6 @@
 name: demo
 
-# Score the 200-account demo export with the default model and publish the report.
+# Score each pack's 200-account demo export with its demo run and publish the reports.
 # Run by hand from the Actions tab. Shares the paid-eval queue and spend ledger.
 on:
   workflow_dispatch:
@@ -23,10 +23,13 @@ jobs:
           ref: main
       - uses: astral-sh/setup-uv@v5
       - run: uv sync --extra dev
-      - name: Score the demo export (refused if the worst case would pass the cap)
+      - name: Score each pack's demo export (refused if the worst case would pass the cap)
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-        run: uv run churnwatch score data/accounts.csv --model claude-haiku-5-5 --prompt v2 --out docs/sample
+        run: |
+          for pack in $(ls packs | grep -v '^_'); do
+            uv run churnwatch score --pack "$pack" --out "packs/$pack/sample-report"
+          done
       - name: Spend
         if: always()
         run: uv run churnwatch budget | tee -a "$GITHUB_STEP_SUMMARY" || true
@@ -35,9 +38,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/sample evals/
+          git add packs/ evals/
           if ! git diff --cached --quiet; then
-            git commit -m "demo: score data/accounts.csv [skip ci]"
+            git commit -m "demo: score pack demo exports [skip ci]"
             git pull --rebase origin main
             git push
           fi
