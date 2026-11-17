@@ -1,0 +1,23 @@
+# What `churnwatch eval` runs. Any change here or in prompts/ re-runs the evals in CI.
+
+testset = "data/testset/accounts.csv"
+labels = "data/testset/labels.csv"
+
+# Every (model, prompt) pair is scored. "baseline" is the rules model and ignores prompts.
+models = ["baseline", "claude-haiku-5-5", "claude-sonnet-5-5"]
+prompts = ["v1", "v2"]
+
+max_tokens = 4000  # includes thinking tokens on models that think by default
+temperature = 0
+concurrency = 8
+
+# USD per million tokens, standard API.
+# Source: https://platform.claude.com/docs/en/about-claude/pricing (checked 2026-11-17).
+# Haiku 5.5 prices are for prompts of 100K tokens or less, which every request here is.
+[prices.claude-haiku-5-5]
+input = 0.10
+output = 0.50
+
+[prices.claude-sonnet-5-5]
+input = 2.00
+output = 10.00
