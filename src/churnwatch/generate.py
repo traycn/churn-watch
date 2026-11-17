@@ -45,10 +45,11 @@ def make_account(rng: random.Random, pack: Pack, idx: int, scenario: str, prefix
     used_names.add(name)
 
     unit = pack.raw["unit"]
-    licensed = rng.choice(unit["counts"])
+    licensed = rng.choice(seg.get("unit_counts", unit["counts"]))
     plans = [p for p in pack.raw["plans"] if p.get("min_units", 0) <= licensed] or pack.raw["plans"][:1]
     plan = rng.choices(plans, [p.get("weight", 1) for p in plans])[0]
-    arr = int(round(licensed * plan["price_per_unit"] * rng.uniform(0.9, 1.1), -2))
+    price = plan["price_per_unit"] * seg.get("price_multiplier", 1.0)
+    arr = int(round(licensed * price * rng.uniform(0.9, 1.1), -2))
 
     feats_cfg = pack.raw["features"]
     optional = feats_cfg.get("optional", [])

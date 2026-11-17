@@ -65,6 +65,8 @@ weight = 1
 # Customer segments. Mark seasonal = true where usage dips in a predictable season;
 # the seasonal-dip test cases are drawn only from those segments.
 # name_suffixes build account names: "<prefix> <suffix>".
+# Optional per segment: unit_counts = [...] (account sizes for this segment, instead of
+# [unit] counts) and price_multiplier = 2.5 (scales every plan's price_per_unit).
 [[segments]]
 name = "Independent pharmacy"
 seasonal = false

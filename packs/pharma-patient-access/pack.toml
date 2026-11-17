@@ -1,0 +1,200 @@
+# Pharma manufacturer patient-access programs on a digital pharmacy platform.
+# The "accounts" are pharmaceutical manufacturers (partners) running a brand's
+# direct-to-patient, copay and hub programs through the platform. Churn here means a
+# manufacturer moving a program to another hub or specialty pharmacy, or cutting it
+# back at renewal.
+
+[pack]
+name = "Pharma patient-access programs"
+vendor_name = "Parcella Health"                # invented vendor
+export_date = "2026-11-16"
+seed = 11
+target_role = "Senior Solutions Consultant"
+target_company = "Gifthealth"
+target_url = ""
+product = """
+Parcella Health runs direct-to-patient pharmacy and patient-support programs for
+pharmaceutical manufacturers. For each brand program, Parcella fills and ships
+prescriptions, runs benefits verification and prior-authorization support, applies
+copay assistance, and sends adherence outreach, and the manufacturer's brand team
+sees program data in a partner portal and a daily data feed. Manufacturers pay a
+program fee per contracted patient per year. A program does well when active
+patients track the manufacturer's enrollment forecast and patients get to their first
+fill quickly.
+"""
+
+# The billing unit is a contracted patient: the annual patient volume the manufacturer
+# committed to in the program contract.
+[unit]
+name = "patient"
+name_plural = "patients"
+column = "patient"
+column_plural = "patients"
+counts = [400, 600, 900, 1200, 1800, 2500, 3500, 5000, 7500]
+users_per_unit = [0.002, 0.005]
+
+[users]
+name = "brand-team portal users"
+
+[columns]
+units_licensed = "contracted_patients"
+units_active_now = "active_patients_now"
+units_active_90d_ago = "active_patients_90d_ago"
+utilization_pct = "forecast_attainment_pct"
+units_change_90d_pct = "active_patients_change_90d_pct"
+users_now = "weekly_portal_users_now"
+users_90d_ago = "weekly_portal_users_90d_ago"
+segment = "therapeutic_category"
+features_adopted = "services_adopted"
+account_name = "manufacturer"
+
+[descriptions]
+units_licensed = "Annual patient volume the manufacturer contracted for (its enrollment forecast)."
+units_active_now = "Patients with a fill or an open enrollment in the last 30 days."
+units_active_90d_ago = "Active patients 90 days ago."
+utilization_pct = "Derived: active patients as a % of contracted patients."
+units_change_90d_pct = "Derived: % change in active patients over 90 days; null with no history."
+users_now = "Manufacturer brand-team users active in the partner portal in the last week."
+users_90d_ago = "Weekly active portal users 90 days ago."
+users_change_90d_pct = "Derived: % change in weekly portal users over 90 days; null with no history."
+segment = "The brand's therapeutic category."
+features_adopted = "Program services in use, separated by semicolons."
+tickets_90d = "Support tickets from the brand team or about the program, last 90 days."
+sev1_tickets_90d = "Severity-1 incidents in the last 90 days: failed fills, copay rejects at scale, data-feed outages."
+open_escalation = "yes if the manufacturer has an open executive escalation."
+champion_status = "active, or left if the manufacturer's program sponsor (brand director or patient-services lead) has left."
+days_since_exec_meeting = "Days since the last executive business review with the manufacturer."
+csm_notes = "Free-text notes from the client success manager."
+
+[reasons]
+usage_decline = "Active patients or new starts fell sharply (about 25% or more in 90 days) and nothing in the notes explains it away."
+champion_loss = "The manufacturer's program sponsor (brand director or patient-services lead) left, and no engaged successor is named."
+support_issues = "Repeated severe incidents (failed fills, prior-auth or copay failures, data-feed outages) or an open escalation, and the brand team is still unhappy."
+billing = "Program-fee invoices well overdue and signs the manufacturer can't or won't pay (not a procurement-system delay)."
+competitor = "Evidence of evaluating another hub, specialty pharmacy or patient-services vendor: an RFI or RFP, a price comparison, or a competing pilot."
+budget_or_downsizing = "The brand is losing exclusivity, being restructured, or having its program budget cut, and the manufacturer wants to reduce scope."
+low_adoption = "A partner for 12+ months with active patients far below forecast and few services adopted."
+
+[[extra_fields]]
+name = "median_days_to_first_fill"
+description = "Median days from enrollment to the patient's first shipped fill, last 30 days."
+base = [2.0, 5.0]
+decimals = 1
+by_scenario = { support_issues = [8.0, 15.0], resolved_incident = [3.0, 6.0], ramping = [4.0, 7.0] }
+
+[[extra_fields]]
+name = "refill_adherence_pct"
+description = "Share of active patients refilling on time (proportion of days covered of 80% or more), last 90 days."
+base = [70.0, 85.0]
+decimals = 1
+by_scenario = { usage_decline = [50.0, 64.0], low_adoption = [55.0, 68.0], expanding = [80.0, 90.0] }
+
+[[plans]]
+name = "Access"                                 # fulfillment + copay
+price_per_unit = 180
+min_units = 0
+weight = 2
+
+[[plans]]
+name = "Full hub"                               # adds BV, PA support, hub services, outreach
+price_per_unit = 420
+min_units = 0
+weight = 1
+
+[[segments]]
+name = "Specialty (immunology)"
+name_suffixes = ["Therapeutics", "Biosciences", "Bio"]
+unit_counts = [300, 500, 800, 1200, 1800, 2500, 3500]
+price_multiplier = 2.5
+
+[[segments]]
+name = "Rare disease"
+name_suffixes = ["Rare Therapeutics", "Biopharma", "Genetics"]
+unit_counts = [40, 60, 90, 120, 180, 250, 400]     # rare-disease programs are small
+price_multiplier = 12                              # and high-touch per patient
+
+[[segments]]
+name = "Cardiometabolic"
+name_suffixes = ["Pharmaceuticals", "Pharma", "Health"]
+
+[[segments]]
+name = "Dermatology"
+name_suffixes = ["Dermatologics", "Skin Sciences", "Pharma"]
+
+[[segments]]
+name = "Seasonal allergy"
+seasonal = true                                 # new starts fall every autumn and winter
+name_suffixes = ["Respiratory", "Allergy Sciences", "Pharma Labs"]
+
+[features]
+core = "pharmacy_fulfillment"
+optional = ["copay_assistance", "benefits_verification", "prior_auth_support", "hub_services",
+            "adherence_outreach", "telehealth_connect", "partner_data_feed"]
+
+[naming]
+prefixes = ["Aurelian", "Brightwater", "Calder", "Corvane", "Elmstead", "Halvard", "Kestrel",
+            "Lumora", "Norvale", "Orrin", "Pellucid", "Quillon", "Sablewood", "Tavira",
+            "Verance", "Wexford", "Zeller", "Ashgrove", "Belmar", "Cirrane"]
+company_suffixes = ["Inc.", "US", "Holdings", "Group"]
+contacts = ["Dana", "Marcus", "Priya", "Luis", "Keisha", "Tom", "Aiko", "Rafael", "Jen", "Omar",
+            "Beth", "Nikhil", "Carla", "Hannah", "Victor", "Mei"]
+
+[notes]
+healthy = [
+  "QBR on {d1}. {a} (brand director) pleased with time to first fill; asked about moving a second brand onto the platform.",
+  "Quiet program. {a} reviews the daily data feed; no open asks.",
+  "Renewal conversation started early; {a} said next year's program budget is approved.",
+  "",
+]
+expanding = [
+  "{a} is launching a new indication in Q1 and wants it routed through our pharmacy from day one.",
+  "Manufacturer adding {n} more brands' copay programs after strong first-year results. {a} is the sponsor.",
+]
+seasonal_dip = [
+  "Allergy brand: new starts drop every fall and winter, same as last year, and they renewed early. {a} expects the spring ramp.",
+  "Off-season for this brand. {a} confirmed volume matches their own forecast curve.",
+]
+ramping = [
+  "Launch brand still ramping. Payer coverage wins and field-force expansion land {d1}; {a} says enrollment is on plan.",
+  "Program went live recently. Second wave of prescriber targeting starts {d1}; on track per {a}.",
+]
+resolved_incident = [
+  "Benefits-verification outage in October delayed first fills. Root cause fixed {d1}; {a} accepted the credit and closed the escalation.",
+  "Two data-feed failures last month, both backfilled. {a} said the brand team's reporting is whole again.",
+]
+champion_replaced = [
+  "Our sponsor moved to another brand. Successor {a} joined the QBR and wants a hub-services walkthrough.",
+  "Patient-services lead left in September; replacement {a} is engaged and asked for the program playbook.",
+]
+ap_delay = [
+  "Invoices late because the manufacturer moved to a new procurement system. {a} confirmed the PO and a payment date.",
+]
+usage_decline = [
+  "New patient starts falling since summer. {a} says the field team 'is focused elsewhere' and won't commit to a review.",
+  "Fewer prescribers routing to us. {a} hasn't answered the last two emails.",
+  "",
+]
+champion_loss = [
+  "Brand director {b} left in August. No contact yet with the new brand lead.",
+  "{b} (patient-services lead, signed the program) was reorganized out. Nobody owns the relationship now.",
+]
+support_issues = [
+  "{a} escalated repeated prior-auth delays; patients are abandoning before first fill. Fix ETA keeps slipping.",
+  "Copay card rejects at fill for three weeks. {a} escalated to their VP of market access.",
+]
+billing = [
+  "Two program-fee invoices unpaid. {a} said budgets are under review after a pricing hit.",
+  "Finance not responding to collections. {a} mentioned the brand's budget is frozen.",
+]
+competitor = [
+  "{a} mentioned their hub vendor pitched a bundled specialty pharmacy; asked for our per-patient pricing 'for comparison'.",
+  "Procurement issued an RFI for patient-support services due in Q1. {a} hinted it covers our scope.",
+]
+downsizing = [
+  "Brand loses exclusivity next year. {a} asked to cut the program to copay assistance only at renewal.",
+  "Manufacturer restructuring after a failed trial; {a} asked which services they could drop.",
+]
+low_adoption = [
+  "Signed for full hub services but only pharmacy fulfillment is used; prescribers were never told about the program.",
+  "Live over a year with low enrollment. Repeated offers to retrain the field team declined.",
+]

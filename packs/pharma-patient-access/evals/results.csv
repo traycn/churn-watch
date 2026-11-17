@@ -1,0 +1,3 @@
+run_at,git_sha,label_set,model,prompt,n,precision,recall,f1,accuracy,ambiguous_accuracy,reason_accuracy,grounded_evidence_pct,fully_grounded_pct,errors,cost_per_1k_accounts_usd,p50_latency_s
+2026-11-17T22:17:28Z,e01f5c6,draft,baseline,-,50,0.562,0.818,0.667,0.64,0.0,0.944,100.0,100.0,0,0.0,0.0
+2026-11-17T22:17:59Z,e01f5c6,draft,baseline,-,50,0.576,0.864,0.691,0.66,0.0,0.895,100.0,100.0,0,0.0,0.0

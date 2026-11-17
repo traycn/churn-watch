@@ -15,7 +15,9 @@ Adding an industry means writing a pack, not changing code.
 ## Packs
 
 <!-- PACKS:START -->
-_No packs yet. Create one with `churnwatch new-pack <slug>`._
+| Pack | Built for | Best F1 (LLM) | Rules baseline F1 | Ambiguous cases right (best LLM) | Labels |
+| --- | --- | ---: | ---: | ---: | --- |
+| [Pharma patient-access programs](packs/pharma-patient-access/) | Senior Solutions Consultant, Gifthealth | – | 69% | – | draft |
 <!-- PACKS:END -->
 
 Each pack folder has its own README with the product, the data dictionary, full results and every miss.
